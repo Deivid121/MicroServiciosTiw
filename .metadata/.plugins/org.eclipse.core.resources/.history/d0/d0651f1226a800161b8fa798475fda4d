@@ -1,0 +1,20 @@
+package es.uc3m.tiw.wallapop.ejbs;
+
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+
+/**
+ * Session Bean implementation class ChatBeans
+ */
+@Stateless
+@LocalBean
+public class ChatBeans implements ChatBeansLocal {
+
+    /**
+     * Default constructor. 
+     */
+    public ChatBeans() {
+        // TODO Auto-generated constructor stub
+    }
+
+}

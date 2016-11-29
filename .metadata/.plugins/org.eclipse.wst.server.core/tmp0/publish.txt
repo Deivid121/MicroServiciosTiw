@@ -1,0 +1,4 @@
+#GlassFish 3
+#Sat Nov 12 19:49:32 UTC 2016
+org.eclipse.jst.jee.server\:wallapoptiw=/opt/glassfish/payara41/glassfish/domains/domain1/eclipseApps/wallapoptiw
+org.eclipse.jst.jee.server\:laboratorios=/opt/glassfish/payara41/glassfish/domains/domain1/eclipseApps/laboratorios

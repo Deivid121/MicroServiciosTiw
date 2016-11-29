@@ -1,0 +1,19 @@
+.ProductoImage{
+	width:300px;
+	height:auto; 
+	
+}
+body{
+	background-color: blue;
+}
+.ProductCase{
+	background-color: white;
+	border-radius: 25px;
+}
+#Details{
+	text-align: center;
+	padding-bottom: 5%;
+}
+.Description{
+	text-align:center;
+}

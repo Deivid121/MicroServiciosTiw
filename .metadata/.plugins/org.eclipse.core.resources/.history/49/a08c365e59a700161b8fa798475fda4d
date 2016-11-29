@@ -1,0 +1,5 @@
+package es.uc3m.tiw.wallapoptiw.daos;
+
+public class MensajesDAO {
+
+}

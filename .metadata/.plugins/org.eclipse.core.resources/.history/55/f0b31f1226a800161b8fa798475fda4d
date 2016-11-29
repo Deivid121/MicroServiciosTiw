@@ -1,0 +1,8 @@
+package es.uc3m.tiw.wallapop.ejbs;
+
+import javax.ejb.Local;
+
+@Local
+public interface ChatBeansLocal {
+
+}
