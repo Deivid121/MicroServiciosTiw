@@ -1,4 +1,0 @@
-#Tomcat publish data
-#Wed Oct 19 16:14:02 UTC 2016
-org.eclipse.jst.jee.server\:wallapoptiw=/opt/sts-bundle/pivotal-tc-server-developer-3.1.5.RELEASE/base-instance/wtpwebapps/wallapoptiw
-org.eclipse.jst.jee.server\:laboratorios=/opt/sts-bundle/pivotal-tc-server-developer-3.1.5.RELEASE/base-instance/wtpwebapps/laboratorios
