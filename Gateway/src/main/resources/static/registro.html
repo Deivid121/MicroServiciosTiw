@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>WallapopTIW</title>
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/formulario.css">
+        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.0.0.min.js"></script>
+        <script src="./js/bootstrap.js"></script>
+
+    </head>
+    <body>
+        <nav class="navbar navbar-default">
+             <div class="container-fluid">
+                <div class="row">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="col-md-2">
+                        <div class="navbar-header">
+                          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                          </button>
+                            <a class="navbar-brand" href="index.html">
+                             <img id="logo" src="img/titulo.png">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div id=topNavElement class="collapse navbar-collapse navbar-ex1-collapse">
+                            <form class="navbar-form navbar-left" role="search" action = "buscarProductosSimple" method ="post">
+                                <div class="form-group ">
+                                    <input type="text" class="form-control" placeholder="Buscar producto ..." name = "palabra">
+                                </div>
+                                <button type="submit" class="btn btn-default">Buscar</button>
+                            </form>
+                            <ul class="nav navbar-nav">
+                                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> Busqueda avanzada <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <form class="navbar-form navbar-left" role="search" action ="buscarProducto" method ="post">
+                                            <div class="form-group ">
+                                                <input type="text" class="form-control" placeholder="Categoria ..." name = "categoria"> 
+                                                <input type="text" class="form-control" placeholder="Ciudad ..." name = "ciudad"> 
+                                                <input type="text" class="form-control" placeholder="Vendedor ..." name = "vendedor">
+                                                <input type="text" class="form-control" placeholder="Titulo ..." name = "titulo">
+                                                <input type="text" class="form-control" placeholder="Descripcion ..." name = "descripcion">
+                                            </div>
+                                             <button type="submit" class="btn btn-default">Buscar</button>
+                                        </form>
+                                    </ul>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <ul class="nav navbar-nav navbar-right">
+                            <div class="form-group ">
+                                <form class="form-inline navbar-form" role="form" action="login"
+                                    method="post" id="login">
+                                    <label class="sr-only" for="ejemplo_email_2">Email</label> 
+                                        <input type="text" class="form-control" name="User" placeholder="Introduce tu email" data-validation="email" data-validation-error-msg="No has introducido un email valido (a@b.c)"></input>
+                                    <label class="sr-only" for="ejemplo_password_2">Contraseña</label>
+                                    <input type="password" class="form-control" name="Pass"
+                                        placeholder="Contraseña" data-validation="length"
+                                        data-validation-length="min8"
+                                        data-validation-error-msg="La contraseña tiene al menos 8 caracteres"></input>
+                                    <input type="submit" class="btn btn-default" value="Entrar"></input>
+                                    ¿No estas registrado? <a href="registro.html">Registrate aqui.</a>
+                                </form>
+                                
+                            </div>
+
+                        </ul>
+                    </div>
+            </div>
+        </nav>
+           
+    <div class="container">
+        <div id=titulo>
+            <h2><strong>Formulario de registro</strong></h2>
+        </div>
+        <div class="registro">
+            <div class="row">
+               <form class="form-horizontal "id=registro>
+                  <div class="form-group">
+                    <label  class="col-md-4" for="exampleInputEmail1"><h5 class="text-center"><strong>Nombre</strong></h5></label>
+                    <div class="col-md-8">
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label  class="col-md-4" for="exampleInputPassword1"><h5 class="text-center"><strong>Primer apellido</strong></h5></label>
+                    <div class="col-md-8">
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label  class="col-md-4" for="exampleInputPassword1"><h5 class="text-center"><strong>Segundo apellido</strong></h5></label>
+                    <div class="col-md-8">
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label  class="col-md-4"  for="exampleInputFile"><h5 class="text-center"><strong>Correo electrónico</strong></h5></label>
+                    <div class="col-md-8">
+                    <input type="email" class="form-control" id="exampleInputFile">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label  class="col-md-4" for="exampleInputFile"><h5 class="text-center"><strong>Contraseña</strong></h5></label>
+                    <div class="col-md-8">
+                    <input type="password" class="form-control" id="exampleInputFile">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label  class="col-md-4" for="exampleInputFile"><h5 class="text-center"><strong> Confirmación de contraseña</strong></h5></label>
+                    <div class="col-md-8">
+                    <input type="password"  class="form-control" id="exampleInputFile">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label  class="col-md-4" for="exampleInputFile"><h5 class="text-center"><strong>Edad</strong></h5></label>
+                    <div class="col-md-8">
+                    <input type="number" class="form-control" id="exampleInputFile">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                        <label class="col-md-4" for="ejemplo_password_1"><h5 class="text-center"><strong>Ciudad</strong></h5></label> 
+                            <div class="col-md-8">
+                                <select multiple
+                                class="form-control" name="City" size="5" data-validation="required" data-validation="length" data-validation-length="max1">
+                                <option>A coruna</option>
+                                <option>Alava</option>
+                                <option>Albacete</option>
+                                <option>Alicante</option>
+                                <option>Almeria</option>
+                                <option>Asturias</option>
+                                <option>Avila</option>
+                                <option>Badajoz</option>
+                                <option>Baleares</option>
+                                <option>Barcelona</option>
+                                <option>Burgos</option>
+                                <option>Caceres</option>
+                                <option>Cadiz</option>
+                                <option>Cantabria</option>
+                                <option>Castellon</option>
+                                <option>Ceuta</option>
+                                <option>Ciudad real</option>
+                                <option>Cordoba</option>
+                                <option>Cuenca</option>
+                                <option>Girona</option>
+                                <option>Granada</option>
+                                <option>Guadalajara</option>
+                                <option>Guipuzcoa</option>
+                                <option>Huelva</option>
+                                <option>Huesca</option>
+                                <option>Jaen</option>
+                                <option>La rioja</option>
+                                <option>Las palmas</option>
+                                <option>Leon</option>
+                                <option>Lleida</option>
+                                <option>Lugo</option>
+                                <option>Madrid</option>
+                                <option>Malaga</option>
+                                <option>Melilla</option>
+                                <option>Murcia</option>
+                                <option>Navarra</option>
+                                <option>Ourense</option>
+                                <option>Palencia</option>
+                                <option>Pontevedra</option>
+                                <option>Salamanca</option>
+                                <option>Tenerife</option>
+                                <option>Segovia</option>
+                                <option>Sevilla</option>
+                                <option>Soria</option>
+                                <option>Tarragona</option>
+                                <option>Teruel</option>
+                                <option>Toledo</option>
+                                <option>Valencia</option>
+                                <option>Valladolid</option>
+                                <option>Vizcaya</option>
+                                <option>Zamora</option>
+                                <option>Zaragoza</option>
+                                </select>
+                            </div>
+                    </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox"> Acepto la política de uso de la información
+                    </label>
+                  </div>
+                  <br>
+                      <div id=registerButon>
+                        <button type="submit" class="btn btn-default">Registrarse</button>
+                      </div>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+    <br>
+    <hr>
+    <footer>
+        <nav id="footer" class="navbar navbar-default">
+                <ul >
+                      <li class="footerLink"><a href="#">Home</a></li>
+                      <li class="footerLink"><a href="#">Profile</a></li>
+                      <li class="footerLink"><a href="#">Messages</a></li>
+                </ul>
+            </nav>
+        Copyright © 2016 wallapopTIW
+    </footer>
+    </body>
+
+</html>
+

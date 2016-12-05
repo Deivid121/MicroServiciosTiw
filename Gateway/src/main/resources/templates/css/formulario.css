@@ -1,0 +1,15 @@
+#registro{
+	background-color: white;
+	border-radius: 10px;
+	width: 70%;
+	margin: auto;
+	padding: 10px;
+}
+#registerButon{
+	width: 10%;
+	margin: auto;
+}
+#titulo{
+	width: 40%;
+	margin: auto;
+}

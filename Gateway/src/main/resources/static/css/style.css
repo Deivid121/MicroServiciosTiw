@@ -1,0 +1,33 @@
+body{
+	background-color: #FAAC58;
+}
+#productos{
+	background-color: white;
+	border-radius: 10px;
+	text-align: center;
+	margin-top: 1%;
+
+}
+#productos > img{
+	width: 30%;
+	height: auto;
+}
+#productos > button{
+	text-align: center;
+}
+p{
+	font-size: 50%;
+}
+#logo{
+	width: 50%;
+	height: auto;
+}
+footer{
+	background-color: white;
+}
+#footer{
+	padding-top: 2%;
+}
+.footerLink:hover{
+	background-color: #FAAC58;
+}
