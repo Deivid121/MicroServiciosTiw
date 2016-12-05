@@ -16,11 +16,13 @@
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <link rel="stylesheet" type="text/css" href="css/formulario.css">
         <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.0.0.min.js"></script>
-        <script src="./js/bootstrap.js"></script>
+        <script src="./js/bootstrap.js">   </script>
+       <!-- <script src="./js/jquery-validator.min.js"></script>-->
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
 
     </head>
     <body>
-        <nav class="navbar navbar-default">
+        <nav id="navegador" class="navbar navbar-default">
              <div class="container-fluid">
                 <div class="row">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -47,7 +49,7 @@
                                 <button type="submit" class="btn btn-default">Buscar</button>
                             </form>
                             <ul class="nav navbar-nav">
-                                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> Busqueda avanzada <b class="caret"></b></a>
+                                <li class="dropdown"><a id="AdvancedSearchText" href="#" class="dropdown-toggle" data-toggle="dropdown"> Busqueda avanzada <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
                                         <form class="navbar-form navbar-left" role="search" action ="buscarProducto" method ="post">
                                             <div class="form-group ">
@@ -92,54 +94,56 @@
         </div>
         <div class="registro">
             <div class="row">
-               <form class="form-horizontal "id=registro>
+            <div id="registro">
+               <form role="form" action ="register" method="post" class="form-horizontal" id="registration">
                   <div class="form-group">
-                    <label  class="col-md-4" for="exampleInputEmail1"><h5 class="text-center"><strong>Nombre</strong></h5></label>
+                     <label  class="col-md-4"  for="exampleInputFile"><h5 class="text-center"><strong>Nombre</strong></h5></label> 
                     <div class="col-md-8">
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                        <input type="text"
+                                class="form-control" data-validation="required" data-validation="length" data-validation-length="max30" data-validation-error-msg="Introduzca un nombre" placeholder="Nombre" name="Uname">
                     </div>
                   </div>
                   <div class="form-group">
-                    <label  class="col-md-4" for="exampleInputPassword1"><h5 class="text-center"><strong>Primer apellido</strong></h5></label>
+                     <label  class="col-md-4"  for="exampleInputFile"><h5 class="text-center"><strong>Primer apellido</strong></h5></label> 
                     <div class="col-md-8">
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <input type="text" class="form-control" data-validation="required" data-validation="length" data-validation-length="max30" data-validation-error-msg="Introduzca su primer apellido" placeholder="Segundo apellido" name="FSurname">
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label  class="col-md-4" for="exampleInputPassword1"><h5 class="text-center"><strong>Segundo apellido</strong></h5></label>
+                   <div class="form-group">
+                     <label  class="col-md-4"  for="exampleInputFile"><h5 class="text-center"><strong>Segundo apellido</strong></h5></label> 
                     <div class="col-md-8">
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <input type="text" class="form-control" data-validation="required" data-validation="length" data-validation-length="max30" data-validation-error-msg="Introduzca su segundo apellido" placeholder="Segundo apellido" name="SSurname">
                     </div>
                   </div>
                   <div class="form-group">
                     <label  class="col-md-4"  for="exampleInputFile"><h5 class="text-center"><strong>Correo electrónico</strong></h5></label>
                     <div class="col-md-8">
-                    <input type="email" class="form-control" id="exampleInputFile">
+                    <input data-validation="email" data-validation-error-msg="Introduce un correo electrónico con el formato correcto;     email@dominion.com"
+                            class="form-control" data-validation="email"
+                            placeholder="Introduce tu email" name="Email">
                     </div>
                   </div>
                   <div class="form-group">
                     <label  class="col-md-4" for="exampleInputFile"><h5 class="text-center"><strong>Contraseña</strong></h5></label>
                     <div class="col-md-8">
-                    <input type="password" class="form-control" id="exampleInputFile">
+                    <input
+                            type="password" class="form-control" data-validation="length" data-validation-length="min8" data-validation-error-msg="Introduzca una contraseña de al menos 8 caracteres"
+                            placeholder="Contraseña" name="pass_confirmation">
                     </div>
                   </div>
                   <div class="form-group">
-                    <label  class="col-md-4" for="exampleInputFile"><h5 class="text-center"><strong> Confirmación de contraseña</strong></h5></label>
+                    <label  class="col-md-4"><h5 class="text-center"><strong> Confirmación de contraseña</strong></h5></label>
                     <div class="col-md-8">
-                    <input type="password"  class="form-control" id="exampleInputFile">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label  class="col-md-4" for="exampleInputFile"><h5 class="text-center"><strong>Edad</strong></h5></label>
-                    <div class="col-md-8">
-                    <input type="number" class="form-control" id="exampleInputFile">
+                    <input
+                            type="password" class="form-control" data-validation="confirmation" 
+                            placeholder="Verificar contraseña" name="pass">
                     </div>
                   </div>
                   <div class="form-group">
                         <label class="col-md-4" for="ejemplo_password_1"><h5 class="text-center"><strong>Ciudad</strong></h5></label> 
                             <div class="col-md-8">
                                 <select multiple
-                                class="form-control" name="City" size="5" data-validation="required" data-validation="length" data-validation-length="max1">
+                            class="form-control" name="City" size="5" data-validation="required" data-validation="length" data-validation-length="max1">
                                 <option>A coruna</option>
                                 <option>Alava</option>
                                 <option>Albacete</option>
@@ -197,28 +201,42 @@
                     </div>
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox"> Acepto la política de uso de la información
+                      <input  data-validation="required" data-validation-error-msg="Es necesario aceptar las políticas de uso de la información" type="checkbox"> Acepto la política de uso de la información
                     </label>
                   </div>
                   <br>
                       <div id=registerButon>
-                        <button type="submit" class="btn btn-default">Registrarse</button>
+                        <button type="submit" class="btn btn-default" name="Register">Registrarse</button>
                       </div>
+
+
                 </form>
+            <script>
+                $.validate({
+                    form : '#registration', 
+                     modules : 'security',
+                     onError : function($form) {
+                         console.log($form);
+                          return false;
+                        }
+                });
+            </script>
+                </div>
             </div>
         </div>
         
     </div>
-    <br>
+     <br>
     <hr>
     <footer>
-        <nav id="footer" class="navbar navbar-default">
+        <div id="footer">
                 <ul >
-                      <li class="footerLink"><a href="#">Home</a></li>
-                      <li class="footerLink"><a href="#">Profile</a></li>
-                      <li class="footerLink"><a href="#">Messages</a></li>
+                      <li class="footerLink"><a class="footerL" href="#">Políticas de seguridad</a></li>
+                      <li class="footerLink"><a class="footerL" href="#">Políticas de cookies</a></li>
+                      <li class="footerLink"><a class="footerL" href="#">Twitter</a></li>
+                      <li class="footerLink"><a class="footerL" href="#">Facebook</a></li>
                 </ul>
-            </nav>
+            </div>
         Copyright © 2016 wallapopTIW
     </footer>
     </body>
