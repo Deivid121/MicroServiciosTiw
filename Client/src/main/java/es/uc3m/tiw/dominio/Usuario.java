@@ -3,13 +3,16 @@ package es.uc3m.tiw.dominio;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
+
 import static javax.persistence.GenerationType.AUTO;
 
 @Entity
+@Table(name="USUARIOS")
 public class Usuario {
 	@Id	
 	@GeneratedValue(strategy = AUTO)
-	private int id;
+	private long id;
 	private String nombre;
 	private String apellido1;
 	private String apellido2;
@@ -30,11 +33,11 @@ public class Usuario {
 		this.password = password;
 		this.ciudad = ciudad;
 	}
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
