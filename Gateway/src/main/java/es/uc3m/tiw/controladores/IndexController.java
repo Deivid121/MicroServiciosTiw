@@ -11,9 +11,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class IndexController {
 
 	
-	@RequestMapping(value="/inicio", method=RequestMethod.GET)
+	@RequestMapping(value="/")
 	public String saludar(){
 		return "index";
+	}
+	@RequestMapping(value="/crear")
+	public String productos(){
+		return "crearProductos";
 	}
 	
 }

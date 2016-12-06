@@ -1,23 +1,33 @@
 
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <meta charset="utf-8"/>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>WallapopTIW</title>
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.0.0.min.js"></script>
-        <script src="js/bootstrap.js"></script>
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" />
+		<link rel="stylesheet" th:href="@{/css/style.css}" href="../../css/style.css" />
+		<script th:href="@{/js/jquery.min.js}" src="../../js/jquery.min.js"></script>
+		<script th:href="@{/js/bootstrap.min.css}" src="../../js/bootstrap.min.js"></script>
     </head>
     <body>
-            <div th:insert="Menu :: NavMenu"></div>
+    <div th:include="~{/templates/Menu :: NavMenu}"></div>
         <div class="container">
             <div class="row">
                 <div id="productos" class="col-md-3">
-                    <img src="img/productos.png">
+                    <img th:href="@{/images/productos.png}" src="../../images/productos.png"/>
+                    <h2>Titulo</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					
+                    <button type="submit" class="btn btn-default">Ver más</button>
+					
+                </div>
+                 <div id="productos" class="col-md-3 col-md-offset-1">
+                    <img th:href="@{/images/productos.png}" src="../../images/productos.png"/>
                     <h2>Titulo</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -30,20 +40,7 @@
 
                 </div>
                  <div id="productos" class="col-md-3 col-md-offset-1">
-                    <img src="img/productos.png">
-                    <h2>Titulo</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-                    <button type="submit" class="btn btn-default">Ver más</button>
-
-                </div>
-                 <div id="productos" class="col-md-3 col-md-offset-1">
-                    <img src="img/productos.png">
+                    <img th:href="@{/images/productos.png}" src="../../images/productos.png"/>
                     <h2>Titulo</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -58,7 +55,7 @@
             </div>
             <div class="row">
                  <div id="productos" class="col-md-3">
-                    <img src="img/productos.png">
+                    <img th:href="@{/images/productos.png}" src="../../images/productos.png"/>
                     <h2>Titulo</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -71,7 +68,7 @@
 
                 </div>
                  <div id="productos" class="col-md-3 col-md-offset-1">
-                    <img src="img/productos.png">
+                    <img th:href="@{/images/productos.png}" src="../../images/productos.png"/>
                     <h2>Titulo</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -84,7 +81,7 @@
 
                 </div>
                  <div id="productos" class="col-md-3 col-md-offset-1">
-                    <img src="img/productos.png">
+                    <img th:href="@{/images/productos.png}" src="../../images/productos.png"/>
                     <h2>Titulo</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -99,7 +96,7 @@
             </div>
             <div class="row">
                  <div id="productos" class="col-md-3">
-                    <img src="img/productos.png">
+                    <img th:href="@{/images/productos.png}" src="../../images/productos.png"/>
                     <h2>Titulo</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -112,7 +109,7 @@
 
                 </div>
                  <div id="productos" class="col-md-3 col-md-offset-1">
-                    <img src="img/productos.png">
+                    <img th:href="@{/images/productos.png}" src="../../images/productos.png"/>
                     <h2>Titulo</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -125,18 +122,18 @@
 
                 </div>
             </div>
-    </div>
-            <br>
-    <footer>
-        <div id="footer">
-                <ul >
-                      <li class="footerLink"><a class="footerL" href="#">Home</a></li>
-                      <li class="footerLink"><a class="footerL" href="#">Profile</a></li>
-                      <li class="footerLink"><a class="footerL" href="#">Messages</a></li>
-                </ul>
-            </div>
-        Copyright © 2016 wallapopTIW
-    </footer>
+    	</div>
+        <br/>
+        <footer>
+	        <div id="footer">
+	                <ul>
+	                      <li class="footerLink"><a class="footerL" href="#">Home</a></li>
+	                      <li class="footerLink"><a class="footerL" href="#">Profile</a></li>
+	                      <li class="footerLink"><a class="footerL" href="#">Messages</a></li>
+	                </ul>
+	        </div>
+	        <p>Copyright © 2016 wallapopTIW</p>
+        </footer>
     </body>
 
 </html>
