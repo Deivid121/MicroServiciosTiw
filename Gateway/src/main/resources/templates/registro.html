@@ -11,6 +11,7 @@
         <link rel="stylesheet" th:href="@{/css/formulario.css}" href="../../css/formulario.css" />
 		<link rel="stylesheet" th:href="@{/css/style.css}" href="../../css/style.css" />
 		<script th:href="@{/js/jquery.min.js}" src="../../js/jquery.min.js"></script>
+		<script th:href="@{/js/jquery-validator.min.js}" src="../../js/jquery-validator.min.js"></script>
 		<script th:href="@{/js/bootstrap.min.css}" src="../../js/bootstrap.min.js"></script>
 		<script src="http://blackpeppersoftware.github.io/thymeleaf-fragment.js/thymeleaf-fragment.js" defer="defer" th:if="false"></script>
     </head>
@@ -98,7 +99,7 @@
         <div class="registro">
             <div class="row">
             <div id="registro">
-               <form  th:action="@{/registro}" th:object="${usuario}" method="post" class="form-horizontal" id="registration">
+               <form  th:action="@{/registrar}" th:object="${usuario}" method="post" class="form-horizontal" id="registration">
                   <div class="form-group">
                      <label  class="col-md-4"  for="exampleInputFile"><h5 class="text-center"><strong>Nombre</strong></h5></label> 
                     <div class="col-md-8">
@@ -144,58 +145,58 @@
                         <label class="col-md-4" for="ejemplo_password_1"><h5 class="text-center"><strong>Ciudad</strong></h5></label> 
                             <div class="col-md-8">
                                 <select  th:field="*{ciudad}" class="form-control" name="City" size="5" data-validation="required" data-validation-length="max1">
-                                <option>A coruna</option>
-                                <option>Alava</option>
-                                <option>Albacete</option>
-                                <option>Alicante</option>
-                                <option>Almeria</option>
-                                <option>Asturias</option>
-                                <option>Avila</option>
-                                <option>Badajoz</option>
-                                <option>Baleares</option>
-                                <option>Barcelona</option>
-                                <option>Burgos</option>
-                                <option>Caceres</option>
-                                <option>Cadiz</option>
-                                <option>Cantabria</option>
-                                <option>Castellon</option>
-                                <option>Ceuta</option>
-                                <option>Ciudad real</option>
-                                <option>Cordoba</option>
-                                <option>Cuenca</option>
-                                <option>Girona</option>
-                                <option>Granada</option>
-                                <option>Guadalajara</option>
-                                <option>Guipuzcoa</option>
-                                <option>Huelva</option>
-                                <option>Huesca</option>
-                                <option>Jaen</option>
-                                <option>La rioja</option>
-                                <option>Las palmas</option>
-                                <option>Leon</option>
-                                <option>Lleida</option>
-                                <option>Lugo</option>
-                                <option>Madrid</option>
-                                <option>Malaga</option>
-                                <option>Melilla</option>
-                                <option>Murcia</option>
-                                <option>Navarra</option>
-                                <option>Ourense</option>
-                                <option>Palencia</option>
-                                <option>Pontevedra</option>
-                                <option>Salamanca</option>
-                                <option>Tenerife</option>
-                                <option>Segovia</option>
-                                <option>Sevilla</option>
-                                <option>Soria</option>
-                                <option>Tarragona</option>
-                                <option>Teruel</option>
-                                <option>Toledo</option>
-                                <option>Valencia</option>
-                                <option>Valladolid</option>
-                                <option>Vizcaya</option>
-                                <option>Zamora</option>
-                                <option>Zaragoza</option>
+                                <option value="">A coruna</option>
+                                <option value="">Alava</option>
+                                <option value="">Albacete</option>
+                                <option value="">Alicante</option>
+                                <option value="">Almeria</option>
+                                <option value="">Asturias</option>
+                                <option value="">Avila</option>
+                                <option value="">Badajoz</option>
+                                <option value="">Baleares</option>
+                                <option value="">Barcelona</option>
+                                <option value="">Burgos</option>
+                                <option value="">Caceres</option>
+                                <option value="">Cadiz</option>
+                                <option value="">Cantabria</option>
+                                <option value="">Castellon</option>
+                                <option value="">Ceuta</option>
+                                <option value="">Ciudad real</option>
+                                <option value="">Cordoba</option>
+                                <option value="">Cuenca</option>
+                                <option value="">Girona</option>
+                                <option value="">Granada</option>
+                                <option value="">Guadalajara</option>
+                                <option value="">Guipuzcoa</option>
+                                <option value="">Huelva</option>
+                                <option value="">Huesca</option>
+                                <option value="">Jaen</option>
+                                <option value="">La rioja</option>
+                                <option value="">Las palmas</option>
+                                <option value="">Leon</option>
+                                <option value="">Lleida</option>
+                                <option value="">Lugo</option>
+                                <option value="">Madrid</option>
+                                <option value="">Malaga</option>
+                                <option value="">Melilla</option>
+                                <option value="">Murcia</option>
+                                <option value="">Navarra</option>
+                                <option value="">Ourense</option>
+                                <option value="">Palencia</option>
+                                <option value="">Pontevedra</option>
+                                <option value="">Salamanca</option>
+                                <option value="">Tenerife</option>
+                                <option value="">Segovia</option>
+                                <option value="">Sevilla</option>
+                                <option value="">Soria</option>
+                                <option value="">Tarragona</option>
+                                <option value="">Teruel</option>
+                                <option value="">Toledo</option>
+                                <option value="">Valencia</option>
+                                <option value="">Valladolid</option>
+                                <option value="">Vizcaya</option>
+                                <option value="">Zamora</option>
+                                <option value="">Zaragoza</option>
                                 </select>
                             </div>
                     </div>
