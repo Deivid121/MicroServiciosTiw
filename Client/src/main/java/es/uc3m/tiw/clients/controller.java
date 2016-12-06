@@ -1,6 +1,7 @@
 package es.uc3m.tiw.clients;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,7 +29,7 @@ public class controller {
     }
     
     @RequestMapping(value="/registro", method = RequestMethod.POST)
-    public @ResponseBody Usuario registro(@RequestParam(value="user", required = true) Usuario u){
+    public @ResponseBody Usuario registro(@RequestBody Usuario u){
         dao.save(u);
         return u;
     }
