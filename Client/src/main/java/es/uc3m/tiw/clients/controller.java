@@ -22,10 +22,9 @@ public class controller {
     
     
     @RequestMapping(value="/login" ,method = RequestMethod.GET)
-    public  @ResponseBody Usuario login(@RequestParam(value="nombre", required = true) String nombre,
-    @RequestParam(value="password", required = true) String password){
-        Usuario u = dao.findByEmailAndPassword(nombre, password);
-        return u;
+    public  @ResponseBody Usuario login(@RequestBody Usuario u){
+        Usuario user = dao.findByEmailAndPassword(u.getNombre(), u.getPassword());
+        return user;
     }
     
     @RequestMapping(value="/registro", method = RequestMethod.POST)
