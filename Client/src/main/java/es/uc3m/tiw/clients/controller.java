@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import es.uc3m.tiw.dominio.Administrador;
 import es.uc3m.tiw.dominio.Usuario;
+import es.uc3m.tiw.repository.AdministradorDao;
 import es.uc3m.tiw.repository.UsuarioDao;
 
 @RestController
@@ -16,6 +17,7 @@ public class controller {
     private Usuario usuario;
     @Autowired
     private UsuarioDao dao;
+    private AdministradorDao daoA;
     
     
     @RequestMapping(value="/login" ,method = RequestMethod.GET)
@@ -67,12 +69,13 @@ public class controller {
         return user;
        
     }
-    /*@RequestMapping(value="/loginAdmin" ,method = RequestMethod.GET)
+    @RequestMapping(value="/loginAdmin" ,method = RequestMethod.GET)
     public  @ResponseBody Administrador loginAdmin(@RequestParam(value="nombre", required = true) String nombre,
     @RequestParam(value="password", required = true) String password){
-        Administrador admin = dao.findByEmailAndPassword(nombre, password);
+        Administrador admin = daoA.findByEmailAndPassword(nombre, password);
         return admin;
-    }*/
+    }
+    
     
     
     

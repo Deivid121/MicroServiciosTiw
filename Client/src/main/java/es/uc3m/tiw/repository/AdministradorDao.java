@@ -7,10 +7,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import es.uc3m.tiw.dominio.Administrador;
 import es.uc3m.tiw.dominio.Usuario;
 
-public interface UsuarioDao extends JpaRepository<Usuario, Long> {
-	List<Usuario> findAll();
-    Usuario findByEmailAndPassword(String nombre, String password);
+public interface AdministradorDao extends JpaRepository<Administrador, Long> {
 
-    Usuario findById (Long id);
+	Administrador findByEmailAndPassword(String nombre, String password);
+
 	
 }

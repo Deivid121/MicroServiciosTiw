@@ -14,7 +14,7 @@ import javax.persistence.Column;
 public class Administrador {
 	@Id	
 	@GeneratedValue(strategy = AUTO)
-	private int idadmin;
+	private long idadmin;
 	@Column(length = 30, nullable = false)
 	private String nombre;
 	@Column(length = 30, nullable = false)
@@ -41,7 +41,7 @@ public class Administrador {
 		this.password = password;
 		this.ciudad = ciudad;
 	}
-	public int getIdadmin() {
+	public long getIdadmin() {
 		return idadmin;
 	}
 	public void setIdadmin(int idadmin) {
