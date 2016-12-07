@@ -46,4 +46,17 @@ public class controller {
         dao.save(u);
         return u;
     }
+    @RequestMapping(value="/eliminarU", method = RequestMethod.DELETE)
+    public @ResponseBody Usuario eliminarUsuario(Usuario user){
+        dao.delete(user);
+        return user;
+       
+    }
+    @RequestMapping(value="/editarU", method = RequestMethod.PUT)
+    public @ResponseBody Usuario editarUsuario(Usuario user){
+        dao.findById(user.getId()
+        return user;
+       
+    }
+    
 }
