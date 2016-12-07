@@ -3,7 +3,6 @@ package es.uc3m.tiw.control;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,21 +20,8 @@ public class controlProducto {
  @Autowired
  private ProductoRepository rep;
  
- 
  @RequestMapping(value="/subirProducto" ,method = RequestMethod.POST)
- public  @ResponseBody Producto login(@RequestParam(value="titulo") String titulo, 
-		 @RequestParam(value="categoria") String categoria,
-		 @RequestParam(value="descripcion") String descripcion,
-		 @RequestParam(value="ciudad") String ciudad,
-		 @RequestParam(value="precio") int precio,
-		 @RequestParam(value="usuario") int usuario,
-		 @RequestParam(value="imagen") String imagen){
-     p = new Producto(titulo, categoria, descripcion, imagen, precio, usuario, ciudad, "disponible");
-     rep.save(p);
-     return p;
- }
- @RequestMapping(value="/subirProducto2" ,method = RequestMethod.POST)
- public  @ResponseBody Producto login(@RequestBody @Validated Producto p){
+ public  @ResponseBody Producto login(@RequestBody Producto p){
      rep.save(p);
      return p;
  }
@@ -50,12 +36,22 @@ public class controlProducto {
      
      return p;
  }
- @RequestMapping(value="/productos" , method = RequestMethod.GET)
+ @RequestMapping(value="/mostrarProductos" , method = RequestMethod.GET)
  public @ResponseBody List<Producto> productos(){
 	 return rep.findAll();
  }
- @RequestMapping(value = "/busqueda" ,method = RequestMethod.GET)
- public @ResponseBody List<Producto> buscar(@RequestParam(value ="titulo")String titulo){
-	 return rep.findByTituloContaining(titulo);
+ @RequestMapping(value = "/buscarProducto" ,method = RequestMethod.GET)
+ public @ResponseBody List<Producto> buscar(@RequestParam(value ="titulo")String titulo,@RequestParam(value ="descripcion")String descripcion){
+	 return rep.findByTituloContainingOrDescripcionContaining(titulo, descripcion);
  }
+ 
+ @RequestMapping(value = "/verProducto" ,method = RequestMethod.GET)
+ public @ResponseBody Producto buscarProducto(@RequestBody Producto p){
+	 return rep.findById(p.getId());
+ }
+ @RequestMapping(value = "/modificarProducto" ,method = RequestMethod.PUT)
+ public @ResponseBody Producto modificarProducto(@RequestBody Producto p){ 
+	 return  rep.save(p);
+ }
+ 
 }

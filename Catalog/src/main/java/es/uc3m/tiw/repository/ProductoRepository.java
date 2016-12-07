@@ -8,6 +8,7 @@ import es.uc3m.tiw.dominio.Producto;
 
 public interface ProductoRepository extends JpaRepository<Producto, Long>{
 	
-		List<Producto> findByTituloContaining(String titulo);
+		List<Producto> findByTituloContainingOrDescripcionContaining(String titulo, String descripcion);
+		Producto findById(int id);
 
 }
