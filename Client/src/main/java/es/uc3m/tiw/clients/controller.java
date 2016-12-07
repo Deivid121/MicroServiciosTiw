@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import es.uc3m.tiw.dominio.Administrador;
 import es.uc3m.tiw.dominio.Usuario;
 import es.uc3m.tiw.repository.UsuarioDao;
 
@@ -54,9 +55,25 @@ public class controller {
     }
     @RequestMapping(value="/editarU", method = RequestMethod.PUT)
     public @ResponseBody Usuario editarUsuario(Usuario user){
-        dao.findById(user.getId()
+    	
+        Usuario u = dao.findById(user.getId());
+        u.setNombre(user.getNombre());
+        u.setApellido1(user.getApellido1());
+        u.setApellido2(user.getApellido2());
+        u.setEmail(user.getEmail());
+        u.setPassword(user.getPassword());
+        dao.save(user);
+        
         return user;
        
     }
+    /*@RequestMapping(value="/loginAdmin" ,method = RequestMethod.GET)
+    public  @ResponseBody Administrador loginAdmin(@RequestParam(value="nombre", required = true) String nombre,
+    @RequestParam(value="password", required = true) String password){
+        Administrador admin = dao.findByEmailAndPassword(nombre, password);
+        return admin;
+    }*/
+    
+    
     
 }
