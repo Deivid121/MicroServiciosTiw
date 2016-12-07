@@ -13,35 +13,15 @@ import org.springframework.web.client.RestTemplate;
 
 import es.uc3m.tiw.dominio.Usuario;
 
-
 @Controller
-public class IndexController {
+public class ProductosController {
+
 	@Autowired
 	RestTemplate restTemplate;
-
 	
-	@RequestMapping(value="/")
+	@RequestMapping(value="/crearProducto")
 	public String saludar(){
-		return "index";
-	}
-	@RequestMapping(value="/crear")
-	public String productos(){
 		return "crearProductos";
-	}
-	@RequestMapping(value="/registrar")
-	public String registrarUsuarios(Model modelo){
-		Usuario u=new Usuario();
-		modelo.addAttribute(u);
-		return "registro";
-	}
-	
-	@PostMapping("/registrar")
-	public String guardarUnUsuario(Model modelo, @ModelAttribute Usuario usuario){
-		System.out.println(usuario);
-		Usuario usuarioGuardado = restTemplate.postForObject("http://localhost:8010/registro", usuario, Usuario.class);
-		modelo.addAttribute(usuarioGuardado);
-		return "index";
-		
 	}
 	
 }
