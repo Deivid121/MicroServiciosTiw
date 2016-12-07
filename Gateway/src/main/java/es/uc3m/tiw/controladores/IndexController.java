@@ -19,5 +19,9 @@ public class IndexController {
 	public String productos(){
 		return "crearProductos";
 	}
+	@RequestMapping(value="/registro")
+	public String registrarUsuarios(){
+		return "registro";
+	}
 	
 }
