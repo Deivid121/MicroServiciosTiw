@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+    	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>WallapopTIW</title>
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" />
+		<link rel="stylesheet" th:href="@{/css/style.css}" href="../../css/style.css" />
+		<script th:href="@{/js/jquery.min.js}" src="../../js/jquery.min.js"></script>
+		<script th:href="@{/js/bootstrap.min.css}" src="../../js/bootstrap.min.js"></script>
+		<script src="http://blackpeppersoftware.github.io/thymeleaf-fragment.js/thymeleaf-fragment.js" defer="defer" th:if="false"></script>
+    </head>
+   <body>
+
+	                        <ul class="nav navbar-nav navbar-right">
+	                        	<li>
+		                            <div th:if="${logueado} == false">
+ 	                        	
+ 			                            <div class="form-group ">
+ 			                                <form th:action="@{/loguearAdmin}" th:object="${administrador}" class="form-inline navbar-form" role="form" 
+ 			                                    method="post" id="login">
+ 			                                    <label class="sr-only" for="ejemplo_email_2">Email</label> 
+ 			                                        <input th:field="*{email}" type="text" class="form-control" placeholder="Introduce tu email" data-validation="email" data-validation-error-msg="No has introducido un email valido (a@b.c)"/>
+ 			                                    <label class="sr-only" for="ejemplo_password_2">Contraseña</label>
+ 			                                    <input th:field="*{password}" type="password" class="form-control"
+ 			                                        placeholder="Contraseña" data-validation="length"
+ 			                                        data-validation-length="min8"
+ 			                                        data-validation-error-msg="La contraseña tiene al menos 8 caracteres"/>
+ 			                                    <input type="submit" class="btn btn-default" value="Entrar"/>
+ 			                                </form>
+ 			                                
+ 			                            </div>
+ 		                         </div>
+ 		                         <div th:if="${adminlogueado} == true">
+ 		                        	<span th:text="'Hola' + ${administrador.nombre}"></span>
+ 		                        </div>
+	                         	</li>
+	
+	                        </ul>
+</body>
+    	
+	<div th:replace="/header::footer"></div>
+</html>
+
