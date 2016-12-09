@@ -34,17 +34,6 @@ public class controller {
         dao.save(usuario);
         return usuario;
     }
-    @RequestMapping(value="/registro2", method = RequestMethod.POST)
-    public @ResponseBody Usuario registro2(@RequestParam(value="nombre", required = true) String n,
-            @RequestParam(value="apellido1", required = true) String a1,
-            @RequestParam(value="apellido2", required = true) String a2,
-            @RequestParam(value="password", required = true) String p,
-            @RequestParam(value="ciudad", required = true) String c,
-            @RequestParam(value="email", required = true) String e){
-        Usuario u =new Usuario(n,a1,a2,e,p,c);
-        dao.save(u);
-        return u;
-    }
     @RequestMapping(value="/registro3", method = RequestMethod.GET)
     public @ResponseBody Usuario registro2(){
         Usuario u =new Usuario("David","del Rey","Garcia","a@b.com","1234","Madrid");
@@ -71,11 +60,23 @@ public class controller {
         return user;
        
     }
-    @RequestMapping(value="/loginAdmin" ,method = RequestMethod.GET)
-    public  @ResponseBody Administrador loginAdmin(@RequestParam(value="nombre", required = true) String nombre,
-    @RequestParam(value="password", required = true) String password){
-        Administrador admin = daoA.findByEmailAndPassword(nombre, password);
-        return admin;
+    @RequestMapping (value="/verPerfil", method = RequestMethod.GET)
+public @ResponseBody Usuario verPerfil(Usuario user){
+    	
+       // Usuario u = dao.findById(user.getId());
+        user.getNombre();
+        user.getApellido1();
+        user.getApellido2();
+        user.getEmail();
+        user.getPassword();
+        
+        return user;
+       
+    }
+    @RequestMapping(value="/loginAdmin" ,method = RequestMethod.POST)
+    public  @ResponseBody Administrador loginAdmin(@RequestBody Administrador administrador){
+    	List <Administrador> Administradores = daoA.findAll();
+    	return buscarAdministrador(Administradores, administrador);
     }
     
     private static Usuario buscarUsuario(List<Usuario> lista, Usuario user){
@@ -86,6 +87,17 @@ public class controller {
 			}
 		}
     	return u;
+    	
+    	
+    }
+    private static Administrador buscarAdministrador(List<Administrador> lista, Administrador admin){
+    	Administrador a=new Administrador();
+    	for (Administrador administrador : lista) {
+			if(administrador.getEmail().equals(administrador.getEmail())&&administrador.getPassword().equals(admin.getPassword())){
+				return administrador;
+			}
+		}
+    	return a;
     	
     	
     }
