@@ -21,27 +21,14 @@ public class IndexController {
 
 	
 	@RequestMapping(value="/")
-	public String saludar(){
+	public String saludar(Model modelo){
+		modelo.addAttribute("usuario",new Usuario());
+		modelo.addAttribute("logueado",false);
 		return "index";
 	}
 	@RequestMapping(value="/crear")
 	public String productos(){
 		return "crearProductos";
-	}
-	@RequestMapping(value="/registrar")
-	public String registrarUsuarios(Model modelo){
-		Usuario u=new Usuario();
-		modelo.addAttribute(u);
-		return "registro";
-	}
-	
-	@PostMapping("/registrar")
-	public String guardarUnUsuario(Model modelo, @ModelAttribute Usuario usuario){
-		System.out.println(usuario);
-		Usuario usuarioGuardado = restTemplate.postForObject("http://localhost:8010/registro", usuario, Usuario.class);
-		modelo.addAttribute(usuarioGuardado);
-		return "index";
-		
 	}
 	
 }
