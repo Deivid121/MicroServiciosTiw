@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+    	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>WallapopTIW</title>
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" />
+		<link rel="stylesheet" th:href="@{/css/style.css}" href="../../css/style.css" />
+		<script th:href="@{/js/jquery.min.js}" src="../../js/jquery.min.js"></script>
+		<script th:href="@{/js/bootstrap.min.css}" src="../../js/bootstrap.min.js"></script>
+		<script src="http://blackpeppersoftware.github.io/thymeleaf-fragment.js/thymeleaf-fragment.js" defer="defer" th:if="false"></script>
+    </head>
+    <body>
+    <div th:fragment="header">
+    	<nav th:fragment="NavMenu" id="navegador" class="navbar navbar-default">
+             <div class="container-fluid">
+                <div class="row">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="col-md-2">
+                        <div class="navbar-header">
+                          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                          </button>
+                            <a class="navbar-brand" href="/">
+                             <img id="logo" th:href="@{images/titulo.png}" src="images/titulo.png"/>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div id="topNavElement" class="collapse navbar-collapse navbar-ex1-collapse">
+                            <form class="navbar-form navbar-left" role="search" action = "buscarProductosSimple" method ="post">
+                                <div class="form-group ">
+                                    <input type="text" class="form-control" placeholder="Buscar producto ..." name = "palabra"/>
+                                </div>
+                                <button type="submit" class="btn btn-default">Buscar</button>
+                            </form>
+                            <ul class="nav navbar-nav">
+                                <li class="dropdown">
+                                	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                	 Busqueda avanzada
+                                	 </a>
+                                    <ul class="dropdown-menu">
+                                    	<li>
+	                                        <form class="navbar-form navbar-left" role="search" action ="buscarProducto" method ="post">
+	                                            <div class="form-group ">
+	                                                <input type="text" class="form-control" placeholder="Categoria ..." name = "categoria"/> 
+	                                                <input type="text" class="form-control" placeholder="Ciudad ..." name = "ciudad"/> 
+	                                                <input type="text" class="form-control" placeholder="Vendedor ..." name = "vendedor"/>
+	                                                <input type="text" class="form-control" placeholder="Titulo ..." name = "titulo"/>
+	                                                <input type="text" class="form-control" placeholder="Descripcion ..." name = "descripcion"/>
+	                                            </div>
+	                                             <button type="submit" class="btn btn-default">Buscar</button>
+	                                        </form>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+					</div>
+	                        <ul class="nav navbar-nav navbar-right">
+	                        	<li>
+	                        	<span th:text="'Hola' + ${usuario.nombre}"></span>
+		                            <div class="form-group ">
+		                                <form th:action="@{/loguear}" th:object="${usuario}" class="form-inline navbar-form" role="form" 
+		                                    method="post" id="login">
+		                                    <label class="sr-only" for="ejemplo_email_2">Email</label> 
+		                                        <input th:field="*{email}" type="text" class="form-control" placeholder="Introduce tu email" data-validation="email" data-validation-error-msg="No has introducido un email valido (a@b.c)"/>
+		                                    <label class="sr-only" for="ejemplo_password_2">Contraseña</label>
+		                                    <input th:field="*{password}" type="password" class="form-control"
+		                                        placeholder="Contraseña" data-validation="length"
+		                                        data-validation-length="min8"
+		                                        data-validation-error-msg="La contraseña tiene al menos 8 caracteres"/>
+		                                    <input type="submit" class="btn btn-default" value="Entrar"/>
+		                                    ¿No estas registrado? <a href="/registrar">Registrate aqui.</a>
+		                                </form>
+		                                
+		                            </div>
+	                         	</li>
+	
+	                        </ul>
+
+                    </div>
+            </div>
+			
+        </nav>
+    </div>
+    <div th:fragment = "footer">
+    	<footer>
+	        <div id="footer">
+	                <ul>
+	                      <li class="footerLink"><a class="footerL" href="#">Home</a></li>
+	                      <li class="footerLink"><a class="footerL" href="#">Profile</a></li>
+	                      <li class="footerLink"><a class="footerL" href="#">Messages</a></li>
+	                </ul>
+	        </div>
+	        <p>Copyright © 2016 wallapopTIW</p>
+        </footer>
+    </div>
+</body>
+</html>
