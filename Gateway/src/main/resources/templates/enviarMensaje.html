@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>WallapopTIW</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
+	href="../../css/bootstrap.min.css" />
+<link rel="stylesheet" th:href="@{/css/style.css}"
+	href="../../css/style.css" />
+<script th:href="@{/js/jquery.min.js}" src="../../js/jquery.min.js"></script>
+<script th:href="@{/js/bootstrap.min.css}"
+	src="../../js/bootstrap.min.js"></script>
+<script
+	src="http://blackpeppersoftware.github.io/thymeleaf-fragment.js/thymeleaf-fragment.js"
+	defer="defer" th:if="false"></script>
+</head>
+</head>
+<body>
+	<div th:replace="/header::header"></div>
+	<div class="container">
+		<div class="row">
+			<div id="entrada" class="col-md-3">
+				<form  th:action="@{/registrar}" th:object="${mensaje}" method="post" class="form-horizontal" id="registration">
+                  <div class="form-group">
+                     <label  class="col-md-4"  for="exampleInputFile"><h5 class="text-center"><strong>Producto</strong></h5></label> 
+                    <div class="col-md-8">
+                        <span></span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                     <label  class="col-md-4"  for="exampleInputFile"><h5 class="text-center"><strong>Propietario</strong></h5></label> 
+                    <div class="col-md-8">
+                    <span></span>
+                    </div>
+                  </div>
+                   <div class="form-group">
+                     <label  class="col-md-4"  for="exampleInputFile"><h5 class="text-center"><strong>Mensaje</strong></h5></label> 
+                    <div class="col-md-8">
+                    <textarea th:field="*{mensaje}" type="text" class="form-control" rows ="3" data-validation="required" data-validation-length="max255" data-validation-error-msg="Introduzca un mensaje" placeholder="Mensaje" name="mensaje"> </textarea>
+                    </div>
+                  </div>
+                  <br/>
+                      <div id="registerButon">
+                        <button type="submit" class="btn btn-default" name="Enviar">Enviar!</button>
+                      </div>
+                </form>
+			</div>
+		</div>
+		<br />
+ 	</div>
+</body>
+<div th:replace="/header::footer"></div>
+</html>
