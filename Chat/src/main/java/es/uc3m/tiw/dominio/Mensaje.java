@@ -15,14 +15,22 @@ public class Mensaje {
 	private long id;
 	private long origenId;
 	private long destinoId;
+	private long productoId;
+	public long getProductoId() {
+		return productoId;
+	}
+	public void setProductoId(long productoId) {
+		this.productoId = productoId;
+	}
 	private String mensaje;
 	
-	public Mensaje(long id, long origenId, long destinoId, String mensaje) {
+	public Mensaje(long id, long origenId, long destinoId, String mensaje, long producto) {
 		super();
 		this.id = id;
 		this.origenId = origenId;
 		this.destinoId = destinoId;
 		this.mensaje = mensaje;
+		this.productoId = producto;
 	}
 	public long getId() {
 		return id;
