@@ -1,8 +1,13 @@
 package es.uc3m.tiw.control;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,22 +25,13 @@ public class controlProducto {
  @Autowired
  private ProductoRepository rep;
  
+
  @RequestMapping(value="/subirProducto" ,method = RequestMethod.POST)
- public  @ResponseBody Producto login(@RequestBody Producto p){
+ public  @ResponseBody Producto crear(@RequestBody Producto p){
      rep.save(p);
      return p;
  }
- @RequestMapping(value="/subirPrueba" ,method = RequestMethod.POST)
- public  @ResponseBody Producto login(){
-	 p = new Producto("titulo", "categoria", "descripcion", "imagen", 0,0, "ciudad", "disponible");
-     rep.save(p);
-     p = new Producto("t1", "c1", "d1", "imagen", 1,1, "c1", "d1");
-     rep.save(p);
-     p = new Producto("t2", "c2", "d2", "imagen", 2,2, "c2", "d2");
-     rep.save(p);
-     
-     return p;
- }
+
  @RequestMapping(value="/mostrarProductos" , method = RequestMethod.GET)
  public @ResponseBody List<Producto> productos(){
 	 return rep.findAll();
@@ -53,5 +49,6 @@ public class controlProducto {
  public @ResponseBody Producto modificarProducto(@RequestBody Producto p){ 
 	 return  rep.save(p);
  }
+ 
  
 }

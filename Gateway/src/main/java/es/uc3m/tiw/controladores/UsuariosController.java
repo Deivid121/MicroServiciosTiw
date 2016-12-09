@@ -37,9 +37,9 @@ public class UsuariosController {
 	public String validarUsuario(Model modelo, @ModelAttribute Usuario usuario){
 		System.out.println(usuario);
 		Usuario usuarioValidado = restTemplate.postForObject("http://localhost:8010/login", usuario, Usuario.class);
-		modelo.addAttribute(usuarioValidado);
+		modelo.addAttribute("usuarioValidado",usuarioValidado);
 		modelo.addAttribute("logueado", true);
-		return "index";
+		return "perfilUsuario";
 		
 	}
 	@RequestMapping(value="/perfilUsuario",method=RequestMethod.GET)
