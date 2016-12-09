@@ -21,16 +21,17 @@ public class controller {
     private AdministradorDao daoA;
     
     
-    @RequestMapping(value="/login" ,method = RequestMethod.GET)
+    @RequestMapping(value="/login" ,method = RequestMethod.POST)
     public  @ResponseBody Usuario login(@RequestBody Usuario u){
-        Usuario user = dao.findByEmailAndPassword(u.getNombre(), u.getPassword());
+    	dao.save(new Usuario("nombre","ap1","ap2","email@email","pass","ciudad"));
+        Usuario user = dao.findByEmailAndPassword(u.getEmail(), u.getPassword());
         return user;
     }
     
     @RequestMapping(value="/registro", method = RequestMethod.POST)
-    public @ResponseBody Usuario registro(@RequestBody Usuario u){
-        dao.save(u);
-        return u;
+    public @ResponseBody Usuario registro(@RequestBody Usuario usuario){
+        dao.save(usuario);
+        return usuario;
     }
     @RequestMapping(value="/registro2", method = RequestMethod.POST)
     public @ResponseBody Usuario registro2(@RequestParam(value="nombre", required = true) String n,
