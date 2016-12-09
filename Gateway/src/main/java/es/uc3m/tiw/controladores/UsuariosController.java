@@ -39,6 +39,7 @@ public class UsuariosController {
 		System.out.println(usuario);
 		Usuario usuarioValidado = restTemplate.postForObject("http://localhost:8010/login", usuario, Usuario.class);
 		modelo.addAttribute(usuarioValidado);
+		modelo.addAttribute("logueado", true);
 		return "index";
 		
 	}

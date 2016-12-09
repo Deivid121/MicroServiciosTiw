@@ -22,7 +22,8 @@ public class IndexController {
 	
 	@RequestMapping(value="/")
 	public String saludar(Model modelo){
-		modelo.addAttribute(new Usuario());
+		modelo.addAttribute("usuario",new Usuario());
+		modelo.addAttribute("logueado",false);
 		return "index";
 	}
 	@RequestMapping(value="/crear")

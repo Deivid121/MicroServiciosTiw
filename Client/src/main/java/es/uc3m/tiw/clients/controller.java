@@ -1,5 +1,7 @@
 package es.uc3m.tiw.clients;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,10 +24,9 @@ public class controller {
     
     
     @RequestMapping(value="/login" ,method = RequestMethod.POST)
-    public  @ResponseBody Usuario login(@RequestBody Usuario u){
-    	dao.save(new Usuario("nombre","ap1","ap2","email@email","pass","ciudad"));
-        Usuario user = dao.findByEmailAndPassword(u.getEmail(), u.getPassword());
-        return user;
+    public  @ResponseBody Usuario login(@RequestBody Usuario usuario){
+        List <Usuario> Usuarios = dao.findAll();  
+        return buscarUsuario(Usuarios,usuario);
     }
     
     @RequestMapping(value="/registro", method = RequestMethod.POST)
@@ -75,6 +76,18 @@ public class controller {
     @RequestParam(value="password", required = true) String password){
         Administrador admin = daoA.findByEmailAndPassword(nombre, password);
         return admin;
+    }
+    
+    private static Usuario buscarUsuario(List<Usuario> lista, Usuario user){
+    	Usuario u=new Usuario();
+    	for (Usuario usuario : lista) {
+			if(usuario.getEmail().equals(user.getEmail())&&usuario.getPassword().equals(user.getPassword())){
+				return usuario;
+			}
+		}
+    	return u;
+    	
+    	
     }
     
     
