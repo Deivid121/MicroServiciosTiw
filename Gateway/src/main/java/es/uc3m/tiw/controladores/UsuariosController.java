@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
 
-import es.uc3m.tiw.dominio.Producto;
 import es.uc3m.tiw.dominio.Usuario;
 
 @Controller
@@ -41,6 +40,12 @@ public class UsuariosController {
 		modelo.addAttribute(usuarioValidado);
 		modelo.addAttribute("logueado", true);
 		return "index";
+		
+	}
+	@RequestMapping(value="/perfilUsuario",method=RequestMethod.GET)
+	public String verUsuario(Model modelo, @ModelAttribute Usuario usuario){
+		System.out.println(usuario);
+		return "perfilUsuario";
 		
 	}
 	

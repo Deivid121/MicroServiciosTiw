@@ -61,22 +61,27 @@
 					</div>
 	                        <ul class="nav navbar-nav navbar-right">
 	                        	<li>
-	                        	<span th:text="'Hola' + ${usuario.nombre}"></span>
-		                            <div class="form-group ">
-		                                <form th:action="@{/loguear}" th:object="${usuario}" class="form-inline navbar-form" role="form" 
-		                                    method="post" id="login">
-		                                    <label class="sr-only" for="ejemplo_email_2">Email</label> 
-		                                        <input th:field="*{email}" type="text" class="form-control" placeholder="Introduce tu email" data-validation="email" data-validation-error-msg="No has introducido un email valido (a@b.c)"/>
-		                                    <label class="sr-only" for="ejemplo_password_2">Contraseña</label>
-		                                    <input th:field="*{password}" type="password" class="form-control"
-		                                        placeholder="Contraseña" data-validation="length"
-		                                        data-validation-length="min8"
-		                                        data-validation-error-msg="La contraseña tiene al menos 8 caracteres"/>
-		                                    <input type="submit" class="btn btn-default" value="Entrar"/>
-		                                    ¿No estas registrado? <a href="/registrar">Registrate aqui.</a>
-		                                </form>
-		                                
-		                            </div>
+		                            <div th:if="${logueado} == false">
+ 	                        	
+ 			                            <div class="form-group ">
+ 			                                <form th:action="@{/loguear}" th:object="${usuario}" class="form-inline navbar-form" role="form" 
+ 			                                    method="post" id="login">
+ 			                                    <label class="sr-only" for="ejemplo_email_2">Email</label> 
+ 			                                        <input th:field="*{email}" type="text" class="form-control" placeholder="Introduce tu email" data-validation="email" data-validation-error-msg="No has introducido un email valido (a@b.c)"/>
+ 			                                    <label class="sr-only" for="ejemplo_password_2">Contraseña</label>
+ 			                                    <input th:field="*{password}" type="password" class="form-control"
+ 			                                        placeholder="Contraseña" data-validation="length"
+ 			                                        data-validation-length="min8"
+ 			                                        data-validation-error-msg="La contraseña tiene al menos 8 caracteres"/>
+ 			                                    <input type="submit" class="btn btn-default" value="Entrar"/>
+ 			                                    ¿No estas registrado? <a href="/registrar">Registrate aqui.</a>
+ 			                                </form>
+ 			                                
+ 			                            </div>
+ 		                         </div>
+ 		                         <div th:if="${logueado} == true">
+ 		                        	<span th:text="'Hola' + ${usuario.nombre}"></span>
+ 		                        </div>
 	                         	</li>
 	
 	                        </ul>
