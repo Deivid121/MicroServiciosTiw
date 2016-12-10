@@ -33,7 +33,6 @@ public class IndexController {
 		ResponseEntity responseEntity=restTemplate.getForEntity("http://localhost:8020/getProductos", Producto[].class);
 		Producto[] productos = (Producto[]) responseEntity.getBody();
 		List<Producto> lista= Arrays.asList(productos);
-		System.out.println(lista.get(0));
 		modelo.addAttribute("lista",lista);
 		return "index";
 	}

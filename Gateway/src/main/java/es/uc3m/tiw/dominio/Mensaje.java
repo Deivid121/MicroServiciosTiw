@@ -1,30 +1,21 @@
 package es.uc3m.tiw.dominio;
 
-import static javax.persistence.GenerationType.AUTO;
+import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name="MENSAJES")
-public class Mensaje {
-	@Id	
-	@GeneratedValue(strategy = AUTO)
+public class Mensaje implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private long id;
 	private long origenId;
 	private long destinoId;
 	private long productoId;
 	private String mensaje;
-		
-	public Mensaje(long id, long origenId, long destinoId, String mensaje, long producto) {
-		super();
-		this.id = id;
-		this.origenId = origenId;
-		this.destinoId = destinoId;
-		this.mensaje = mensaje;
-		this.productoId = producto;
+	@Override
+	public String toString() {
+		return "Mensaje [id=" + id + ", origenId=" + origenId + ", destinoId=" + destinoId + ", productoId="
+				+ productoId + ", mensaje=" + mensaje + "]";
 	}
 	public Mensaje(){
 		
@@ -34,6 +25,14 @@ public class Mensaje {
 	}
 	public void setProductoId(long productoId) {
 		this.productoId = productoId;
+	}
+	public Mensaje(long id, long origenId, long destinoId, String mensaje, long producto) {
+		super();
+		this.id = id;
+		this.origenId = origenId;
+		this.destinoId = destinoId;
+		this.mensaje = mensaje;
+		this.productoId = producto;
 	}
 	public long getId() {
 		return id;

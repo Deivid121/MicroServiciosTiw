@@ -8,12 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import es.uc3m.tiw.dominio.Mensaje;
-import es.uc3m.tiw.dominio.Producto;
-import es.uc3m.tiw.dominio.Usuario;
 import es.uc3m.tiw.repository.MensajeDao;
-
+@RestController
 public class Controller {
 	@Autowired
 	private MensajeDao dao;
