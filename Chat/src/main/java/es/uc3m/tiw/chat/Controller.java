@@ -1,8 +1,10 @@
 package es.uc3m.tiw.chat;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,5 +29,9 @@ public class Controller {
             @RequestParam(value="productoId", required = true) long pId){
 		return dao.findByOrigenIdAndDestinoIdAndProductoId(oId, dId, pId);
 		
+	}
+	@RequestMapping (value="/bandejaEntrada/{id}",method=RequestMethod.GET)
+	public @ResponseBody List<Mensaje> bandejaEntrada(@PathVariable Long id){
+		 return (List<Mensaje>) dao.findByDestinoId(id);
 	}
 }

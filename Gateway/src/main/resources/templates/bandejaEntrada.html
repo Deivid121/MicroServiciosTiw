@@ -26,14 +26,14 @@
 						<tr>
 							<th>Origen</th>
 							<th>Producto</th>
-							<th>Resumenl</th>
+							<th>Mensaje</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
+						<tr th:each="mensaje: ${listaMensajes}">
+							<td th:text="${mensaje.origenId}"></td>
+							<td th:text="${mensaje.productoId}"></td>
+							<td th:text="${mensaje.mensaje}"></td>
 						</tr>
 					</tbody>
 				</table>

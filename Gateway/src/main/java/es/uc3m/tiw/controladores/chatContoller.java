@@ -1,6 +1,13 @@
 package es.uc3m.tiw.controladores;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,8 +19,10 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.client.RestTemplate;
 import es.uc3m.tiw.dominio.Mensaje;
+import es.uc3m.tiw.dominio.MensajeMostrado;
 import es.uc3m.tiw.dominio.Producto;
 import es.uc3m.tiw.dominio.Usuario;
+import groovy.util.ObjectGraphBuilder.NewInstanceResolver;
 
 
 @SessionAttributes(value={"logueado","usuarioValidado"})
@@ -41,8 +50,29 @@ public class chatContoller {
 		return "/index";
 		
 	}
-	@RequestMapping(value="/bandejaEntrada")
-	public String Entrada(){
+	@RequestMapping(value="/bandejaEntrada", method= RequestMethod.GET)
+	public String Entrada(@SessionAttribute(value="usuarioValidado")Usuario u, Model modelo){
+		Map<String, Long> vars = new HashMap<String, Long>();
+		vars.put("id", u.getId());
+		ResponseEntity responseEntity =  restTemplate.getForEntity("http://localhost:8030/bandejaEntrada/{id}",
+				Mensaje[].class, vars);
+		Mensaje m[] = (Mensaje[])responseEntity.getBody();
+		List <Mensaje> mensajes = Arrays.asList(m);
+		List <MensajeMostrado> mensajesMostrados = new ArrayList<MensajeMostrado>();
+		for(int i=0;i<mensajes.size();i++){
+			Map<String,Long> varUser = new HashMap<String,Long>();
+			varUser.put("userId", mensajes.get(i).getOrigenId());
+			Usuario user = restTemplate.getForObject("http://localhost:8010/buscarPorId/{userId}", Usuario.class,varUser);
+			
+			Map<String,Long> varProd = new HashMap<String,Long>();
+			varProd.put("prodId", mensajes.get(i).getOrigenId());
+			Producto prod = restTemplate.getForObject("http://localhost:8020/buscarPorId/{prodId}", Producto.class,varProd);
+			MensajeMostrado mM = new MensajeMostrado(mensajes.get(i).getId(), user.getNombre(), prod.getTitulo(), 
+					mensajes.get(i).getMensaje());
+			
+			mensajesMostrados.add(mM);
+		}
+		modelo.addAttribute("listaMensajes", mensajesMostrados);
 		return "bandejaEntrada";
 	}
 }
