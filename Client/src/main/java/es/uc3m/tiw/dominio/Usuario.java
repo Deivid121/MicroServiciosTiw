@@ -17,19 +17,20 @@ public class Usuario {
 	private String apellido1;
 	private String apellido2;
 	private String email;
+	private String avatar;
 	private String password;
 	private String ciudad;
 	
 	public Usuario() {
-		// TODO Auto-generated constructor stub
 	}
-	public Usuario(String nombre, String apellido1, String apellido2, String email, String password,
+	public Usuario(String nombre, String apellido1, String apellido2, String email,String avatar, String password,
 			String ciudad) {
 		super();
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
 		this.apellido2 = apellido2;
 		this.email = email;
+		this.avatar= avatar;
 		this.password = password;
 		this.ciudad = ciudad;
 	}
@@ -87,6 +88,12 @@ public class Usuario {
 
 	public void setCiudad(String ciudad) {
 		this.ciudad = ciudad;
+	}
+	public String getAvatar() {
+		return avatar;
+	}
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
 	}
 	
 }

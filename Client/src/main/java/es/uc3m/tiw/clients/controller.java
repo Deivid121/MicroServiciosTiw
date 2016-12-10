@@ -36,7 +36,7 @@ public class controller {
     }
     @RequestMapping(value="/registro3", method = RequestMethod.GET)
     public @ResponseBody Usuario registro2(){
-        Usuario u =new Usuario("David","del Rey","Garcia","a@b.com","1234","Madrid");
+        Usuario u =new Usuario("David","del Rey","Garcia","a@b.com","m2.png","1234","Madrid");
         dao.save(u);
         return u;
     }

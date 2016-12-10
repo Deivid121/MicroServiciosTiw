@@ -10,11 +10,11 @@ public class Usuario implements Serializable{
 	private String apellido1;
 	private String apellido2;
 	private String email;
+	private String avatar;
 	private String password;
 	private String ciudad;
 	
 	public Usuario() {
-		// TODO Auto-generated constructor stub
 	}
 	public Usuario(String nombre, String apellido1, String apellido2, String email, String password,
 			String ciudad) {
@@ -80,6 +80,12 @@ public class Usuario implements Serializable{
 
 	public void setCiudad(String ciudad) {
 		this.ciudad = ciudad;
+	}
+	public String getAvatar() {
+		return avatar;
+	}
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
 	}
 	
 }
