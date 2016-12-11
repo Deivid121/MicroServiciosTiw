@@ -1,4 +1,4 @@
-package es.uc3m.tiw.thymeleaf.configuration;
+package es.uc3m.tiw.configuration;
 
 import javax.annotation.PostConstruct;
 

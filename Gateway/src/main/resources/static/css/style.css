@@ -22,6 +22,13 @@ body{
 p{
 	text-align: justify;
 }
+#aavatar{
+	width:40px;
+	border-radius: 25px;
+}
+#saludo{
+	margin-right: 20px;
+}
 footer{
 	background-color: #424242;
 	color: white;
@@ -50,3 +57,4 @@ color: white;
 	margin-left: 2%;
 	margin-right: 2%;
 }
+
