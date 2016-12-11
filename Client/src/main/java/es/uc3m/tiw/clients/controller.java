@@ -46,11 +46,9 @@ public class controller {
         return user;
        
     }
-    @RequestMapping(value="/editarU", method = RequestMethod.PUT)
+    @RequestMapping(value="/editarU", method = RequestMethod.POST)
     public @ResponseBody Usuario editarUsuario(Usuario user){
     	
-        List <Usuario> u = dao.findAll();
-        dao.delete(buscarUsuariobyId(u, user));
         dao.save(user);
         
         return user;

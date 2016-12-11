@@ -11,7 +11,7 @@ import org.springframework.data.repository.query.Param;
 import es.uc3m.tiw.dominio.Administrador;
 import es.uc3m.tiw.dominio.Usuario;
 
-public interface UsuarioDao extends CrudRepository<Usuario, Long> {
+public interface UsuarioDao extends JpaRepository<Usuario, Long> {
 	List<Usuario> findAll();
 	
     Usuario findByEmailAndPassword(String email, String password);
