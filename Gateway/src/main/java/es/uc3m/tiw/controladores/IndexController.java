@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.client.RestTemplate;
 
 import es.uc3m.tiw.dominio.Usuario;
-
-@SessionAttributes(value={"logueado","usuarioValidado"})
+@SessionAttributes("logueado")
 @Controller
 public class IndexController {
 	@Autowired
@@ -33,7 +32,7 @@ public class IndexController {
 		return "crearProductos";
 	}
 	@RequestMapping(value="/index")
-	public String index(){
+	public String index(Model modelo){
 		return "index";
 	}
 	

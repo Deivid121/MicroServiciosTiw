@@ -49,12 +49,8 @@ public class controller {
     @RequestMapping(value="/editarU", method = RequestMethod.PUT)
     public @ResponseBody Usuario editarUsuario(Usuario user){
     	
-        Usuario u = dao.findById(user.getId());
-        u.setNombre(user.getNombre());
-        u.setApellido1(user.getApellido1());
-        u.setApellido2(user.getApellido2());
-        u.setEmail(user.getEmail());
-        u.setPassword(user.getPassword());
+        List <Usuario> u = dao.findAll();
+        dao.delete(buscarUsuariobyId(u, user));
         dao.save(user);
         
         return user;
@@ -90,6 +86,18 @@ public @ResponseBody Usuario verPerfil(Usuario user){
     	
     	
     }
+    private static Usuario buscarUsuariobyId(List<Usuario> lista, Usuario user){
+    	Usuario u=new Usuario();
+    	for (Usuario usuario : lista) {
+			if(usuario.getId() == user.getId()){
+				return usuario;
+			}
+		}
+    	return u;
+    	
+    	
+    }
+    
     private static Administrador buscarAdministrador(List<Administrador> lista, Administrador admin){
     	Administrador a=new Administrador();
     	for (Administrador administrador : lista) {

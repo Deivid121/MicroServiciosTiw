@@ -14,9 +14,8 @@ import org.springframework.web.client.RestTemplate;
 
 import es.uc3m.tiw.dominio.Usuario;
 
+@SessionAttributes(value={"logueado","usuarioValidado"})
 @Controller
-
-
 public class UsuariosController {
 	@Autowired
 	RestTemplate restTemplate;
@@ -40,8 +39,17 @@ public class UsuariosController {
 	
 	@RequestMapping(value="/editarUsuario")
 	public String editarUsuarios(Model modelo){
+		modelo.addAttribute(new Usuario());
 		return "editarUsuario";
 	}
+	@PostMapping("/editar")
+	public String actualizarUsuario(Model modelo, @ModelAttribute Usuario usuario){
+		System.out.println(usuario);
+		Usuario usuarioValidado = restTemplate.postForObject("http://localhost:8010/editarU", usuario, Usuario.class);
+		modelo.addAttribute("usuarioValidado",usuarioValidado);
+		return "perfilUsuario";
+	}
+	
 	
 	@PostMapping("/loguear")
 	public String validarUsuario(Model modelo, @ModelAttribute Usuario usuario){
