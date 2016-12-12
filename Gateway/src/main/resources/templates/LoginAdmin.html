@@ -12,33 +12,35 @@
     </head>
    <body>
 
-	                        <ul class="nav navbar-nav navbar-right">
-	                        	<li>
-		                            <div th:if="${logueado} == false">
- 	                        	
- 			                            <div class="form-group ">
- 			                                <form th:action="@{/loguearAdmin}" th:object="${administrador}" class="form-inline navbar-form" role="form" 
- 			                                    method="post" id="login">
- 			                                    <label class="sr-only" for="ejemplo_email_2">Email</label> 
- 			                                        <input th:field="*{email}" type="text" class="form-control" placeholder="Introduce tu email" data-validation="email" data-validation-error-msg="No has introducido un email valido (a@b.c)"/>
- 			                                    <label class="sr-only" for="ejemplo_password_2">Contraseña</label>
- 			                                    <input th:field="*{password}" type="password" class="form-control"
- 			                                        placeholder="Contraseña" data-validation="length"
- 			                                        data-validation-length="min8"
- 			                                        data-validation-error-msg="La contraseña tiene al menos 8 caracteres"/>
- 			                                    <input type="submit" class="btn btn-default" value="Entrar"/>
- 			                                </form>
- 			                                
- 			                            </div>
- 		                         </div>
- 		                         <div th:if="${adminlogueado} == true">
- 		                        	<span th:text="'Hola' + ${administrador.nombre}"></span>
- 		                        </div>
-	                         	</li>
-	
-	                        </ul>
+<div class="col-md-4 col-md-offset-4">
+        
+        <h4>Login para administradores</h4>
+    </div>
+    <div class="col-md-4 col-md-offset-4">
+        <form class="form-group" th:action="@{/loguearAdmin}" th:object= "${administrador}" role="form" action="admin" method="post" id="login">
+                  <label class="sr-only" for="ejemplo_email_2">Email</label>
+                  <input type="text" class="form-control" name="User" th:field= "*{email}"
+                         placeholder="Introduce tu email" data-validation="email" 
+                         data-validation-error-msg="No has introducido un email valido (a@b.c)"/>
+                          <br/>
+                  <label class="sr-only" 
+                  th:field= "*{password}" for="ejemplo_password_2" >ContraseÃ±a</label>
+                  <input type="password" class="form-control" name="Pass" 
+                         placeholder="Contraseña" data-validation="length" data-validation-length="min8" 
+                         data-validation-error-msg="La contraseña tiene al menos 8 caracteres" />
+                         <br/>
+                  <input type="submit" class="btn btn-default" value="Entrar"></input>
+                  </form> 
+                </div>
+                <script>
+			$.validate({
+				form : '#login',	
+				 onError : function($form) {
+				      return false;
+				    }
+		    });
+		</script>
 </body>
-    	
 	<div th:replace="/header::footer"></div>
 </html>
 
