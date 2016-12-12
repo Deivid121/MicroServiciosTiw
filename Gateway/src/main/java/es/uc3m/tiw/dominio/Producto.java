@@ -11,9 +11,9 @@ public class Producto {
 	private String estado;
 	private String ciudad;
 	private int precio;
-	private int usuario;
+	private long usuario;
 	
-	public Producto(String titulo, String categoria, String descripcion, String imagen, int precio, int usuario, String ciudad, String estado) {
+	public Producto(String titulo, String categoria, String descripcion, String imagen, int precio, long usuario, String ciudad, String estado) {
 		super();
 		this.titulo = titulo;
 		this.categoria = categoria;
@@ -58,10 +58,10 @@ public class Producto {
 	public void setPrecio(int precio) {
 		this.precio = precio;
 	}
-	public int getUsuario() {
+	public long getUsuario() {
 		return usuario;
 	}
-	public void setUsuario(int usuario) {
+	public void setUsuario(long usuario) {
 		this.usuario = usuario;
 	}
 
@@ -79,6 +79,12 @@ public class Producto {
 
 	public void setCiudad(String ciudad) {
 		this.ciudad = ciudad;
+	}
+
+	@Override
+	public String toString() {
+		return "Producto [id=" + id + ", titulo=" + titulo + ", categoria=" + categoria + ", descripcion=" + descripcion
+				+ ", estado=" + estado + ", ciudad=" + ciudad + ", precio=" + precio + ", usuario=" + usuario + "]";
 	}
 	
 	

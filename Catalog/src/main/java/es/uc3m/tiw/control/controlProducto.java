@@ -27,12 +27,12 @@ public class controlProducto {
  
 
  @RequestMapping(value="/subirProducto" ,method = RequestMethod.POST)
- public  @ResponseBody Producto crear(@RequestBody Producto p){
-     rep.save(p);
+ public  @ResponseBody Producto crear(@RequestBody Producto producto){
+     Producto p=rep.save(producto);
      return p;
  }
 
- @RequestMapping(value="/mostrarProductos" , method = RequestMethod.GET)
+ @RequestMapping(value="/getProductos" , method = RequestMethod.GET)
  public @ResponseBody List<Producto> productos(){
 	 return rep.findAll();
  }

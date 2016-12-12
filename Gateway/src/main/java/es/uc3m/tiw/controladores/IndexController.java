@@ -2,7 +2,12 @@ package es.uc3m.tiw.controladores;
 
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.client.RestTemplate;
 
+import es.uc3m.tiw.dominio.Producto;
 import es.uc3m.tiw.dominio.Usuario;
 @SessionAttributes("logueado")
 @Controller
@@ -24,7 +30,11 @@ public class IndexController {
 		
 		modelo.addAttribute("usuario",new Usuario());
 		modelo.addAttribute("logueado",false);
-
+		ResponseEntity responseEntity=restTemplate.getForEntity("http://localhost:8020/getProductos", Producto[].class);
+		Producto[] productos = (Producto[]) responseEntity.getBody();
+		List<Producto> lista= Arrays.asList(productos);
+		System.out.println(lista.get(0));
+		modelo.addAttribute("lista",lista);
 		return "index";
 	}
 	@RequestMapping(value="/crear")
@@ -33,6 +43,12 @@ public class IndexController {
 	}
 	@RequestMapping(value="/index")
 	public String index(Model modelo){
+		ResponseEntity responseEntity=restTemplate.getForEntity("http://localhost:8020/getProductos", Producto[].class);
+		Producto[] productos = (Producto[]) responseEntity.getBody();
+		List<Producto> lista= Arrays.asList(productos);
+		System.out.println(lista.get(0));
+		modelo.addAttribute("lista",lista);
+		
 		return "index";
 	}
 	
