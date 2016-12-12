@@ -27,25 +27,25 @@
                       <div class="form-group">
                         <label  class="col-md-4" for="exampleInputEmail1"><h5 class="text-center"><strong>Nombre del producto</strong></h5></label>
                         <div class="col-md-8">
-                        <input  th:field="*{titulo}" type="email" class="form-control" id="exampleInputEmail1" placeholder="Nombre"/>
+                        <input  th:field="*{titulo}" type="text" class="form-control" id="exampleInputEmail1" placeholder="Nombre"/>
                         </div>
                       </div>
                       <div class="form-group">
                         <label  class="col-md-4" for="exampleInputPassword1"><h5 class="text-center"><strong>Categoria</strong></h5></label>
                         <div class="col-md-8">
-                        <input th:field="*{categoria}" type="password" class="form-control" id="exampleInputPassword1" placeholder="Categoria"/>
+                        <input th:field="*{categoria}" type="text" class="form-control" id="exampleInputPassword1" placeholder="Categoria"/>
                         </div>
                       </div>
                       <div class="form-group">
                         <label  class="col-md-4" for="exampleInputPassword1"><h5 class="text-center"><strong>Descripcion</strong></h5></label>
                         <div class="col-md-8">
-                        <textarea th:field="*{descripcion}" type="password" class="form-control" id="exampleInputPassword1" placeholder="Descripcion"></textarea>
+                        <textarea th:field="*{descripcion}" type="text" class="form-control" id="exampleInputPassword1" placeholder="Descripcion"></textarea>
                         </div>
                       </div>
                        <div class="form-group">
                         <label  class="col-md-4" for="exampleInputPassword1"><h5 class="text-center"><strong>ciudad</strong></h5></label>
                         <div class="col-md-8">
-                        <input th:field="*{ciudad}" type="password" class="form-control" id="exampleInputPassword1" placeholder="Ciudad"/>
+                        <input th:field="*{ciudad}" type="text" class="form-control" id="exampleInputPassword1" placeholder="Ciudad"/>
                         </div>
                       </div>
                       <div class="form-group">
@@ -56,29 +56,30 @@
                         
                       </div>
                       
-                      <div class="form-group">
+                      <!--  <div class="form-group">
                             <label class="col-md-4" for="nombre"><h5 class="text-center"><strong>Imagen</strong></h5></label> 
                             <div class="col-md-8">
                                 <input th:field="*{imagen}" type="text" class="form-control" id="imagen_producto"
                                 placeholder="Imagen" name="imagen"/>
                            </div>
-                        </div>
-                         <div class="form-group">
-                            <label class="col-md-4" for="nombre"><h5 class="text-center"><strong>Imagen</strong></h5></label> 
+                        </div> -->
+                        <!-- <div class="form-group">
+                            <label class="col-md-4" for="nombre"><h5 class="text-center"><strong>Usuario</strong></h5></label> 
                             <div class="col-md-8">
                                 <input th:field="*{usuario}" type="text" class="form-control" id="imagen_producto"
                                 placeholder="Imagen" name="imagen"/>
                            </div>
                         </div>
+                        -->
                           <div class="form-group">
-                            <label class="col-md-4" for="nombre"><h5 class="text-center"><strong>Imagen</strong></h5></label> 
+                            <label class="col-md-4" for="nombre"><h5 class="text-center"><strong>Estado</strong></h5></label> 
                             <div class="col-md-8">
                                 <input th:field="*{estado}" type="text" class="form-control" id="imagen_producto"
-                                placeholder="Imagen" name="imagen"/>
+                                placeholder="Estado"/>
                            </div>
                         </div>
                       <br/>
-                          <div id="registerButon">
+                          <div id="crearProductoButton">
                             <button type="submit" class="btn btn-default">Crear producto</button>
                           </div>
                     </form>

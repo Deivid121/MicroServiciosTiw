@@ -3,6 +3,7 @@ package es.uc3m.tiw.clients;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,20 +42,19 @@ public class controller {
         return u;
     }
     @RequestMapping(value="/eliminarU", method = RequestMethod.DELETE)
-    public @ResponseBody Usuario eliminarUsuario(Usuario user){
-        dao.deleteById(user.getId());
+    public @ResponseBody Usuario eliminarUsuario(@RequestBody Usuario user){
+        dao.delete(user.getId());
         return user;
        
     }
-    @RequestMapping(value="/editarU", method = RequestMethod.POST)
-    public @ResponseBody Usuario editarUsuario(Usuario user){
-        List <Usuario> u = dao.findAll();
-        Usuario antiguo=buscarUsuariobyId(u, user);
-
-        dao.delete(antiguo);
-        dao.save(updateUser(antiguo,user));
+    @RequestMapping(value="/editarU/{id}", method = RequestMethod.POST)
+    public @ResponseBody Usuario editarUsuario(@RequestBody Usuario nuevo, @PathVariable String id){
+    	nuevo.setId(Long.parseLong(id));
+//        List <Usuario> u = dao.findAll();
+//        Usuario antiguo=buscarUsuariobyId(u, id);   updateUser(antiguo,user)
+        dao.save(nuevo);
         
-        return user;
+        return nuevo;
        
     }
     @RequestMapping (value="/verPerfil", method = RequestMethod.GET)
@@ -87,10 +87,10 @@ public @ResponseBody Usuario verPerfil(Usuario user){
     	
     	
     }
-    private static Usuario buscarUsuariobyId(List<Usuario> lista, Usuario user){
+    private static Usuario buscarUsuariobyId(List<Usuario> lista, long id){
     	Usuario u=new Usuario();
     	for (Usuario usuario : lista) {
-			if(usuario.getId() == user.getId()){
+			if(usuario.getId() == id){
 				return usuario;
 			}
 		}

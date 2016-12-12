@@ -4,6 +4,11 @@ import java.io.Serializable;
 
 public class Usuario implements Serializable{
 
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2=" + apellido2
+				+ ", email=" + email + ", avatar=" + avatar + ", password=" + password + ", ciudad=" + ciudad + "]";
+	}
 	private static final long serialVersionUID = 1L;
 	private long id;
 	private String nombre;

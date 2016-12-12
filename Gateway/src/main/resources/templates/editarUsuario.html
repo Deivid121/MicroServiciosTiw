@@ -26,33 +26,33 @@
         <div class="registro">
             <div class="row">
             <div id="registro">
-               <form  th:action="@{/editar}" th:object="${usuario}" method="post" class="form-horizontal" id="registration">
+               <form  th:action="@{/editar}" th:object="${nuevo}" method="post" class="form-horizontal" id="registration">
                   <div class="form-group">
                      <label  class="col-md-4"  for="exampleInputFile"><h5 class="text-center"><strong>Nombre</strong></h5></label> 
                     <div class="col-md-8">
                      <p th:text="${session.usuarioValidado.nombre}"></p>
-                        <input type="text" th:field="nombre" class="form-control" data-validation="required" data-validation-length="max30" data-validation-error-msg="Introduzca un nombre" placeholder="Nombre"/>
+                        <input type="text" th:field="*{nombre}" class="form-control" data-validation="required" data-validation-length="max30" data-validation-error-msg="Introduzca un nombre" placeholder="Nombre"/>
                     </div>
                   </div>
                   <div class="form-group">
                      <label  class="col-md-4"  for="exampleInputFile"><h5 class="text-center"><strong>Primer apellido</strong></h5></label> 
                     <div class="col-md-8">
                     <p th:text="${session.usuarioValidado.apellido1}"></p>
-                    <input th:field="apellido1" type="text" class="form-control" data-validation="required" data-validation-length="max30" data-validation-error-msg="Introduzca su primer apellido" placeholder="Segundo apellido" name="FSurname"/>
+                    <input th:field="*{apellido1}" type="text" class="form-control" data-validation="required" data-validation-length="max30" data-validation-error-msg="Introduzca su primer apellido" placeholder="Segundo apellido" name="FSurname"/>
                     </div>
                   </div>
                    <div class="form-group">
                      <label  class="col-md-4"  for="exampleInputFile"><h5 class="text-center"><strong>Segundo apellido</strong></h5></label> 
                     <div class="col-md-8">
                      <p th:text="${session.usuarioValidado.apellido2}"></p>
-                    <input th:field="apellido2" type="text" class="form-control" data-validation="required" data-validation-length="max30" data-validation-error-msg="Introduzca su segundo apellido" placeholder="Segundo apellido" name="SSurname"/>
+                    <input th:field="*{apellido2}" type="text" class="form-control" data-validation="required" data-validation-length="max30" data-validation-error-msg="Introduzca su segundo apellido" placeholder="Segundo apellido" name="SSurname"/>
                     </div>
                   </div>
                   <div class="form-group">
                     <label  class="col-md-4"  for="exampleInputFile"><h5 class="text-center"><strong>Correo electrónico</strong></h5></label>
                     <div class="col-md-8">
                      	<p th:text="${session.usuarioValidado.email}"></p>
-                    	<input th:field="email" data-validation-error-msg="Introduce un correo electrónico con el formato correcto;     email@dominion.com"
+                    	<input th:field="*{email}" data-validation-error-msg="Introduce un correo electrónico con el formato correcto;     email@dominion.com"
                             class="form-control" data-validation="email"
                             placeholder="Introduce tu email" name="Email"/>
                     </div>
@@ -62,7 +62,7 @@
                     <div class="col-md-8">
                      	<p th:text="${session.usuarioValidado.password}"></p>
                     	<input
-                            type="password" th:field="password" class="form-control" data-validation-length="min8" data-validation-error-msg="Introduzca una contraseña de al menos 8 caracteres"  placeholder="Contraseña" name="pass_confirmation"/>
+                            type="password" th:field="*{password}" class="form-control" data-validation-length="min8" data-validation-error-msg="Introduzca una contraseña de al menos 8 caracteres"  placeholder="Contraseña" name="pass_confirmation"/>
                     </div>
                   </div>
                   <div class="form-group">
@@ -78,7 +78,7 @@
                     <label  class="col-md-4"><h5 class="text-center"><strong> Avatar</strong></h5></label>
                     <div class="col-md-8">
                      	<p th:text="${session.usuarioValidado.avatar}"></p>
-                    	<input th:field="avatar" th:name="avatar" th:id="avatar" type="hidden" class="form-control" data-validation="confirmation" 
+                    	<input th:field="${nuevo.avatar}" id="avatarName" type="hidden" class="form-control" data-validation="confirmation" 
                             placeholder="Verificar contraseña" name="pass"/>
                             <div class="col-md-5 col-md-offset-2">
                             	<i id="Anterior" onClick="changeAvatar(this)" class="fa fa-arrow-left" aria-hidden="true"></i>

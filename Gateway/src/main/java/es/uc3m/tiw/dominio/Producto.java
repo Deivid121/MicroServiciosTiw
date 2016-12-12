@@ -10,7 +10,6 @@ public class Producto {
 	private String descripcion;
 	private String estado;
 	private String ciudad;
-	private String imagen;
 	private int precio;
 	private int usuario;
 	
@@ -19,7 +18,6 @@ public class Producto {
 		this.titulo = titulo;
 		this.categoria = categoria;
 		this.descripcion = descripcion;
-		this.imagen = imagen;
 		this.precio = precio;
 		this.usuario = usuario;
 		this.ciudad = ciudad;
@@ -53,12 +51,6 @@ public class Producto {
 	}
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
-	}
-	public String getImagen() {
-		return imagen;
-	}
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
 	}
 	public int getPrecio() {
 		return precio;
