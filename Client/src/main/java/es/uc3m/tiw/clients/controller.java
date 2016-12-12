@@ -42,14 +42,17 @@ public class controller {
     }
     @RequestMapping(value="/eliminarU", method = RequestMethod.DELETE)
     public @ResponseBody Usuario eliminarUsuario(Usuario user){
-        dao.delete(user);
+        dao.deleteById(user.getId());
         return user;
        
     }
     @RequestMapping(value="/editarU", method = RequestMethod.POST)
     public @ResponseBody Usuario editarUsuario(Usuario user){
-    	
-        dao.save(user);
+        List <Usuario> u = dao.findAll();
+        Usuario antiguo=buscarUsuariobyId(u, user);
+
+        dao.delete(antiguo);
+        dao.save(updateUser(antiguo,user));
         
         return user;
        
@@ -94,6 +97,25 @@ public @ResponseBody Usuario verPerfil(Usuario user){
     	return u;
     	
     	
+    }
+    private static Usuario updateUser(Usuario antiguo, Usuario user){
+    	
+    	if(user.getNombre().isEmpty()){
+    		user.setNombre(antiguo.getNombre());
+    	}
+    	if(user.getApellido1().isEmpty()){
+    		user.setApellido1(antiguo.getApellido1());
+    	}
+    	if(user.getEmail().isEmpty()){
+    		user.setEmail(antiguo.getEmail());
+    	}
+    	if(user.getAvatar().isEmpty()){
+    		user.setAvatar(antiguo.getAvatar());
+    	}
+    	if(user.getCiudad().isEmpty()){
+    		user.setCiudad(antiguo.getCiudad());
+    	}
+    	return user;
     }
     
     private static Administrador buscarAdministrador(List<Administrador> lista, Administrador admin){
