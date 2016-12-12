@@ -29,8 +29,10 @@ public class AdminController {
 //		return "index";
 //		
 //	}
+
 	
-	@RequestMapping("/loguearAdmin")
+	
+	@RequestMapping("/panelAdmin")
 	public String validarAdmin(Model modelo, @ModelAttribute Administrador administrador){
 		Administrador admin = new Administrador();
 		modelo.addAttribute("AdminValidado",admin);
