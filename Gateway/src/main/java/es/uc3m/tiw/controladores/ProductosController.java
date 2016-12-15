@@ -3,7 +3,9 @@ package es.uc3m.tiw.controladores;
 
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -77,4 +79,12 @@ public class ProductosController {
    return "/index";
 	
 }
+	@RequestMapping(value="/verProducto/{id}", method=RequestMethod.GET)
+	public String cargarProducto(Model modelo,@PathVariable String id){
+		Map<String, Long> vars = new HashMap<String, Long>();
+		vars.put("id", Long.parseLong(id));
+		Producto productoGuardado = restTemplate.getForObject("http://localhost:8020/verProducto/{id}", Producto.class, vars);
+		modelo.addAttribute("producto",productoGuardado);
+		return "verProducto";
+	}
 }

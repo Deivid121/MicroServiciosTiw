@@ -42,9 +42,9 @@ public class controlProducto {
 	 return rep.findByTituloContainingOrDescripcionContaining(titulo, descripcion);
  }
  
- @RequestMapping(value = "/verProducto" ,method = RequestMethod.GET)
- public @ResponseBody Producto buscarProducto(@RequestBody Producto p){
-	 return rep.findById(p.getId());
+ @RequestMapping(value = "/verProducto/{id}" ,method = RequestMethod.GET)
+ public @ResponseBody Producto buscarProducto(@PathVariable long id){
+	 return rep.findById(id);
  }
  @RequestMapping(value = "/modificarProducto" ,method = RequestMethod.PUT)
  public @ResponseBody Producto modificarProducto(@RequestBody Producto p){ 

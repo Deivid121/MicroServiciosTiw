@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>WallapopTIW</title>
+
+        <!-- Latest compiled and minified CSS -->
+       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>WallapopTIW</title>
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" />
+        <link rel="stylesheet" th:href="@{/css/formulario.css}" href="../../css/formulario.css" />
+		<link rel="stylesheet" th:href="@{/css/style.css}" href="../../css/style.css" />
+		<script th:href="@{/js/jquery.min.js}" src="../../js/jquery.min.js"></script>
+		<script th:href="@{/js/jquery-validator.min.js}" src="../../js/jquery-validator.min.js"></script>
+		<script th:href="@{/js/bootstrap.min.css}" src="../../js/bootstrap.min.js"></script>
+		<script src="http://blackpeppersoftware.github.io/thymeleaf-fragment.js/thymeleaf-fragment.js" defer="defer" th:if="false"></script>
+    </head>
+    <body>
+        <div th:replace="/header::header"></div>  
+    <div class="container">
+        <div id="titulo">
+            <h2><strong><span th:text="'Producto:' + ${producto.titulo}"></span></strong></h2>
+        </div>
+        <div id="perfil">
+        	<div class="col-md-4">
+        		<img th:src="@{${producto.image}}"/>
+        	</div>
+        	<div>
+        		<label class="col-md-8">Nombre</label>
+        		<span class="col-md-8" th:text="${producto.titulo}"></span>
+        	</div>
+        	<div>
+        		<label class="col-md-8">Categoria</label>
+        		<span class="col-md-8" th:text="${producto.categoria}"></span>
+        	</div>
+        	<div>
+        		<label class="col-md-8">Descripcion</label>
+        		<span class="col-md-8" th:text="${producto.descripcion}"></span>
+        	</div>
+        	<div>
+        		<label class="col-md-12">Estado</label>
+        		<span class="col-md-12" th:text="${producto.estado}"></span>
+        	</div>
+        	<div>
+        		<label class="col-md-12">Ciudad</label>
+        		<span class="col-md-12" th:text="${producto.ciudad}"></span>
+        	</div>
+        	<div class="row">
+
+
+        	</div>
+        	
+        
+        
+        </div>
+        
+        
+        
+        
+    </div>
+	<p th:text="${session.logueado}"></p>
+     
+        
+
+     <br/>
+    <hr/>
+    <footer>
+        <div id="footer">
+                <ul >
+                      <li class="footerLink"><a class="footerL" href="#">Políticas de seguridad</a></li>
+                      <li class="footerLink"><a class="footerL" href="#">Políticas de cookies</a></li>
+                      <li class="footerLink"><a class="footerL" href="#">Twitter</a></li>
+                      <li class="footerLink"><a class="footerL" href="#">Facebook</a></li>
+                </ul>
+            </div>
+        Copyright © 2016 wallapopTIW
+    </footer>
+    </body>
+
+</html>
+

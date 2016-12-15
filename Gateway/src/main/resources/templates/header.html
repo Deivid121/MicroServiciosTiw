@@ -24,7 +24,7 @@
                             <span class="icon-bar"></span>
                           </button>
                             <a class="navbar-brand" href="/index">
-                             <img id="logo" th:href="@{images/titulo.png}" src="images/titulo.png"/>
+                             <img id="logo" th:href="@{'../../images/titulo.png'}" src="../../images/titulo.png"/>
                             </a>
                         </div>
                     </div>
@@ -60,6 +60,7 @@
                         </div>
 					</div>
 					<div class="col-md-5">
+						<div th:if="${session.adminLogueado} == false">
 		                            <div th:if="${session.logueado} == false">
  	                        	
  			                            <div class="form-group ">
@@ -97,6 +98,7 @@
 									</div>
  		                        </div>
                     </div>
+                </div>
                 </div>
             </div>
 			

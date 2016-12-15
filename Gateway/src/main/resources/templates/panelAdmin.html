@@ -12,9 +12,9 @@
     </head>
 <body>
 
+<div th:replace="/header::header"></div>
 
-
-    <table>
+    <table class="table table-striped">
     <h2>Usuarios del sistema</h2>
         <tr>
         	<th>id</th>
@@ -52,19 +52,19 @@
 	</tr>
 	</table>
 
-	 <table>
+	 <table class="table table-striped">
     <h2>Productos del sistema</h2>
         <tr>
-            <th>id</th>
-            <th>titulo</th>
-            <th>categoria</th>
-            <th>descripcion</th>
-            <th>estado</th>
-            <th>ciudad</th>
-            <th>precio</th>
-            <th>usuario</th>
-            <th>imagen</th>
-            <th>opciones</th>
+            <th>ID</th>
+            <th>Titulo</th>
+            <th>Categoria</th>
+            <th>Descripcion</th>
+            <th>Estado</th>
+            <th>Ciudad</th>
+            <th>Precio</th>
+            <th>Usuario</th>
+            <th>Imagen</th>
+            <th>Opciones</th>
         </tr>
         
        
@@ -84,7 +84,7 @@
 	
 		
 		<td>
-		<a th:href="@{'productoAdmin/' + ${producto.id }}"><i class="fa fa-search" aria-hidden="true"></i></a>
+		<a th:href="@{'verProducto/' + ${producto.id }}"><i class="fa fa-search" aria-hidden="true"></i></a>
 		<a th:href="@{'productoAdmin/' + ${producto.id }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 		<a th:href="@{'/eliminarP/'+${producto.id}}"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
 	
