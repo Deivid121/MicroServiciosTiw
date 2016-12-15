@@ -57,6 +57,16 @@ public class controller {
         return nuevo;
        
     }
+    @RequestMapping(value="/buscarPorId/{id}", method = RequestMethod.GET)
+    public @ResponseBody Usuario buscarUsuario(@PathVariable Long id){
+        return dao.getOne(id);
+       
+    }
+    @RequestMapping(value="/getUsuarios", method = RequestMethod.GET)
+    public @ResponseBody List<Usuario> getUsuarios(){
+        return dao.findAll();
+    }
+    
     @RequestMapping (value="/verPerfil", method = RequestMethod.GET)
 public @ResponseBody Usuario verPerfil(Usuario user){
     	
@@ -87,6 +97,7 @@ public @ResponseBody Usuario verPerfil(Usuario user){
     	
     	
     }
+    
     private static Usuario buscarUsuariobyId(List<Usuario> lista, long id){
     	Usuario u=new Usuario();
     	for (Usuario usuario : lista) {

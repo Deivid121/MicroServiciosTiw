@@ -13,10 +13,9 @@
 
 
 
-    <table class="table table-hover">
+    <table>
     <h2>Usuarios del sistema</h2>
         <tr>
-            <th>Id</th>
             <th>Nombre</th>
             <th>Apellido1</th>
             <th>Apellido2</th>
@@ -26,62 +25,63 @@
             <th>Opciones</th>
         </tr>
         <tr>
-        <c:if test="empty usuarios"><p>Usuarios vacíos</p></c:if>
+       
         
-<c:forEach items="${usuarios}" var="usuario">
-<tr>
-	<form>
-		<td>${usuario.id }</td>
-		<td>${usuario.nombre }</td>
-		<td>${usuario.apellido1 }</td>
-		<td>${usuario.apellido2 }</td>
-		<td>${usuario.email }</td>
-		<td>${usuario.password }</td>
-		<td>${usuario.ciudad }</td>
-		<td>
-		<a href="usuarioAdmin?id=${usuario.id }"><span class="glyphicon glyphicon-tag"></span></a>
-		<a href="editarUsuarioAdmin?id=${usuario.id}"><span class="glyphicon glyphicon-edit"></span></a>
-		<a href="borrarUsuarioAdmin?id=${usuario.id}"><span class="glyphicon glyphicon-trash"></span></a>
-		</td>
 
-	</form>
-	</tr>
-	</c:forEach>
+<tr th:each= "usuario : ${listaUsuarios}">
 	
+		<td th:text="${usuario.id}"></td>
+		<td th:text="${usuario.nombre}"></td>
+		<td th:text="${usuario.apellido1}"></td>
+		<td th:text="${usuario.apellido2}"></td>
+		<td th:text="${usuario.email}"></td>
+		<td th:text="${usuario.password}"></td>
+		<td th:text="${usuario.ciudad}"></td>
+		<a th:href="@{'usuarioAdmin/' + ${usuario.id }}"><span class="glyphicon glyphicon-tag"></span></a>
+		<a th:href="@{'usuarioAdmin/' + ${usuario.id }}"><span class="glyphicon glyphicon-edit"></span></a>
+		<a th:href="@{'usuarioAdmin/' + ${usuario.id }}"><span class="glyphicon glyphicon-trash"></span></a>
+		
 
-	 <table class="table table-hover">
-	 <h2>Productos del sistema</h2>
-<tr>
-<th>Id</th>
-<th>Titulo</th>
-<th>Categoría</th>
-<th>Descripción</th>
-<th>Precio</th>
-<th>Imagen</th>
-<th>Estado</th>
-<th>Opciones</th>
-
-</tr>
-
-
-<c:forEach items="${productos}" var="producto"> <!-- recorremos todos los objetos de la coleccion usuarios y cada objeto devuelto lo asignamos a la variable usuario -->
-<tr>
-<form>
-	<td>${producto.id }</td> 
-	<td>${producto.titulo }</td> 
-	<td>${producto.categoria }</td>
-	<td>${producto.descripcion }</td>
-	<td>${producto.precio }</td>
-	<td><img src = "./imagenes/${producto.imagen }" width ="25" height="25"></td>
-	<td>${producto.estado }</td>
-
-		<td>
-		<a href="VerProductosAdmin?id=${producto.id }"><span class="glyphicon glyphicon-tag"></span></a>
-		<a href="EditarProductoAdmin?id=${producto.id}"><span class="glyphicon glyphicon-edit"></span></a>
-		<a href="eliminarProductoClave?id=${producto.id}"><span class="glyphicon glyphicon-trash"></span></a></td>
-	</form>
+	
 	</tr>
-	</c:forEach>
+	</table>
+
+	     <table>
+    <h2>Productos del sistema</h2>
+        <tr>
+            <th>id</th>
+            <th>titulo</th>
+            <th>categoria</th>
+            <th>descripcion</th>
+            <th>image</th>
+            <th>estado</th>
+            <th>ciudad</th>
+            <th>precio</th>
+            <th>usuario</th>
+        </tr>
+        <tr>
+       
+        
+
+<tr th:each= "producto : ${listaProductos}">
+	
+		<td th:text="${producto.id}"></td>
+		<td th:text="${producto.titulo}"></td>
+		<td th:text="${producto.categoria}"></td>
+		<td th:text="${producto.descripcion}"></td>
+		<td th:text="${producto.image}"></td>
+		<td th:text="${producto.estado}"></td>
+		<td th:text="${producto.ciudad}"></td>
+		<td th:text="${producto.precio}"></td>
+		<td th:text="${producto.usuario}"></td>
+	
+		<a th:href="@{'productoAdmin/' + ${producto.id }}"><span class="glyphicon glyphicon-tag"></span></a>
+		<a th:href="@{'productoAdmin/' + ${producto.id }}"><span class="glyphicon glyphicon-edit"></span></a>
+		<a th:href="@{'productoAdmin/' + ${producto.id }}"><span class="glyphicon glyphicon-trash"></span></a>
+		
+	
+	</tr>
+	</table>
 	
 </body>
 <div th:replace="/header::footer"></div>
