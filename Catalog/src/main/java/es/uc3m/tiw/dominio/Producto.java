@@ -25,6 +25,9 @@ public class Producto {
 	private String descripcion;
 	@Column(length = 30, nullable = false)
 	private String estado;
+	@Lob
+    @Column(nullable = true)
+    private String image;
 	@Column(length = 30, nullable = false)
 	private String ciudad;
 	@Column(nullable = true)
@@ -32,11 +35,12 @@ public class Producto {
 	@Column(nullable = false)
 	private int usuario;
 	
-	public Producto(String titulo, String categoria, String descripcion, int precio, int usuario, String ciudad, String estado) {
+	public Producto(String titulo, String categoria, String descripcion,String imagen, int precio, int usuario, String ciudad, String estado) {
 		super();
 		this.titulo = titulo;
 		this.categoria = categoria;
 		this.descripcion = descripcion;
+		this.image=imagen;
 		this.precio = precio;
 		this.usuario = usuario;
 		this.ciudad = ciudad;
@@ -98,6 +102,14 @@ public class Producto {
 
 	public void setCiudad(String ciudad) {
 		this.ciudad = ciudad;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String imagen) {
+		this.image = imagen;
 	}
 	
 	

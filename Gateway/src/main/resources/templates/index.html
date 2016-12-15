@@ -16,7 +16,7 @@
             <div class="row">
 	     
 	                <div th:each="producto : ${lista}" id="productos" class="col-md-3">
-	                    <img th:href="@{/images/productos.png}" src="../../images/productos.png"/>
+	                    <img th:src="@{${producto.image}}"/>
 	                    <h2 th:text="${producto.titulo}">Holi</h2>
 	                    <p th:text="${producto.descripcion}">pepito</p>
 						

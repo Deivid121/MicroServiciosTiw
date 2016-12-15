@@ -8,24 +8,25 @@ public class Producto {
 	private String titulo;
 	private String categoria;
 	private String descripcion;
+	private String image;
 	private String estado;
 	private String ciudad;
 	private int precio;
 	private long usuario;
 	
-	public Producto(String titulo, String categoria, String descripcion, String imagen, int precio, long usuario, String ciudad, String estado) {
+	public Producto(String titulo, String categoria, String descripcion,String imagen, int precio, long usuario, String ciudad, String estado) {
 		super();
 		this.titulo = titulo;
 		this.categoria = categoria;
 		this.descripcion = descripcion;
+		this.image=imagen;
 		this.precio = precio;
 		this.usuario = usuario;
 		this.ciudad = ciudad;
 		this.estado = estado;
 	}
-	
-	public Producto() {
-		super();
+	public Producto(){
+		
 	}
 
 	public int getId() {
@@ -81,11 +82,23 @@ public class Producto {
 		this.ciudad = ciudad;
 	}
 
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String imagen) {
+		this.image = imagen;
+	}
 	@Override
 	public String toString() {
 		return "Producto [id=" + id + ", titulo=" + titulo + ", categoria=" + categoria + ", descripcion=" + descripcion
-				+ ", estado=" + estado + ", ciudad=" + ciudad + ", precio=" + precio + ", usuario=" + usuario + "]";
+				+ ", image=" + image + ", estado=" + estado + ", ciudad=" + ciudad + ", precio=" + precio + ", usuario="
+				+ usuario + "]";
 	}
+	
+
+
 	
 	
 }
