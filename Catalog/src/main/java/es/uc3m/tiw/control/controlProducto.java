@@ -50,7 +50,10 @@ public class controlProducto {
  public @ResponseBody Producto modificarProducto(@RequestBody Producto p){ 
 	 return  rep.save(p);
  }
- 
+ @RequestMapping(value="/eliminarP/{id}", method = RequestMethod.DELETE)
+ public @ResponseBody void eliminarUsuario(@PathVariable long id){
+     rep.delete(id); 
+ }
  @RequestMapping(value="/buscarPorId/{id}", method = RequestMethod.GET)
  public @ResponseBody Producto buscarUsuario(@PathVariable Long id){
 	 return rep.findById(id);
