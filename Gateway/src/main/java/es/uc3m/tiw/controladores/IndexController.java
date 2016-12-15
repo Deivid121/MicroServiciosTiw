@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.client.RestTemplate;
 
@@ -45,9 +46,18 @@ public class IndexController {
 		ResponseEntity responseEntity=restTemplate.getForEntity("http://localhost:8020/getProductos", Producto[].class);
 		Producto[] productos = (Producto[]) responseEntity.getBody();
 		List<Producto> lista= Arrays.asList(productos);
-		System.out.println(lista.get(0));
 		modelo.addAttribute("lista",lista);
-		
+		return "index";
+	}
+	@RequestMapping(value="/cerrarSesion")
+	public String index2(Model modelo, @SessionAttribute boolean logueado){
+		ResponseEntity responseEntity=restTemplate.getForEntity("http://localhost:8020/getProductos", Producto[].class);
+		Producto[] productos = (Producto[]) responseEntity.getBody();
+		List<Producto> lista= Arrays.asList(productos);
+		modelo.addAttribute("lista",lista);
+		logueado=false;
+		modelo.addAttribute("logueado", logueado);
+		modelo.addAttribute("usuario",new Usuario());
 		return "index";
 	}
 	

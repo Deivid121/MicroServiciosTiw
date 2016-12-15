@@ -38,7 +38,7 @@
                             </form>
                             <ul class="nav navbar-nav">
                                 <li class="dropdown">
-                                	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                	<a id="bienvenida" href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 	 Busqueda avanzada
                                 	 </a>
                                     <ul class="dropdown-menu">
@@ -59,8 +59,7 @@
                             </ul>
                         </div>
 					</div>
-	                        <ul class="nav navbar-nav navbar-right">
-	                        	<li>
+					<div class="col-md-5">
 		                            <div th:if="${session.logueado} == false">
  	                        	
  			                            <div class="form-group ">
@@ -79,15 +78,26 @@
  			                                
  			                            </div>
  		                         </div>
- 		                         <div id="saludo" th:if="${session.logueado} == true">
- 		                        	<span th:text="'Bienvenido  ' + ${session.usuarioValidado.nombre}"></span>
- 		                        	<img id="aavatar" th:src="@{'../../images/'+ ${session.usuarioValidado.avatar}}"/>
+ 		                       <div id="saludo" th:if="${session.logueado} == true">   
+ 		                    		<div class="dropdown">
+										<ul class="nav navbar-nav navbar-right">
+											<li class="dropdown">
+											<img id="aavatar" th:src="@{'../../images/'+ ${session.usuarioValidado.avatar}}"/>
+		          							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><p id="bienvenida" th:text="'Bienvenido  ' + ${session.usuarioValidado.nombre}"></p></a>
+		          							<ul class="dropdown-menu">
+									            <li><a href="/perfilUsuario">Perfil de usuario</a></li>
+									            <li><a href="/crearProducto">Subir producto</a></li>
+									            <li><a href="#">Mis productos</a></li>
+									            <li><a href="#">Bandeja de entrada</a></li>
+									            <li role="separator" class="divider"></li>
+									            <li><a href="/cerrarSesion">Cerrar sesión</a></li>
+		          							</ul>
+	       								 </li>
+	       								 </ul>
+									</div>
  		                        </div>
-	                         	</li>
-	
-	                        </ul>
-
                     </div>
+                </div>
             </div>
 			
         </nav>

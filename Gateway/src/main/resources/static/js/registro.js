@@ -43,3 +43,9 @@ function anterior(){
 		return "m3";
 	}
 }
+
+function avatarDefecto(){
+	document.getElementById("avatar").setAttribute("src","images/f1.png");
+	document.getElementById("avatar").setAttribute("th:ref","@{images/f1.png");
+	document.getElementById("avatarName").setAttribute("value", "f1.png");
+}
