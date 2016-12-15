@@ -33,8 +33,15 @@ public class chatContoller {
 	@RequestMapping(value="/enviarMensaje/{idProducto}/{idPropietario}", method= RequestMethod.GET)
 	public String Mensaje(@PathVariable Long idProducto, @PathVariable Long idPropietario,
 			@SessionAttribute(value="usuarioValidado")Usuario u, Model modelo){
-		modelo.addAttribute("idProducto",idProducto);
-		modelo.addAttribute("idPropietario",idPropietario);
+		Map<String,Long> varUser = new HashMap<String,Long>();
+		varUser.put("userId", idPropietario);
+		Usuario user = restTemplate.getForObject("http://localhost:8010/buscarPorId/{userId}", Usuario.class,varUser);
+		
+		Map<String,Long> varProd = new HashMap<String,Long>();
+		varProd.put("prodId", idProducto);
+		Producto prod = restTemplate.getForObject("http://localhost:8020/buscarPorId/{prodId}", Producto.class,varProd);
+		modelo.addAttribute("idProducto",prod.getTitulo());
+		modelo.addAttribute("idPropietario",user.getNombre());
 		Mensaje m = new Mensaje();
 		modelo.addAttribute("mensaje",m);
 		return "enviarMensaje";
@@ -67,7 +74,7 @@ public class chatContoller {
 			Map<String,Long> varProd = new HashMap<String,Long>();
 			varProd.put("prodId", mensajes.get(i).getProductoId());
 			Producto prod = restTemplate.getForObject("http://localhost:8020/buscarPorId/{prodId}", Producto.class,varProd);
-			MensajeMostrado mM = new MensajeMostrado(mensajes.get(i).getId(),prod.getUsuario(),prod.getId(), user.getNombre(),
+			MensajeMostrado mM = new MensajeMostrado(mensajes.get(i).getId(),mensajes.get(i).getOrigenId(),prod.getId(), user.getNombre(),
 					prod.getTitulo(), mensajes.get(i).getMensaje());
 			
 			mensajesMostrados.add(mM);
