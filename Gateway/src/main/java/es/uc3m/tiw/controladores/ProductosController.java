@@ -42,8 +42,8 @@ public class ProductosController {
 	}
 	@PostMapping("/crearProducto")
 	public String guardarProducto(Model modelo, @ModelAttribute(value="pvacio")Producto producto,@SessionAttribute(value="usuarioValidado") Usuario usuario, HttpServletResponse response){
+		System.out.println(usuario);
 		producto.setUsuario(usuario.getId());
-		System.out.println(producto);
 		Producto productoGuardado = restTemplate.postForObject("http://localhost:8020/subirProducto", producto, Producto.class);
 		modelo.addAttribute(productoGuardado);
 		try {
@@ -55,9 +55,10 @@ public class ProductosController {
 	}
 	
 	@PostMapping("/crearProducto2")
-    public String guardarProducto(MultipartHttpServletRequest request,@ModelAttribute(value="pvacio") Producto producto){
+    public String guardarProducto(MultipartHttpServletRequest request,@ModelAttribute(value="pvacio") Producto producto,@SessionAttribute(value="usuarioValidado") Usuario usuario){
         Producto p = new Producto();
         p = producto;
+        p.setUsuario(usuario.getId());
 		Iterator<String> itrator = request.getFileNames();
          MultipartFile multiFile = request.getFile(itrator.next());
         byte[] bytes = null;
@@ -67,7 +68,6 @@ public class ProductosController {
              bytes = multiFile.getBytes();
              String imagen = "data:image/jpg;base64,";
             		 imagen +=base64.encodeToString(bytes);
-             System.out.println(imagen);
              p.setImage(imagen);
          }catch(Exception e){
              System.out.println("No se ha podido el byte[]");

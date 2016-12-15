@@ -30,6 +30,7 @@ public class controlProducto {
  @RequestMapping(value="/subirProducto" ,method = RequestMethod.POST)
  public  @ResponseBody Producto crear(@RequestBody Producto producto){
      Producto p=rep.save(producto);
+     System.out.println(p);
      return p;
  }
 
