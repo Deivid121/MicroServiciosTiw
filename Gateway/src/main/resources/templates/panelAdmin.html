@@ -43,7 +43,7 @@
 		<td th:text="${usuario.ciudad}"></td>
 		<td> <img th:src="@{'../../images/'+ ${usuario.avatar}}"/></td>
 		<td>
-		<a th:href="@{'usuarioAdmin/' + ${usuario.id }}"><i class="fa fa-search" aria-hidden="true"></i></a>
+		<a th:href="@{'verUsuario/' + ${usuario.id }}"><i class="fa fa-search" aria-hidden="true"></i></a>
 		<a th:href="@{'usuarioAdmin/' + ${usuario.id }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 		<a th:href="@{'/eliminarU/'+${usuario.id}}"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
 		

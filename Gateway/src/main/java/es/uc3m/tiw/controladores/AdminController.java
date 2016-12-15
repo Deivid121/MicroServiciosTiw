@@ -110,4 +110,13 @@ public class AdminController {
 		return "redirect:/cargarAdmin";
 	}
 	
+	@RequestMapping(value="/verUsuario/{id}", method=RequestMethod.GET)
+	public String verUsuarioAdmin(Model modelo,@PathVariable String id ){
+		Map<String, Long> vars = new HashMap<String, Long>();
+		vars.put("id", Long.parseLong(id));
+		Usuario u=restTemplate.getForObject("http://localhost:8010/buscarPorId/{id}",Usuario.class,vars);
+		modelo.addAttribute("u",u);
+		return "perfilUsuario";
+	}
+	
 }

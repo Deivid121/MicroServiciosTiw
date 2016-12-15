@@ -20,7 +20,7 @@ import org.springframework.web.client.RestTemplate;
 
 import es.uc3m.tiw.dominio.Producto;
 import es.uc3m.tiw.dominio.Usuario;
-@SessionAttributes("logueado")
+@SessionAttributes(value={"logueado","adminLogueado"})
 @Controller
 public class IndexController {
 	@Autowired
@@ -31,6 +31,7 @@ public class IndexController {
 		
 		modelo.addAttribute("usuario",new Usuario());
 		modelo.addAttribute("logueado",false);
+		modelo.addAttribute("adminLogueado", false);
 		ResponseEntity responseEntity=restTemplate.getForEntity("http://localhost:8020/getProductos", Producto[].class);
 		Producto[] productos = (Producto[]) responseEntity.getBody();
 		List<Producto> lista= Arrays.asList(productos);

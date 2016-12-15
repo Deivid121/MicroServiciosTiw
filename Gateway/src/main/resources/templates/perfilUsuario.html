@@ -17,50 +17,84 @@
     </head>
     <body>
         <div th:replace="/header::header"></div>  
-    <div class="container">
-        <div id="titulo">
-            <h2><strong><span th:text="'Perfil de ' + ${usuarioValidado.nombre}"></span></strong></h2>
-        </div>
-        <div id="perfil">
-        	<div class="col-md-4">
-        		<img th:src="@{'../../images/'+ ${usuarioValidado.avatar}}"/>
-        	</div>
-        	<div>
-        		<label class="col-md-8">Nombre</label>
-        		<span class="col-md-8" th:text="${usuarioValidado.nombre}"></span>
-        	</div>
-        	<div>
-        		<label class="col-md-8">Primer Apellido</label>
-        		<span class="col-md-8" th:text="${usuarioValidado.apellido1}"></span>
-        	</div>
-        	<div>
-        		<label class="col-md-8">Segundo Apellido</label>
-        		<span class="col-md-8" th:text="${usuarioValidado.apellido2}"></span>
-        	</div>
-        	<div>
-        		<label class="col-md-12">Email</label>
-        		<span class="col-md-12" th:text="${usuarioValidado.email}"></span>
-        	</div>
-        	<div>
-        		<label class="col-md-12">Ciudad</label>
-        		<span class="col-md-12" th:text="${usuarioValidado.ciudad}"></span>
-        	</div>
-        	<div class="row">
-        	<a href="/editarUsuario" >Editar</a>
-        	<input class="btn btn-default" type="button" value="Editar perfil" onclick="location='/editarUsuario'" />
-        	<input class="btn btn-default" type="button" value="Borrar cuenta" onclick="location='/eliminar'"/>
-
-        	</div>
-        	
-        
-        
-        </div>
-        
-        
-        
-        
-    </div>
-	<p th:text="${session.logueado}"></p>
+     <div th:if="${session.adminLogueado} == true">
+	    <div class="container">
+	        <div id="titulo">
+	            <h2><strong><span th:text="'Perfil de ' + ${u.nombre}"></span></strong></h2>
+	        </div>
+	        <div id="perfil">
+	        	<div class="col-md-4">
+	        		<img th:src="@{'../../images/'+ ${u.avatar}}"/>
+	        	</div>
+	        	<div>
+	        		<label class="col-md-8">Nombre</label>
+	        		<span class="col-md-8" th:text="${u.nombre}"></span>
+	        	</div>
+	        	<div>
+	        		<label class="col-md-8">Primer Apellido</label>
+	        		<span class="col-md-8" th:text="${u.apellido1}"></span>
+	        	</div>
+	        	<div>
+	        		<label class="col-md-8">Segundo Apellido</label>
+	        		<span class="col-md-8" th:text="${u.apellido2}"></span>
+	        	</div>
+	        	<div>
+	        		<label class="col-md-12">Email</label>
+	        		<span class="col-md-12" th:text="${u.email}"></span>
+	        	</div>
+	        	<div>
+	        		<label class="col-md-12">Ciudad</label>
+	        		<span class="col-md-12" th:text="${u.ciudad}"></span>
+	        	</div>
+	        	<div class="row">
+	        	<input class="btn btn-default" type="button" value="Editar perfil" onclick="location='/editarUsuario'" />
+	        	<input class="btn btn-default" type="button" value="Borrar cuenta" onclick="location='/eliminar'"/>
+	
+	        	</div>
+		  </div>
+	
+	        
+	    </div>
+	    </div>
+	    <div th:if="${session.logueado} == true">
+	    <div class="container">
+	        <div id="titulo">
+	            <h2><strong><span th:text="'Perfil de ' + ${usuarioValidado.nombre}"></span></strong></h2>
+	        </div>
+	        <div id="perfil">
+	        	<div class="col-md-4">
+	        		<img th:src="@{'../../images/'+ ${usuarioValidado.avatar}}"/>
+	        	</div>
+	        	<div>
+	        		<label class="col-md-8">Nombre</label>
+	        		<span class="col-md-8" th:text="${usuarioValidado.nombre}"></span>
+	        	</div>
+	        	<div>
+	        		<label class="col-md-8">Primer Apellido</label>
+	        		<span class="col-md-8" th:text="${usuarioValidado.apellido1}"></span>
+	        	</div>
+	        	<div>
+	        		<label class="col-md-8">Segundo Apellido</label>
+	        		<span class="col-md-8" th:text="${usuarioValidado.apellido2}"></span>
+	        	</div>
+	        	<div>
+	        		<label class="col-md-12">Email</label>
+	        		<span class="col-md-12" th:text="${usuarioValidado.email}"></span>
+	        	</div>
+	        	<div>
+	        		<label class="col-md-12">Ciudad</label>
+	        		<span class="col-md-12" th:text="${usuarioValidado.ciudad}"></span>
+	        	</div>
+	        	<div class="row">
+	        	<input class="btn btn-default" type="button" value="Editar perfil" onclick="location='/editarUsuario'" />
+	        	<input class="btn btn-default" type="button" value="Borrar cuenta" onclick="location='/eliminar'"/>
+	
+	        	</div>
+		  </div>
+	
+	        
+	    </div>
+	    </div>
      
         
 
