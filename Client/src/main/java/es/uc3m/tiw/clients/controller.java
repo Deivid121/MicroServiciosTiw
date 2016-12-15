@@ -42,11 +42,9 @@ public class controller {
         dao.save(u);
         return u;
     }
-    @RequestMapping(value="/eliminarU", method = RequestMethod.DELETE)
-    public @ResponseBody Usuario eliminarUsuario(@RequestBody Usuario user){
-        dao.delete(user.getId());
-        return user;
-       
+    @RequestMapping(value="/eliminarU/{id}", method = RequestMethod.DELETE)
+    public @ResponseBody void eliminarUsuario(@PathVariable long id){
+        dao.delete(id); 
     }
     @RequestMapping(value="/editarU/{id}", method = RequestMethod.POST)
     public @ResponseBody Usuario editarUsuario(@RequestBody Usuario nuevo, @PathVariable long id){

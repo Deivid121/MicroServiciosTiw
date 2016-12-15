@@ -45,7 +45,7 @@
 		<td>
 		<a th:href="@{'usuarioAdmin/' + ${usuario.id }}"><i class="fa fa-search" aria-hidden="true"></i></a>
 		<a th:href="@{'usuarioAdmin/' + ${usuario.id }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-		<a th:href="@{'usuarioAdmin/' + ${usuario.id }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+		<a th:href="@{'/eliminarU/'+${usuario.id}}"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
 		
 
 	
@@ -76,7 +76,6 @@
 		<td th:text="${producto.titulo}"></td>
 		<td th:text="${producto.categoria}"></td>
 		<td th:text="${producto.descripcion}"></td>
-		<td th:text="${producto.image}"></td>
 		<td th:text="${producto.estado}"></td>
 		<td th:text="${producto.ciudad}"></td>
 		<td th:text="${producto.precio}"></td>
@@ -87,7 +86,7 @@
 		<td>
 		<a th:href="@{'productoAdmin/' + ${producto.id }}"><i class="fa fa-search" aria-hidden="true"></i></a>
 		<a th:href="@{'productoAdmin/' + ${producto.id }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-		<a th:href="@{'productoAdmin/' + ${producto.id }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+		<a th:href="@{'/eliminarP/'+${producto.id}}"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
 	
 		
 		

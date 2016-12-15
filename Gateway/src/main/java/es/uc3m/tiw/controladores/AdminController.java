@@ -1,7 +1,9 @@
 package es.uc3m.tiw.controladores;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,11 +13,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.client.RestTemplate;
+
 
 import es.uc3m.tiw.dominio.Administrador;
 import es.uc3m.tiw.dominio.Producto;
@@ -66,8 +70,16 @@ public class AdminController {
 	}
 	@PostMapping("/loguearAdmin")
 	public String validarAdmin(Model modelo, @ModelAttribute Administrador admin){
-		System.out.println(admin);
 		Administrador adminValidado = restTemplate.postForObject("http://localhost:8010/loginAdmin", admin, Administrador.class);
+		
+		modelo.addAttribute("adminValidado",adminValidado);
+		modelo.addAttribute("adminLogueado", true);
+		return "redirect:cargarAdmin";
+		
+	}
+
+	@RequestMapping(value="/cargarAdmin",method=RequestMethod.GET)
+	public String cargar(Model modelo){
 		ResponseEntity responseEntity=restTemplate.getForEntity("http://localhost:8020/getProductos", Producto[].class);
 		Producto[] productos = (Producto[]) responseEntity.getBody();
 		List<Producto> lista= Arrays.asList(productos);
@@ -76,12 +88,26 @@ public class AdminController {
 		Usuario[] usuarios = (Usuario[]) responseEntityU.getBody();
 		List<Usuario> listaU= Arrays.asList(usuarios);
 		modelo.addAttribute("listaUsuarios",listaU);
-		modelo.addAttribute("adminValidado",adminValidado);
-		modelo.addAttribute("adminLogueado", true);
 		return "panelAdmin";
-		
+
 	}
 	
+	@RequestMapping(value="/eliminarU/{id}", method=RequestMethod.GET)
+	public String borrarUsuarioAdmin(Model modelo,@PathVariable String id ){
+		Map<String, Long> vars = new HashMap<String, Long>();
+		vars.put("id", Long.parseLong(id));
+		restTemplate.delete("http://localhost:8010/eliminarU/{id}",vars);
+		
+		return "redirect:/cargarAdmin";
+	}
 	
+	@RequestMapping(value="/eliminarP/{id}", method=RequestMethod.GET)
+	public String borrarProductoAdmin(Model modelo,@PathVariable String id ){
+		Map<String, Long> vars = new HashMap<String, Long>();
+		vars.put("id", Long.parseLong(id));
+		restTemplate.delete("http://localhost:8020/eliminarP/{id}",vars);
+		
+		return "redirect:/cargarAdmin";
+	}
 	
 }
