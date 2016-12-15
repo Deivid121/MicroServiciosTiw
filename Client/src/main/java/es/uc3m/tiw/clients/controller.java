@@ -48,18 +48,20 @@ public class controller {
        
     }
     @RequestMapping(value="/editarU/{id}", method = RequestMethod.POST)
-    public @ResponseBody Usuario editarUsuario(@RequestBody Usuario nuevo, @PathVariable String id){
-    	nuevo.setId(Long.parseLong(id));
+    public @ResponseBody Usuario editarUsuario(@RequestBody Usuario nuevo, @PathVariable long id){
+   // 	Usuario antiguo= new Usuario("m1","freferf","efwwefw","m1@m1.com","m1.png","12345678","A coruna");
+    	Usuario antiguo=dao.findById(id);
 //        List <Usuario> u = dao.findAll();
-//        Usuario antiguo=buscarUsuariobyId(u, id);   updateUser(antiguo,user)
-        dao.save(nuevo);
+    	Usuario actualizado=updateUser(antiguo,nuevo); 
+    	actualizado.setId(id);
+    	dao.save(actualizado);
         
-        return nuevo;
+        return antiguo;
        
     }
     @RequestMapping(value="/buscarPorId/{id}", method = RequestMethod.GET)
     public @ResponseBody Usuario buscarUsuario(@PathVariable Long id){
-        return dao.getOne(id);
+        return dao.findById(id);
        
     }
     @RequestMapping(value="/getUsuarios", method = RequestMethod.GET)
@@ -111,19 +113,25 @@ public @ResponseBody Usuario verPerfil(Usuario user){
     }
     private static Usuario updateUser(Usuario antiguo, Usuario user){
     	
-    	if(user.getNombre().isEmpty()){
+    	if(user.getNombre().isEmpty()||user.getNombre()==null){
     		user.setNombre(antiguo.getNombre());
     	}
-    	if(user.getApellido1().isEmpty()){
+    	if(user.getApellido1().isEmpty()||user.getApellido1()==null){
     		user.setApellido1(antiguo.getApellido1());
     	}
-    	if(user.getEmail().isEmpty()){
+    	if(user.getApellido2().isEmpty()||user.getApellido2()==null){
+    		user.setApellido2(antiguo.getApellido2());
+    	}
+    	if(user.getEmail().isEmpty()||user.getEmail()==null){
     		user.setEmail(antiguo.getEmail());
     	}
-    	if(user.getAvatar().isEmpty()){
+    	if(user.getPassword().isEmpty()||user.getPassword()==null){
+    		user.setPassword(antiguo.getPassword());
+    	}
+    	if(user.getAvatar().isEmpty()||user.getAvatar()==null){
     		user.setAvatar(antiguo.getAvatar());
     	}
-    	if(user.getCiudad().isEmpty()){
+    	if(user.getCiudad().isEmpty()||user.getCiudad()==null){
     		user.setCiudad(antiguo.getCiudad());
     	}
     	return user;

@@ -53,8 +53,8 @@ public class UsuariosController {
 	public String actualizarUsuario(Model modelo, @SessionAttribute(value="usuarioValidado") Usuario validado, @ModelAttribute Usuario nuevo){
 		long id= validado.getId();
 		System.out.println(nuevo);
-		Map<String, String> vars = new HashMap<String, String>();
-		vars.put("id", Long.toString(id));
+		Map<String, Long> vars = new HashMap<String, Long>();
+		vars.put("id", id);
 		Usuario usuarioValidado = restTemplate.postForObject("http://localhost:8010/editarU/{id}", nuevo, Usuario.class,vars);
 		modelo.addAttribute("usuarioValidado",usuarioValidado);
 		return "perfilUsuario";
