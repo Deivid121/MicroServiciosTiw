@@ -52,9 +52,11 @@ public class controller {
    // 	Usuario antiguo= new Usuario("m1","freferf","efwwefw","m1@m1.com","m1.png","12345678","A coruna");
     	Usuario antiguo=dao.findById(id);
 //        List <Usuario> u = dao.findAll();
-    	Usuario actualizado=updateUser(antiguo,nuevo); 
-    	actualizado.setId(id);
-    	dao.save(actualizado);
+    	System.out.println(nuevo);
+    	//Usuario actualizado=updateUser(antiguo,nuevo); 
+    	//actualizado.setId(id);
+    	//System.out.println(actualizado);
+    	dao.save(antiguo);
         
         return antiguo;
        
