@@ -5,21 +5,29 @@ import java.io.Serializable;
 public class MensajeMostrado implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private long id;
+	private long propietario;
+	private long idproducto;
 	private String origen;
 	private String producto;
 	private String mensaje;
 	public MensajeMostrado(){
 		
 	}
-	public MensajeMostrado(long id, String origen, String producto, String mensaje) {
+
+	public MensajeMostrado(long id, long propietario, long idproducto, String origen, String producto, String mensaje) {
 		super();
 		this.id = id;
+		this.propietario = propietario;
+		this.idproducto = idproducto;
 		this.origen = origen;
 		this.producto = producto;
 		this.mensaje = mensaje;
 	}
-	public void clonarMensaje(long id, String origen, String producto, String mensaje){
+
+	public void clonarMensaje(long id, long propietario, long idproducto, String origen, String producto, String mensaje){
 		this.id = id;
+		this.propietario = propietario;
+		this.idproducto = idproducto;
 		this.origen = origen;
 		this.producto = producto;
 		this.mensaje = mensaje;
@@ -29,6 +37,18 @@ public class MensajeMostrado implements Serializable{
 	}
 	public void setId(long id) {
 		this.id = id;
+	}
+	public long getPropietario() {
+		return propietario;
+	}
+	public void setPropietario(long propietario) {
+		this.propietario = propietario;
+	}
+	public long getIdproducto() {
+		return idproducto;
+	}
+	public void setIdproducto(long idproducto) {
+		this.idproducto = idproducto;
 	}
 	public String getOrigen() {
 		return origen;

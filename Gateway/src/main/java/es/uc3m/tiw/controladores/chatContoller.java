@@ -65,10 +65,10 @@ public class chatContoller {
 			Usuario user = restTemplate.getForObject("http://localhost:8010/buscarPorId/{userId}", Usuario.class,varUser);
 			
 			Map<String,Long> varProd = new HashMap<String,Long>();
-			varProd.put("prodId", mensajes.get(i).getOrigenId());
+			varProd.put("prodId", mensajes.get(i).getProductoId());
 			Producto prod = restTemplate.getForObject("http://localhost:8020/buscarPorId/{prodId}", Producto.class,varProd);
-			MensajeMostrado mM = new MensajeMostrado(mensajes.get(i).getId(), user.getNombre(), prod.getTitulo(), 
-					mensajes.get(i).getMensaje());
+			MensajeMostrado mM = new MensajeMostrado(mensajes.get(i).getId(),prod.getUsuario(),prod.getId(), user.getNombre(),
+					prod.getTitulo(), mensajes.get(i).getMensaje());
 			
 			mensajesMostrados.add(mM);
 		}

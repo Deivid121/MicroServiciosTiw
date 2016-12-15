@@ -8,6 +8,7 @@
 	href="../../css/bootstrap.min.css" />
 <link rel="stylesheet" th:href="@{/css/style.css}"
 	href="../../css/style.css" />
+<link rel="stylesheet" th:href="@{/css/font-awesome-4.7.0/css/font-awesome.css}" href="../../css/font-awesome-4.7.0/css/font-awesome.css" />
 <script th:href="@{/js/jquery.min.js}" src="../../js/jquery.min.js"></script>
 <script th:href="@{/js/bootstrap.min.css}"
 	src="../../js/bootstrap.min.js"></script>
@@ -30,10 +31,15 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="mensaje: ${listaMensajes}">
-							<td th:text="${mensaje.origenId}"></td>
-							<td th:text="${mensaje.productoId}"></td>
+						<tr th:each="mensaje: ${listaMensajes}" onclick="'location'index.html'">
+							<td th:text="${mensaje.origen}"></td>
+							<td th:text="${mensaje.producto}"></td>
 							<td th:text="${mensaje.mensaje}"></td>
+							<td>
+								<a th:href="@{'/enviarMensaje/'+${usuario.propietario}+'/'+${mensaje.idproducto}}">
+									<i class="fa fa-comment-o" aria-hidden="true"></i>
+								</a>
+							</td>
 						</tr>
 					</tbody>
 				</table>
