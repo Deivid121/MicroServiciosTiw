@@ -65,7 +65,6 @@ public class ProductosController {
          }catch(Exception e){
              System.out.println("No se ha podido el byte[]");
          }
-         System.out.println(p);
     if(bytes != null){
    Producto productoGuardado = restTemplate.postForObject("http://localhost:8020/subirProducto", p, Producto.class);
     }
@@ -98,7 +97,6 @@ public class ProductosController {
 	}
 	@RequestMapping(value="/editarProducto/{id}", method=RequestMethod.GET)
 	public String editarProducto(Model modelo,@PathVariable String id){
-		System.out.println("iddd"+id);
 		Map<String, Long> vars = new HashMap<String, Long>();
 		vars.put("id", Long.parseLong(id));
 		Producto productoGuardado = restTemplate.getForObject("http://localhost:8020/verProducto/{id}", Producto.class, vars);
@@ -113,17 +111,23 @@ public class ProductosController {
 		pnuevo.setId((int)id);
 		Iterator<String> itrator = request.getFileNames();
         MultipartFile multiFile = request.getFile(itrator.next());
-       byte[] bytes = null;
-
-        try{
+        	byte[] bytes = null;
             Base64 base64 = new Base64();
-            bytes = multiFile.getBytes();
-            String imagen = "data:image/jpg;base64,";
-           		 imagen +=base64.encodeToString(bytes);
-            pnuevo.setImage(imagen);
-        }catch(Exception e){
-            System.out.println("No se ha podido el byte[]");
-        }
+             try{
+             
+                 bytes = multiFile.getBytes();
+                 String imagen = "data:image/jpg;base64,";
+         		 imagen +=base64.encodeToString(bytes);
+         		 if(!imagen.equals("data:image/jpg;base64,")){
+         			pnuevo.setImage(imagen);
+         		 }else{
+         			 pnuevo.setImage("");
+         		 }
+       	    	
+                	 
+             }catch(Exception e){
+                 System.out.println("No se ha podido el byte[]");
+             }  
 		System.out.println(pnuevo);
 		Producto productoGuardado = restTemplate.postForObject("http://localhost:8020/editarProducto",pnuevo, Producto.class);
 		modelo.addAttribute("producto",productoGuardado);
