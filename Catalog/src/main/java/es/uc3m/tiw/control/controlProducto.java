@@ -53,7 +53,7 @@ public class controlProducto {
  
  @RequestMapping(value="/buscarPorId/{id}", method = RequestMethod.GET)
  public @ResponseBody Producto buscarUsuario(@PathVariable Long id){
-     return rep.getOne(id);
+	 return rep.findById(id);
     
  }
 }

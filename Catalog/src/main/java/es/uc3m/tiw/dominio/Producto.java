@@ -16,7 +16,7 @@ import javax.persistence.Lob;
 public class Producto {
 	@Id
 	@GeneratedValue(strategy = AUTO)
-	private int id;
+	private long id;
 	@Column(length = 30, nullable = false)
 	private String titulo;
 	@Column(length = 30, nullable = false)
@@ -51,10 +51,10 @@ public class Producto {
 		super();
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getTitulo() {
