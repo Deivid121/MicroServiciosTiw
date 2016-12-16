@@ -23,6 +23,7 @@
             <br/>
         <div class="row">
             <div class="registro">
+            <div id="registro">
                    <form th:object="${pvacio}" th:action="@{/crearProducto2}" enctype="multipart/form-data" method="post" class="form-horizontal" id="producto">
                       <div class="form-group">
                         <label  class="col-md-4" for="exampleInputEmail1"><h5 class="text-center"><strong>Nombre del producto</strong></h5></label>
@@ -98,6 +99,7 @@
                         }
                 });
             </script>
+            </div>
             </div>
         </div>
         
