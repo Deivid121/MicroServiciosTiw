@@ -2,6 +2,11 @@ package es.uc3m.tiw.dominio;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+
 public class Usuario implements Serializable{
 
 	@Override
@@ -11,12 +16,23 @@ public class Usuario implements Serializable{
 	}
 	private static final long serialVersionUID = 1L;
 	private long id;
+	@NotNull
+	@Size(min=2,max=30,message="Introduzca su nombre por favor")
 	private String nombre;
+	@NotNull
+	@Size(min=2,max=50)
 	private String apellido1;
+	@NotNull
+	@Size(min=2,max=50)
 	private String apellido2;
+	@NotNull
+	@Email
 	private String email;
 	private String avatar;
+	@NotNull
+	@Size(min=8,max=20)
 	private String password;
+	@NotNull
 	private String ciudad;
 	
 	public Usuario() {

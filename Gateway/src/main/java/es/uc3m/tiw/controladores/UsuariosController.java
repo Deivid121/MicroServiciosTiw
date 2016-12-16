@@ -6,11 +6,13 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,7 +44,10 @@ public class UsuariosController {
 	}
 	
 	@PostMapping("/registrar")
-	public String guardarUnUsuario(Model modelo, @ModelAttribute Usuario usuario){
+	public String guardarUnUsuario(Model modelo, @Valid @ModelAttribute Usuario usuario, BindingResult bR){
+		if(bR.hasErrors()){
+			return"registro";
+		}
 		Usuario usuarioGuardado = restTemplate.postForObject("http://localhost:8010/registro", usuario, Usuario.class);
 		modelo.addAttribute(usuarioGuardado);
 		return "index";
