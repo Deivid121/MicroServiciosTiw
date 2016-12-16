@@ -14,44 +14,6 @@
 
 <div th:replace="/header::header"></div>
 
-    <table class="table table-striped">
-    <h2>Usuarios del sistema</h2>
-        <tr>
-        	<th>id</th>
-            <th>Nombre</th>
-            <th>Apellido1</th>
-            <th>Apellido2</th>
-            <th>Email</th>
-            <th>Contraseña</th>
-            <th>Ciudad</th>
-            <th>Avatar</th>
-            <th>Opciones</th>
-            
-        </tr>
-        
-       
-        
-
-<tr th:each= "usuario : ${listaUsuarios}">
-	
-		<td th:text="${usuario.id}"></td>
-		<td th:text="${usuario.nombre}"></td>
-		<td th:text="${usuario.apellido1}"></td>
-		<td th:text="${usuario.apellido2}"></td>
-		<td th:text="${usuario.email}"></td>
-		<td th:text="${usuario.password}"></td>
-		<td th:text="${usuario.ciudad}"></td>
-		<td> <img th:src="@{'../../images/'+ ${usuario.avatar}}"/></td>
-		<td>
-		<a th:href="@{'verUsuario/' + ${usuario.id }}"><i class="fa fa-search" aria-hidden="true"></i></a>
-		<a th:href="@{'usuarioAdmin/' + ${usuario.id }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-		<a th:href="@{'/eliminarU/'+${usuario.id}}"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
-		
-
-	
-	</tr>
-	</table>
-
 	 <table class="table table-striped">
     <h2 th:text="'Productos de:'+${session.usuarioValidado.nombre}"></h2>
         <tr>

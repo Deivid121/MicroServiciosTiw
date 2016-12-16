@@ -116,7 +116,7 @@ public class UsuariosController {
     public String verProductos(Model modelo, @ModelAttribute Usuario usuario,@SessionAttribute("usuarioValidado")Usuario user){
         Map <String, Long>vars= new HashMap<String, Long>();
         vars.put("id", user.getId());
-        ResponseEntity responseEntity=restTemplate.getForEntity("http://localhost:8020/verMisProducto/{id}", Producto[].class, vars);
+        ResponseEntity responseEntity=restTemplate.getForEntity("http://localhost:8020/verMisProductos/{id}", Producto[].class, vars);
         Producto[]prod=(Producto[])responseEntity.getBody();
         List<Producto> lista= Arrays.asList(prod);
         modelo.addAttribute("misProductos",lista);

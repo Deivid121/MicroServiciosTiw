@@ -46,25 +46,12 @@ public class ProductosController {
 		System.out.println(p);
 		return "crearProductos";
 	}
-	@PostMapping("/crearProducto")
-	public String guardarProducto(Model modelo, @ModelAttribute(value="pvacio")Producto producto,@SessionAttribute(value="usuarioValidado") Usuario usuario, HttpServletResponse response){
-		System.out.println(usuario);
-		producto.setUsuario(usuario.getId());
-		Producto productoGuardado = restTemplate.postForObject("http://localhost:8020/subirProducto", producto, Producto.class);
-		modelo.addAttribute(productoGuardado);
-		try {
-			response.sendRedirect("/index");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return "/index";
-	}
-	
 	@PostMapping("/crearProducto2")
     public String guardarProducto(Model modelo,MultipartHttpServletRequest request,@ModelAttribute(value="pvacio") Producto producto,@SessionAttribute(value="usuarioValidado") Usuario usuario){
         Producto p = new Producto();
         p = producto;
         p.setUsuario(usuario.getId());
+        p.setEstado("Disponible");
 		Iterator<String> itrator = request.getFileNames();
          MultipartFile multiFile = request.getFile(itrator.next());
         byte[] bytes = null;
@@ -82,7 +69,7 @@ public class ProductosController {
     if(bytes != null){
    Producto productoGuardado = restTemplate.postForObject("http://localhost:8020/subirProducto", p, Producto.class);
     }
-   return "/index";
+   return "redirect:/index";
 	
 }
 	@RequestMapping(value="/verProducto/{id}", method=RequestMethod.GET)

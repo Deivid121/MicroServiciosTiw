@@ -60,4 +60,11 @@ public class controlProducto {
 	 return rep.findById(id);
     
  }
+ @RequestMapping(value="/verMisProductos/{id}", method = RequestMethod.GET)
+ public @ResponseBody List<Producto> verMisProductos(@PathVariable long id){
+	 
+	 return rep.findByUsuario((int)id);
+    
+ }
+ 
 }

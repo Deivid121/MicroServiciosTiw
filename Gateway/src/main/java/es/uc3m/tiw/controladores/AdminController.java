@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.client.RestTemplate;
 
@@ -102,12 +103,16 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/eliminarP/{id}", method=RequestMethod.GET)
-	public String borrarProductoAdmin(Model modelo,@PathVariable String id ){
+	public String borrarProductoAdmin(Model modelo,@PathVariable String id,@SessionAttribute("adminLogueado") boolean admin){
 		Map<String, Long> vars = new HashMap<String, Long>();
 		vars.put("id", Long.parseLong(id));
 		restTemplate.delete("http://localhost:8020/eliminarP/{id}",vars);
-		
-		return "redirect:/cargarAdmin";
+		if(admin){
+			return "redirect:/cargarAdmin";
+		}
+		else{
+			return "redirect:/verMisProductos";
+		}
 	}
 	
 	@RequestMapping(value="/verUsuario/{id}", method=RequestMethod.GET)

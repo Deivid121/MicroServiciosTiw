@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>WallapopTIW</title>
+
+        <!-- Latest compiled and minified CSS -->
+       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>WallapopTIW</title>
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" />
+        <link rel="stylesheet" th:href="@{/css/formulario.css}" href="../../css/formulario.css" />
+		<link rel="stylesheet" th:href="@{/css/style.css}" href="../../css/style.css" />
+		<link rel="stylesheet" th:href="@{/css/font-awesome-4.7.0/css/font-awesome.css}" href="../../css/font-awesome-4.7.0/css/font-awesome.css" />
+		<script th:href="@{/js/jquery.min.js}" src="../../js/jquery.min.js"></script>
+		<script th:href="@{/js/jquery-validator.min.js}" src="../../js/jquery-validator.min.js"></script>
+		<script th:href="@{/js/bootstrap.min.css}" src="../../js/bootstrap.min.js"></script>
+		<script th:href="@{/js/registro.js}" src="../../js/registro.js"></script>
+		<script src="http://blackpeppersoftware.github.io/thymeleaf-fragment.js/thymeleaf-fragment.js" defer="defer" th:if="false"></script>
+    </head>
+    <body>
+        <div th:replace="/header::header"></div>     
+    <div class="container">
+        <div id="titulo">
+            <h2><strong>Editar perfil de: <p th:text="${session.usuarioValidado.nombre}"></p></strong></h2>
+        </div>
+        <div class="registro">
+            <div class="row">
+            <div id="registro">
+               <form  th:action="@{/editar}" th:object="${nuevo}" method="post" class="form-horizontal" id="registration">
+                  <div class="form-group">
+                     <label  class="col-md-4"  for="exampleInputFile"><h5 class="text-center"><strong>Nombre</strong></h5></label> 
+                    <div class="col-md-8">
+                     <p th:text="${session.usuarioValidado.nombre}"></p>
+                        <input type="text" th:field="*{nombre}" class="form-control" data-validation="required" data-validation-length="max30" data-validation-error-msg="Introduzca un nombre" placeholder="Nombre"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                     <label  class="col-md-4"  for="exampleInputFile"><h5 class="text-center"><strong>Primer apellido</strong></h5></label> 
+                    <div class="col-md-8">
+                    <p th:text="${session.usuarioValidado.apellido1}"></p>
+                    <input th:field="*{apellido1}" type="text" class="form-control" data-validation="required" data-validation-length="max30" data-validation-error-msg="Introduzca su primer apellido" placeholder="Segundo apellido" name="FSurname"/>
+                    </div>
+                  </div>
+                   <div class="form-group">
+                     <label  class="col-md-4"  for="exampleInputFile"><h5 class="text-center"><strong>Segundo apellido</strong></h5></label> 
+                    <div class="col-md-8">
+                     <p th:text="${session.usuarioValidado.apellido2}"></p>
+                    <input th:field="*{apellido2}" type="text" class="form-control" data-validation="required" data-validation-length="max30" data-validation-error-msg="Introduzca su segundo apellido" placeholder="Segundo apellido" name="SSurname"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label  class="col-md-4"  for="exampleInputFile"><h5 class="text-center"><strong>Correo electrónico</strong></h5></label>
+                    <div class="col-md-8">
+                     	<p th:text="${session.usuarioValidado.email}"></p>
+                    	<input th:field="*{email}" data-validation-error-msg="Introduce un correo electrónico con el formato correcto;     email@dominion.com"
+                            class="form-control" data-validation="email"
+                            placeholder="Introduce tu email" name="Email"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label  class="col-md-4" for="exampleInputFile"><h5 class="text-center"><strong>Contraseña</strong></h5></label>
+                    <div class="col-md-8">
+                     	<p th:text="${session.usuarioValidado.password}"></p>
+                    	<input
+                            type="password" th:field="*{password}" class="form-control" data-validation-length="min8" data-validation-error-msg="Introduzca una contraseña de al menos 8 caracteres"  placeholder="Contraseña" name="pass_confirmation"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label  class="col-md-4"><h5 class="text-center"><strong> Confirmación de contraseña</strong></h5></label>
+                    <div class="col-md-8">
+                     	<p th:text="${session.usuarioValidado.password}"></p>
+                    	<input
+                            type="password" class="form-control" data-validation="confirmation" 
+                            placeholder="Verificar contraseña" name="pass"/>
+                    </div>
+                   </div>
+                  <div class="form-group">
+                    <label  class="col-md-4"><h5 class="text-center"><strong> Avatar</strong></h5></label>
+                    <div class="col-md-8">
+                     	<p th:text="${session.usuarioValidado.avatar}"></p>
+                    	<input th:field="${nuevo.avatar}" id="avatarName" type="hidden" class="form-control" data-validation="confirmation" 
+                            placeholder="Verificar contraseña" name="pass"/>
+                            <div class="col-md-5 col-md-offset-2">
+                            	<i id="Anterior" onClick="changeAvatar(this)" class="fa fa-arrow-left" aria-hidden="true"></i>
+                    			<img id="avatar" th:src="@{'../../images/'+ ${usuarioValidado.avatar}}"/>
+                    			<i id="Siguiente" onClick="changeAvatar(this)" class="fa fa-arrow-right" aria-hidden="true"></i>
+                            </div>
+                        
+                    </div>
+                  </div>
+                  <div class="form-group">
+                        <label class="col-md-4" for="ejemplo_password_1"><h5 class="text-center"><strong>Ciudad</strong></h5></label> 
+                            <div class="col-md-8">
+                            <input id="ciudadInput" th:field="*{ciudad}" type="hidden" th:value="vacio" value="vacio"/>
+                                <select id="selector" onChange="ciudadDefecto(this)" class="form-control" name="City" size="5" data-validation="required" data-validation-length="max1" multiple="multiple">
+                                <option value="A coruna">A coruna</option>
+                                <option value="Alava">Alava</option>
+                                <option value="Albacete">Albacete</option>
+                                <option value="Alicante">Alicante</option>
+                                <option value="Almeria">Almeria</option>
+                                <option value="Asturias">Asturias</option>
+                                <option value="Avila">Avila</option>
+                                <option value="Badajoz">Badajoz</option>
+                                <option value="Baleares">Baleares</option>
+                                <option value="Barcelona">Barcelona</option>
+                                <option value="Burgos">Burgos</option>
+                                <option value="Caceres">Caceres</option>
+                                <option value="Cadiz">Cadiz</option>
+                                <option value="Cantabria">Cantabria</option>
+                                <option value="Castellon">Castellon</option>
+                                <option value="Ceuta">Ceuta</option>
+                                <option value="Ciudad real">Ciudad real</option>
+                                <option value="Cordoba">Cordoba</option>
+                                <option value="Cuenca">Cuenca</option>
+                                <option value="Girona">Girona</option>
+                                <option value="Granada">Granada</option>
+                                <option value="Guadalajara">Guadalajara</option>
+                                <option value="Guipuzcoa">Guipuzcoa</option>
+                                <option value="Huelva">Huelva</option>
+                                <option value="Huesca">Huesca</option>
+                                <option value="Jaen">Jaen</option>
+                                <option value="La rioja">La rioja</option>
+                                <option value="Las palmas">Las palmas</option>
+                                <option value="Leon">Leon</option>
+                                <option value="Lleida">Lleida</option>
+                                <option value="Lugo">Lugo</option>
+                                <option value="Madrid">Madrid</option>
+                                <option value="Malaga">Malaga</option>
+                                <option value="Melilla">Melilla</option>
+                                <option value="Murcia">Murcia</option>
+                                <option value="Navarra">Navarra</option>
+                                <option value="Ourense">Ourense</option>
+                                <option value="Palencia">Palencia</option>
+                                <option value="Pontevedra">Pontevedra</option>
+                                <option value="Salamanca">Salamanca</option>
+                                <option value="Tenerife">Tenerife</option>
+                                <option value="Segovia">Segovia</option>
+                                <option value="Sevilla">Sevilla</option>
+                                <option value="Soria">Soria</option>
+                                <option value="Tarragona">Tarragona</option>
+                                <option value="Teruel">Teruel</option>
+                                <option value="Toledo">Toledo</option>
+                                <option value="Valencia">Valencia</option>
+                                <option value="Valladolid">Valladolid</option>
+                                <option value="Vizcaya">Vizcaya</option>
+                                <option value="Zamora">Zamora</option>
+                                <option value="Zaragoza">Zaragoza</option>
+                                </select>
+                            </div>
+                    </div>
+
+                  <br/>
+                      <div id="registerButon">
+                        <button type="submit" class="btn btn-default" name="Register">Editar perfil</button>
+                      </div>
+                </form>
+                <input class="btn btn-default" type="button" value="Volver a inicio" onclick="location='/index'" />
+            <script>
+                $.validate({
+                    form : '#registration', 
+                     modules : 'security',
+                     onError : function($form) {
+                         console.log($form);
+                          return false;
+                        }
+                });
+            </script>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+     <br/>
+    <hr/>
+<div th:replace="/header::footer"></div>
+    </body>
+
+</html>
+
