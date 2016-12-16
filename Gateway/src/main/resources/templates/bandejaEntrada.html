@@ -36,7 +36,7 @@
 							<td th:text="${mensaje.producto}"></td>
 							<td th:text="${mensaje.mensaje}"></td>
 							<td>
-								<a th:href="@{'/enviarMensaje/'+${usuario.propietario}+'/'+${mensaje.idproducto}}">
+								<a th:href="@{'/enviarMensaje/'+${mensaje.idproducto}+'/'+${mensaje.propietario}}">
 									<i class="fa fa-comment-o" aria-hidden="true"></i>
 								</a>
 							</td>
