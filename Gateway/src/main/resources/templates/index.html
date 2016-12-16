@@ -21,9 +21,8 @@
 	                    <p th:text="${producto.descripcion}">pepito</p>
 						
 	                    <button type="submit" class="btn btn-default">Ver más</button>
-	                    <a th:href="@{'/enviarMensaje/'+${producto.id}+'/'+${producto.usuario}}">Contactar</a>
-	                    <input class="btn btn-default" type="button" value="Contactar" onclick="location='/enviarMensaje/'+${producto.id}+'/'+${producto.usuario}"/>
-						
+	                    <a  th:if="${session.logueado} == true" class="btn btn-default" th:href="@{'/enviarMensaje/'+${producto.id}+'/'+${producto.usuario}}">Contactar</a>
+	                    
 	                </div>
                  
            
