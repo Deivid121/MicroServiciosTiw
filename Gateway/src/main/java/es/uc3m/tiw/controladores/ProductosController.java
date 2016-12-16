@@ -77,6 +77,12 @@ public class ProductosController {
 		vars.put("id", Long.parseLong(id));
 		Producto productoGuardado = restTemplate.getForObject("http://localhost:8020/verProducto/{id}", Producto.class, vars);
 		modelo.addAttribute("producto",productoGuardado);
+		modelo.addAttribute("usuario",new Usuario());
+		modelo.addAttribute("logueado",false);
+		modelo.addAttribute("adminLogueado", false);
+		modelo.addAttribute("busqueda",new Men());
+		modelo.addAttribute("boolbus", true);
+		modelo.addAttribute("err",new Men(""));
 		return "verProducto";
 	}
 	@RequestMapping(value="/buscar", method=RequestMethod.POST)
