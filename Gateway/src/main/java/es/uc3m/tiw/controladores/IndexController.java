@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.client.RestTemplate;
 
+import es.uc3m.tiw.dominio.Men;
 import es.uc3m.tiw.dominio.Producto;
 import es.uc3m.tiw.dominio.Usuario;
 @SessionAttributes(value={"logueado","adminLogueado"})
@@ -32,6 +33,7 @@ public class IndexController {
 		modelo.addAttribute("usuario",new Usuario());
 		modelo.addAttribute("logueado",false);
 		modelo.addAttribute("adminLogueado", false);
+		modelo.addAttribute("busqueda",new Men());
 		ResponseEntity responseEntity=restTemplate.getForEntity("http://localhost:8020/getProductos", Producto[].class);
 		Producto[] productos = (Producto[]) responseEntity.getBody();
 		List<Producto> lista= Arrays.asList(productos);
@@ -48,6 +50,7 @@ public class IndexController {
 		Producto[] productos = (Producto[]) responseEntity.getBody();
 		List<Producto> lista= Arrays.asList(productos);
 		modelo.addAttribute("lista",lista);
+		modelo.addAttribute("busqueda",new Men());
 		return "index";
 	}
 	@RequestMapping(value="/cerrarSesion")
