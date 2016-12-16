@@ -73,7 +73,7 @@ public class ProductosController {
 	
 }
 	@RequestMapping(value="/verProducto/{id}", method=RequestMethod.GET)
-	public String cargarProducto(Model modelo,@ModelAttribute String id){
+	public String cargarProducto(Model modelo,@PathVariable String id){
 		Map<String, Long> vars = new HashMap<String, Long>();
 		vars.put("id", Long.parseLong(id));
 		Producto productoGuardado = restTemplate.getForObject("http://localhost:8020/verProducto/{id}", Producto.class, vars);
@@ -95,5 +95,22 @@ public class ProductosController {
 		modelo.addAttribute("logueado",false);
 		modelo.addAttribute("adminLogueado", false);
 		return "index";
+	}
+	@RequestMapping(value="/editarProducto/{id}", method=RequestMethod.GET)
+	public String editarProducto(Model modelo,@PathVariable String id){
+		Map<String, Long> vars = new HashMap<String, Long>();
+		vars.put("id", Long.parseLong(id));
+		Producto productoGuardado = restTemplate.getForObject("http://localhost:8020/verProducto/{id}", Producto.class, vars);
+		modelo.addAttribute("producto",productoGuardado);
+		modelo.addAttribute("prodeditar",new Producto());
+		return "editarProducto";
+	}
+	@RequestMapping(value="/editarProducto", method=RequestMethod.GET)
+	public String editarProducto(Model modelo,@ModelAttribute Producto pnuevo,@SessionAttribute("usuarioValidado") Usuario usuario){
+		pnuevo.setUsuario(usuario.getId());
+		Producto productoGuardado = restTemplate.postForObject("http://localhost:8020/editarProducto/{id}",pnuevo, Producto.class);
+		modelo.addAttribute("producto",productoGuardado);
+		modelo.addAttribute("prodeditar",new Producto());
+		return "editarProducto";
 	}
 }
