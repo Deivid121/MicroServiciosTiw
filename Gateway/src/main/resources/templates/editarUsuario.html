@@ -91,7 +91,8 @@
                   <div class="form-group">
                         <label class="col-md-4" for="ejemplo_password_1"><h5 class="text-center"><strong>Ciudad</strong></h5></label> 
                             <div class="col-md-8">
-                                <select th:field="*{ciudad}" th:value="${session.usuarioValidado.ciudad}" class="form-control" name="City" size="5" data-validation="required" data-validation-length="max1">
+                            <input id="ciudadInput" th:field="*{ciudad}" type="hidden" th:value="vacio" value="vacio"/>
+                                <select id="selector" onChange="ciudadDefecto(this)" class="form-control" name="City" size="5" data-validation="required" data-validation-length="max1" multiple="multiple">
                                 <option value="A coruna">A coruna</option>
                                 <option value="Alava">Alava</option>
                                 <option value="Albacete">Albacete</option>

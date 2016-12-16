@@ -49,3 +49,22 @@ function avatarDefecto(){
 	document.getElementById("avatar").setAttribute("th:ref","@{images/f1.png");
 	document.getElementById("avatarName").setAttribute("value", "f1.png");
 }
+
+function ciudadDefecto(sel){
+		  var opts = [],
+		    opt;
+		  var len = len = sel.options.length;
+		  for (var i = 0; i < len; i++) {
+		    opt = sel.options[i];
+
+		    if (opt.selected) {
+		      opts.push(opt);
+		      alert(opt.value);
+		      document.getElementById("ciudadInput").setAttribute("value",opt.value);
+		      document.getElementById("ciudadInput").setAttribute("th:value",opt.value);
+		    }
+		  }
+
+		  return opts;
+		
+}
