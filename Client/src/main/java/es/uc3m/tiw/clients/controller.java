@@ -51,13 +51,12 @@ public class controller {
    // 	Usuario antiguo= new Usuario("m1","freferf","efwwefw","m1@m1.com","m1.png","12345678","A coruna");
     	Usuario antiguo=dao.findById(id);
 //        List <Usuario> u = dao.findAll();
-    	System.out.println(nuevo);
-    	//Usuario actualizado=updateUser(antiguo,nuevo); 
-    	//actualizado.setId(id);
+ 
+    	Usuario actualizado=updateUser(antiguo,nuevo); 
     	//System.out.println(actualizado);
-    	dao.save(antiguo);
+    	dao.save(actualizado);
         
-        return antiguo;
+        return actualizado;
        
     }
     @RequestMapping(value="/buscarPorId/{id}", method = RequestMethod.GET)
@@ -116,28 +115,28 @@ public @ResponseBody Usuario verPerfil(Usuario user){
     }
     private static Usuario updateUser(Usuario antiguo, Usuario user){
     	
-    	if(user.getNombre().isEmpty()||user.getNombre()==null){
-    		user.setNombre(antiguo.getNombre());
+    	if(!user.getNombre().equals("")&&user.getNombre()!=null){
+    		antiguo.setNombre(user.getNombre());
     	}
-    	if(user.getApellido1().isEmpty()||user.getApellido1()==null){
-    		user.setApellido1(antiguo.getApellido1());
+    	if(!user.getApellido1().equals("")&&user.getApellido1()!=null){
+    		antiguo.setApellido1(user.getApellido1());
     	}
-    	if(user.getApellido2().isEmpty()||user.getApellido2()==null){
-    		user.setApellido2(antiguo.getApellido2());
+    	if(!user.getApellido2().equals("")&&user.getApellido2()!=null){
+    		antiguo.setApellido2(user.getApellido2());
     	}
-    	if(user.getEmail().isEmpty()||user.getEmail()==null){
-    		user.setEmail(antiguo.getEmail());
+    	if(!user.getEmail().equals("")&&user.getEmail()!=null){
+    		antiguo.setEmail(user.getEmail());
     	}
-    	if(user.getPassword().isEmpty()||user.getPassword()==null){
-    		user.setPassword(antiguo.getPassword());
+    	if(!user.getCiudad().equals("")&&user.getCiudad()!=null){
+    		antiguo.setCiudad(user.getCiudad());
     	}
-    	if(user.getAvatar().isEmpty()||user.getAvatar()==null){
-    		user.setAvatar(antiguo.getAvatar());
+    	if(!user.getAvatar().equals("")&&user.getAvatar()!=null){
+    		antiguo.setAvatar(user.getAvatar());
     	}
-    	if(user.getCiudad().isEmpty()||user.getCiudad()==null){
-    		user.setCiudad(antiguo.getCiudad());
+    	if(!user.getPassword().equals("")&&user.getPassword()!=null){
+    		antiguo.setPassword(user.getPassword());
     	}
-    	return user;
+    	return antiguo;
     }
     
     private static Administrador buscarAdministrador(List<Administrador> lista, Administrador admin){
