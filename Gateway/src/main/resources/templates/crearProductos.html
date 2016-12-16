@@ -23,18 +23,20 @@
             <br/>
         <div class="row">
             <div class="registro">
-                   <form th:object="${pvacio}" th:action="@{/crearProducto2}" enctype="multipart/form-data" method="post" class="form-horizontal" id="registro">
+                   <form th:object="${pvacio}" th:action="@{/crearProducto2}" enctype="multipart/form-data" method="post" class="form-horizontal" id="producto">
                       <div class="form-group">
                         <label  class="col-md-4" for="exampleInputEmail1"><h5 class="text-center"><strong>Nombre del producto</strong></h5></label>
                         <div class="col-md-8">
-                        <input  th:field="*{titulo}" type="text" class="form-control" id="exampleInputEmail1" placeholder="Nombre"/>
+                        <input  th:field="*{titulo}" type="text" class="form-control" id="exampleInputEmail1" placeholder="Nombre" data-validation="required"
+                         data-validation-length="max30" data-validation-error-msg="Introduzca un titulo para su producto"/>
                         </div>
                       </div>
                       <div class="form-group">
                         <label  class="col-md-4" for="exampleInputPassword1"><h5 class="text-center"><strong>Categoria</strong></h5></label>
                         <div class="col-md-8">
                         <select 
-							class="form-control" name="categoria">
+							class="form-control" name="categoria" data-validation="required" 
+							data-validation-error-msg="Debe seleccionar una categoria entre las disponibles">
 							<option>Mueble</option>
 							<option>Coche</option>
 							<option>Decoracion</option>
@@ -45,19 +47,23 @@
                       <div class="form-group">
                         <label  class="col-md-4" for="exampleInputPassword1"><h5 class="text-center"><strong>Descripcion</strong></h5></label>
                         <div class="col-md-8">
-                        <textarea th:field="*{descripcion}" type="text" class="form-control" id="exampleInputPassword1" placeholder="Descripcion"></textarea>
+                        <textarea th:field="*{descripcion}" type="text" class="form-control" id="exampleInputPassword1" placeholder="Descripcion" 
+                        data-validation="required" data-validation-error-msg="Debe seleccionar una categoria entre las disponibles"></textarea>
                         </div>
                       </div>
                        <div class="form-group">
                         <label  class="col-md-4" for="exampleInputPassword1"><h5 class="text-center"><strong>ciudad</strong></h5></label>
                         <div class="col-md-8">
-                        <input th:field="*{ciudad}" type="text" class="form-control" id="exampleInputPassword1" placeholder="Ciudad"/>
+                        <input th:field="*{ciudad}" type="text" class="form-control" id="exampleInputPassword1" placeholder="Ciudad"
+                        data-validation="required" data-validation-error-msg="Introduza la ciudad donde quiere vender el producto"/>
                         </div>
                       </div>
                       <div class="form-group">
                         <label  class="col-md-4"  for="exampleInputFile"><h5 class="text-center"><strong>Precio</strong></h5></label>
                         <div class="col-md-8">
-                        <input th:field="*{precio}" type="number" class="form-control" id="exampleInputFile"/>
+                        <input th:field="*{precio}" type="number" class="form-control" id="exampleInputFile" 
+                        data-validation="number" data-validation-allowing="positive"
+                        data-validation-error-msg="Introduza el precio del producto que quiere vender (>0)"/>
                         </div>
                         
                       </div>
@@ -66,7 +72,8 @@
                             <label class="col-md-4" for="nombre"><h5 class="text-center"><strong>Imagen</strong></h5></label> 
                             <div class="col-md-8">
                                 <input type="file" class="form-control" id="imagen_producto"
-                                placeholder="Imagen" name="imagen"/>
+                                placeholder="Imagen" name="imagen" data-validation="required"
+                                data-validation-error-msg="Con una imagen su producto se vendera más facilmente"/>
                            </div>
                         </div>
                         <!-- <div class="form-group">
@@ -82,6 +89,16 @@
                             <button type="submit" class="btn btn-default">Crear producto</button>
                           </div>
                     </form>
+                    <script>
+                $.validate({
+                    form : '#producto', 
+                     modules : 'security',
+                     onError : function($form) {
+                         console.log($form);
+                          return false;
+                        }
+                });
+            </script>
             </div>
         </div>
         
