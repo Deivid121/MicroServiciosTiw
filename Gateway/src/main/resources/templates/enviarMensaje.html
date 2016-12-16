@@ -4,16 +4,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>WallapopTIW</title>
-<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
-	href="../../css/bootstrap.min.css" />
-<link rel="stylesheet" th:href="@{/css/style.css}"
-	href="../../css/style.css" />
-<script th:href="@{/js/jquery.min.js}" src="../../js/jquery.min.js"></script>
-<script th:href="@{/js/bootstrap.min.css}"
-	src="../../js/bootstrap.min.js"></script>
-<script
-	src="http://blackpeppersoftware.github.io/thymeleaf-fragment.js/thymeleaf-fragment.js"
-	defer="defer" th:if="false"></script>
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" />
+        <link rel="stylesheet" th:href="@{/css/formulario.css}" href="../../css/formulario.css" />
+		<link rel="stylesheet" th:href="@{/css/style.css}" href="../../css/style.css" />
+		<link rel="stylesheet" th:href="@{/css/font-awesome-4.7.0/css/font-awesome.css}" href="../../css/font-awesome-4.7.0/css/font-awesome.css" />
+		<script th:href="@{/js/jquery.min.js}" src="../../js/jquery.min.js"></script>
+		<script th:href="@{/js/jquery-validator.min.js}" src="../../js/jquery-validator.min.js"></script>
+		<script th:href="@{/js/bootstrap.min.css}" src="../../js/bootstrap.min.js"></script>
+		<script th:href="@{/js/registro.js}" src="../../js/registro.js"></script>
+		<script src="http://blackpeppersoftware.github.io/thymeleaf-fragment.js/thymeleaf-fragment.js" defer="defer" th:if="false"></script>
 </head>
 </head>
 <body>
@@ -45,6 +44,16 @@
                         <button type="submit" class="btn btn-default" name="Enviar">Enviar!</button>
                       </div>
                 </form>
+                <script>
+                $.validate({
+                    form : '#sendMsg', 
+                     modules : 'security',
+                     onError : function($form) {
+                         console.log($form);
+                          return false;
+                        }
+                });
+            </script>
 			</div>
 		</div>
 		<br />
