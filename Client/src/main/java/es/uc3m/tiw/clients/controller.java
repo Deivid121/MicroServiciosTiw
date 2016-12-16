@@ -21,6 +21,7 @@ public class controller {
     private Usuario usuario;
     @Autowired
     private UsuarioDao dao;
+    @Autowired
     private AdministradorDao daoA;
     
     
@@ -85,10 +86,12 @@ public @ResponseBody Usuario verPerfil(Usuario user){
        
     }
     @RequestMapping(value="/loginAdmin" ,method = RequestMethod.POST)
-    public  @ResponseBody Administrador loginAdmin(@RequestBody Administrador administrador){
+    public  @ResponseBody Administrador loginAdmin(@RequestBody Administrador admin){
     	List <Administrador> Administradores = daoA.findAll();
-    	return buscarAdministrador(Administradores, administrador);
+    	buscarAdministrador(Administradores, admin);
+    	return new Administrador (); 
     }
+
     
     private static Usuario buscarUsuario(List<Usuario> lista, Usuario user){
     	Usuario u=new Usuario();
@@ -142,7 +145,7 @@ public @ResponseBody Usuario verPerfil(Usuario user){
     private static Administrador buscarAdministrador(List<Administrador> lista, Administrador admin){
     	Administrador a=new Administrador();
     	for (Administrador administrador : lista) {
-			if(administrador.getEmail().equals(administrador.getEmail())&&administrador.getPassword().equals(admin.getPassword())){
+			if(administrador.getEmail().equals(admin.getEmail())&& administrador.getPassword().equals(admin.getPassword())){
 				return administrador;
 			}
 		}
@@ -150,6 +153,7 @@ public @ResponseBody Usuario verPerfil(Usuario user){
     	
     	
     }
+
     
     
     

@@ -81,5 +81,10 @@ public class Administrador implements Serializable{
 	public void setCiudad(String ciudad) {
 		this.ciudad = ciudad;
 	}
+	@Override
+	public String toString() {
+		return "Administrador [id=" + id + ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2="
+				+ apellido2 + ", email=" + email + ", password=" + password + ", ciudad=" + ciudad + "]";
+	}
 	
 }
