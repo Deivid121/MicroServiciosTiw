@@ -98,19 +98,35 @@ public class ProductosController {
 	}
 	@RequestMapping(value="/editarProducto/{id}", method=RequestMethod.GET)
 	public String editarProducto(Model modelo,@PathVariable String id){
+		System.out.println("iddd"+id);
 		Map<String, Long> vars = new HashMap<String, Long>();
 		vars.put("id", Long.parseLong(id));
 		Producto productoGuardado = restTemplate.getForObject("http://localhost:8020/verProducto/{id}", Producto.class, vars);
 		modelo.addAttribute("producto",productoGuardado);
 		modelo.addAttribute("prodeditar",new Producto());
+		modelo.addAttribute("idProd",id);
 		return "editarProducto";
 	}
-	@RequestMapping(value="/editarProducto", method=RequestMethod.GET)
-	public String editarProducto(Model modelo,@ModelAttribute Producto pnuevo,@SessionAttribute("usuarioValidado") Usuario usuario){
+	@RequestMapping(value="/editarProducto/{id}", method=RequestMethod.POST)
+	public String editarProducto(Model modelo,@ModelAttribute Producto pnuevo,MultipartHttpServletRequest request,@SessionAttribute("usuarioValidado") Usuario usuario,@PathVariable long id){
 		pnuevo.setUsuario(usuario.getId());
-		Producto productoGuardado = restTemplate.postForObject("http://localhost:8020/editarProducto/{id}",pnuevo, Producto.class);
+		pnuevo.setId((int)id);
+		Iterator<String> itrator = request.getFileNames();
+        MultipartFile multiFile = request.getFile(itrator.next());
+       byte[] bytes = null;
+
+        try{
+            Base64 base64 = new Base64();
+            bytes = multiFile.getBytes();
+            String imagen = "data:image/jpg;base64,";
+           		 imagen +=base64.encodeToString(bytes);
+            pnuevo.setImage(imagen);
+        }catch(Exception e){
+            System.out.println("No se ha podido el byte[]");
+        }
+		System.out.println(pnuevo);
+		Producto productoGuardado = restTemplate.postForObject("http://localhost:8020/editarProducto",pnuevo, Producto.class);
 		modelo.addAttribute("producto",productoGuardado);
-		modelo.addAttribute("prodeditar",new Producto());
-		return "editarProducto";
+		return "redirect:/verMisProductos";
 	}
 }
