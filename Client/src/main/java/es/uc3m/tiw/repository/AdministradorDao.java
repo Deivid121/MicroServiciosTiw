@@ -5,11 +5,12 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import es.uc3m.tiw.dominio.Administrador;
-import es.uc3m.tiw.dominio.Usuario;
+
 
 public interface AdministradorDao extends JpaRepository<Administrador, Long> {
 
-	Administrador findByEmailAndPassword(String nombre, String password);
+	Administrador findByEmailAndPassword(String email, String password);
+	List<Administrador> findAll();
 
 	
 }

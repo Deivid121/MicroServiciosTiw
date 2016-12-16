@@ -8,6 +8,7 @@
 		<script th:href="@{/js/jquery.min.js}" src="../../js/jquery.min.js"></script>
 		<script th:href="@{/js/bootstrap.min.css}" src="../../js/bootstrap.min.js"></script>
 		<script src="http://blackpeppersoftware.github.io/thymeleaf-fragment.js/thymeleaf-fragment.js" defer="defer" th:if="false"></script>
+    <link rel="stylesheet" th:href="@{/css/font-awesome-4.7.0/css/font-awesome.css}" href="../../css/font-awesome-4.7.0/css/font-awesome.css" />
     </head>
 <body>
 
@@ -16,15 +17,18 @@
     <table>
     <h2>Usuarios del sistema</h2>
         <tr>
+        	<th>id</th>
             <th>Nombre</th>
             <th>Apellido1</th>
             <th>Apellido2</th>
             <th>Email</th>
             <th>Contraseña</th>
             <th>Ciudad</th>
+            <th>Avatar</th>
             <th>Opciones</th>
+            
         </tr>
-        <tr>
+        
        
         
 
@@ -37,29 +41,32 @@
 		<td th:text="${usuario.email}"></td>
 		<td th:text="${usuario.password}"></td>
 		<td th:text="${usuario.ciudad}"></td>
-		<a th:href="@{'usuarioAdmin/' + ${usuario.id }}"><span class="glyphicon glyphicon-tag"></span></a>
-		<a th:href="@{'usuarioAdmin/' + ${usuario.id }}"><span class="glyphicon glyphicon-edit"></span></a>
-		<a th:href="@{'usuarioAdmin/' + ${usuario.id }}"><span class="glyphicon glyphicon-trash"></span></a>
+		<td> <img th:src="@{'../../images/'+ ${usuario.avatar}}"/></td>
+		<td>
+		<a th:href="@{'usuarioAdmin/' + ${usuario.id }}"><i class="fa fa-search" aria-hidden="true"></i></a>
+		<a th:href="@{'usuarioAdmin/' + ${usuario.id }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+		<a th:href="@{'usuarioAdmin/' + ${usuario.id }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
 		
 
 	
 	</tr>
 	</table>
 
-	     <table>
+	 <table>
     <h2>Productos del sistema</h2>
         <tr>
             <th>id</th>
             <th>titulo</th>
             <th>categoria</th>
             <th>descripcion</th>
-            <th>image</th>
             <th>estado</th>
             <th>ciudad</th>
             <th>precio</th>
             <th>usuario</th>
+            <th>imagen</th>
+            <th>opciones</th>
         </tr>
-        <tr>
+        
        
         
 
@@ -74,10 +81,15 @@
 		<td th:text="${producto.ciudad}"></td>
 		<td th:text="${producto.precio}"></td>
 		<td th:text="${producto.usuario}"></td>
+		<td><img th:src="@{${producto.image}}"/></td>
 	
-		<a th:href="@{'productoAdmin/' + ${producto.id }}"><span class="glyphicon glyphicon-tag"></span></a>
-		<a th:href="@{'productoAdmin/' + ${producto.id }}"><span class="glyphicon glyphicon-edit"></span></a>
-		<a th:href="@{'productoAdmin/' + ${producto.id }}"><span class="glyphicon glyphicon-trash"></span></a>
+		
+		<td>
+		<a th:href="@{'productoAdmin/' + ${producto.id }}"><i class="fa fa-search" aria-hidden="true"></i></a>
+		<a th:href="@{'productoAdmin/' + ${producto.id }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+		<a th:href="@{'productoAdmin/' + ${producto.id }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+	
+		
 		
 	
 	</tr>

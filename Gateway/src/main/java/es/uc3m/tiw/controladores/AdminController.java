@@ -66,15 +66,16 @@ public class AdminController {
 	}
 	@PostMapping("/loguearAdmin")
 	public String validarAdmin(Model modelo, @ModelAttribute Administrador admin){
+		System.out.println(admin);
 		Administrador adminValidado = restTemplate.postForObject("http://localhost:8010/loginAdmin", admin, Administrador.class);
 		ResponseEntity responseEntity=restTemplate.getForEntity("http://localhost:8020/getProductos", Producto[].class);
 		Producto[] productos = (Producto[]) responseEntity.getBody();
 		List<Producto> lista= Arrays.asList(productos);
 		modelo.addAttribute("listaProductos",lista);
-		ResponseEntity responseEntityU=restTemplate.getForEntity("http://localhost:8010/getUsuarios", Producto[].class);
-		Usuario[] usuarios = (Usuario[]) responseEntity.getBody();
+		ResponseEntity responseEntityU=restTemplate.getForEntity("http://localhost:8010/getUsuarios", Usuario[].class);
+		Usuario[] usuarios = (Usuario[]) responseEntityU.getBody();
 		List<Usuario> listaU= Arrays.asList(usuarios);
-		modelo.addAttribute("listaUsuarios",lista);
+		modelo.addAttribute("listaUsuarios",listaU);
 		modelo.addAttribute("adminValidado",adminValidado);
 		modelo.addAttribute("adminLogueado", true);
 		return "panelAdmin";
