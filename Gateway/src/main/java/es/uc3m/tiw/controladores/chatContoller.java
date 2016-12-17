@@ -36,12 +36,13 @@ public class chatContoller {
 		Map<String,Long> varUser = new HashMap<String,Long>();
 		varUser.put("userId", idPropietario);
 		Usuario user = restTemplate.getForObject("http://localhost:8010/buscarPorId/{userId}", Usuario.class,varUser);
-		
 		Map<String,Long> varProd = new HashMap<String,Long>();
 		varProd.put("prodId", idProducto);
 		Producto prod = restTemplate.getForObject("http://localhost:8020/buscarPorId/{prodId}", Producto.class,varProd);
-		modelo.addAttribute("idProducto",prod.getTitulo());
-		modelo.addAttribute("idPropietario",user.getNombre());
+		modelo.addAttribute("nomProducto",prod.getTitulo());
+		modelo.addAttribute("nomPropietario",user.getNombre());
+		modelo.addAttribute("idProducto", idProducto);
+		modelo.addAttribute("idPropietario", idPropietario);
 		Mensaje m = new Mensaje();
 		modelo.addAttribute("mensaje",m);
 		return "enviarMensaje";
@@ -54,7 +55,7 @@ public class chatContoller {
 		mensaje.setProductoId(idProducto);
 		System.out.println(mensaje);
 		Mensaje m=restTemplate.postForObject("http://localhost:8030/enviarMensaje", mensaje, Mensaje.class);
-		return "/index";
+		return "redirect:/index";
 		
 	}
 	@RequestMapping(value="/bandejaEntrada", method= RequestMethod.GET)
@@ -67,14 +68,16 @@ public class chatContoller {
 		List <Mensaje> mensajes = Arrays.asList(m);
 		List <MensajeMostrado> mensajesMostrados = new ArrayList<MensajeMostrado>();
 		for(int i=0;i<mensajes.size();i++){
+			//usuario origen del mensaje
 			Map<String,Long> varUser = new HashMap<String,Long>();
 			varUser.put("userId", mensajes.get(i).getOrigenId());
 			Usuario user = restTemplate.getForObject("http://localhost:8010/buscarPorId/{userId}", Usuario.class,varUser);
-			
+			//producto del mensaje
 			Map<String,Long> varProd = new HashMap<String,Long>();
 			varProd.put("prodId", mensajes.get(i).getProductoId());
 			Producto prod = restTemplate.getForObject("http://localhost:8020/buscarPorId/{prodId}", Producto.class,varProd);
-			MensajeMostrado mM = new MensajeMostrado(mensajes.get(i).getId(),mensajes.get(i).getOrigenId(),prod.getId(), user.getNombre(),
+			//mensaje
+			MensajeMostrado mM = new MensajeMostrado(mensajes.get(i).getId(),mensajes.get(i).getDestinoId(),prod.getId(), user.getNombre(),user.getId(),
 					prod.getTitulo(), mensajes.get(i).getMensaje());
 			
 			mensajesMostrados.add(mM);

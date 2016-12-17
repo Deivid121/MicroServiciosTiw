@@ -6,6 +6,7 @@ public class MensajeMostrado implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private long id;
 	private long propietario;
+	private long idOrigen;
 	private long idproducto;
 	private String origen;
 	private String producto;
@@ -14,7 +15,7 @@ public class MensajeMostrado implements Serializable{
 		
 	}
 
-	public MensajeMostrado(long id, long propietario, long idproducto, String origen, String producto, String mensaje) {
+	public MensajeMostrado(long id, long propietario, long idproducto, String origen, long idOrigen, String producto, String mensaje) {
 		super();
 		this.id = id;
 		this.propietario = propietario;
@@ -22,6 +23,7 @@ public class MensajeMostrado implements Serializable{
 		this.origen = origen;
 		this.producto = producto;
 		this.mensaje = mensaje;
+		this.idOrigen = idOrigen;
 	}
 
 	public void clonarMensaje(long id, long propietario, long idproducto, String origen, String producto, String mensaje){
@@ -71,4 +73,13 @@ public class MensajeMostrado implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	public long getIdOrigen() {
+		return idOrigen;
+	}
+
+	public void setIdOrigen(long idOrigen) {
+		this.idOrigen = idOrigen;
+	}
+	
 }
