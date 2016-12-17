@@ -34,4 +34,19 @@ public class Controller {
 	public @ResponseBody List<Mensaje> bandejaEntrada(@PathVariable Long id){
 		 return (List<Mensaje>) dao.findByDestinoId(id);
 	}
+	
+	@RequestMapping(value="/eliminarM/{id}", method = RequestMethod.DELETE)
+    public @ResponseBody void eliminarMensaje(@PathVariable long id){
+        dao.delete(id); 
+    }
+	
+	@RequestMapping (value="/buscarTodos/{id}",method=RequestMethod.GET)
+	public @ResponseBody List<Mensaje> buscarTodos(@PathVariable Long id){
+		 return (List<Mensaje>) dao.findByDestinoIdOrOrigenId(id,id);
+	}
+	@RequestMapping (value="/buscarTodosP/{id}",method=RequestMethod.GET)
+	public @ResponseBody List<Mensaje> buscarTodosP(@PathVariable Long id){
+		 return (List<Mensaje>) dao.findByProductoId(id);
+	}
+	
 }

@@ -41,6 +41,7 @@ public class UsuariosController {
         Usuario u=new Usuario();
         modelo.addAttribute(u);
 		modelo.addAttribute("boolbus", false);
+		modelo.addAttribute("err", new Men(""));
         return "registro";
     }
     
@@ -52,7 +53,6 @@ public class UsuariosController {
         }
         Usuario usuarioGuardado = restTemplate.postForObject("http://localhost:8010/registro", usuario, Usuario.class);
         modelo.addAttribute(usuarioGuardado);
-		modelo.addAttribute("boolbus", false);
         return "redirect:/";
         
     }

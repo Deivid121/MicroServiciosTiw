@@ -12,4 +12,6 @@ public interface MensajeDao extends JpaRepository<Mensaje, Long>{
 	ArrayList<Mensaje> findByOrigenIdAndDestinoIdAndProductoId (long origenId, long destinoId, long productoId);
 
 	List<Mensaje> findByDestinoId(Long id);
+	List<Mensaje> findByDestinoIdOrOrigenId(Long id1, Long id2);
+	List<Mensaje> findByProductoId(Long id);
 }

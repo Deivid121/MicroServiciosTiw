@@ -1,8 +1,12 @@
 package es.uc3m.tiw.clients;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import es.uc3m.tiw.dominio.Administrador;
+import es.uc3m.tiw.dominio.Producto;
 import es.uc3m.tiw.dominio.Usuario;
 import es.uc3m.tiw.repository.AdministradorDao;
 import es.uc3m.tiw.repository.UsuarioDao;
@@ -23,6 +29,8 @@ public class controller {
     private UsuarioDao dao;
     @Autowired
     private AdministradorDao daoA;
+    @Autowired
+    RestTemplate restTemplate;
     
     
     @RequestMapping(value="/login" ,method = RequestMethod.POST)
@@ -44,7 +52,16 @@ public class controller {
     }
     @RequestMapping(value="/eliminarU/{id}", method = RequestMethod.DELETE)
     public @ResponseBody void eliminarUsuario(@PathVariable long id){
-        dao.delete(id); 
+    	Map <String, Long>vars= new HashMap<String, Long>();
+	     vars.put("id", id);
+	     ResponseEntity responseEntity=restTemplate.getForEntity("http://localhost:8020/verMisProductos/{id}", Producto[].class, vars);
+	     Producto[]prod=(Producto[])responseEntity.getBody();
+	     List<Producto> lista= Arrays.asList(prod);
+	     for(int i = 0; i < lista.size(); i++){
+	    	 vars.put("id", (long) lista.get(i).getId());
+	    	 restTemplate.delete("http://localhost:8020/eliminarP/{id}",vars);
+	     }    	
+    	dao.delete(id); 
     }
     @RequestMapping(value="/editarU/{id}", method = RequestMethod.POST)
     public @ResponseBody Usuario editarUsuario(@RequestBody Usuario nuevo, @PathVariable long id){
