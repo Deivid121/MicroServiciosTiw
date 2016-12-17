@@ -5,11 +5,14 @@ package es.uc3m.tiw.controladores;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -86,5 +89,14 @@ public class ProductosController {
 		Producto productoGuardado = restTemplate.getForObject("http://localhost:8020/verProducto/{id}", Producto.class, vars);
 		modelo.addAttribute("producto",productoGuardado);
 		return "verProducto";
+	}
+	@RequestMapping(value="/buscar", method=RequestMethod.GET)
+	public String buscarProducto(Model modelo,@PathVariable String busqueda){
+		Map<String, String> vars = new HashMap<String, String>();
+		vars.put("busqueda", busqueda);
+		ResponseEntity productoGuardado = restTemplate.getForEntity("http://localhost:8020/buscarProducto/{busqueda}", Producto[].class, vars);
+		List<Producto> lista = (List<Producto>)productoGuardado.getBody();
+		modelo.addAttribute("lista",lista);
+		return "index";
 	}
 }

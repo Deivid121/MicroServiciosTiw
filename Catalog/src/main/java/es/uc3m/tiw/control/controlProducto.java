@@ -38,9 +38,9 @@ public class controlProducto {
  public @ResponseBody List<Producto> productos(){
 	 return rep.findAll();
  }
- @RequestMapping(value = "/buscarProducto" ,method = RequestMethod.GET)
- public @ResponseBody List<Producto> buscar(@RequestParam(value ="titulo")String titulo,@RequestParam(value ="descripcion")String descripcion){
-	 return rep.findByTituloContainingOrDescripcionContaining(titulo, descripcion);
+ @RequestMapping(value = "/buscarProducto/{busqueda}" ,method = RequestMethod.GET)
+ public @ResponseBody List<Producto> buscar(@PathVariable String busqueda){
+	 return rep.findByTituloContainingOrDescripcionContaining(busqueda, busqueda);
  }
  
  @RequestMapping(value = "/verProducto/{id}" ,method = RequestMethod.GET)
