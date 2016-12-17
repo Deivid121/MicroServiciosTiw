@@ -30,7 +30,8 @@
                   <div class="form-group">
                      <label  class="col-md-4"  for="exampleInputFile"><h5 class="text-center"><strong>Nombre</strong></h5></label> 
                     <div class="col-md-8">
-                        <input th:field="*{nombre}" type="text" class="form-control" data-validation="required" data-validation-length="max30" data-validation-error-msg="Introduzca un nombre" placeholder="Nombre" name="Uname"/>
+                        <input th:field="*{nombre}" type="text" class="form-control"/>
+                        <div><p th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Introduzca un nombre"</p></div>
                     </div>
                   </div>
                   <div class="form-group">
