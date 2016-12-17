@@ -30,21 +30,24 @@
                   <div class="form-group">
                      <label  class="col-md-4"  for="exampleInputFile"><h5 class="text-center"><strong>Nombre</strong></h5></label> 
                     <div class="col-md-8">
-                        <input th:field="*{nombre}" type="text" class="form-control" data-validation="required" data-validation-length="max30"/>
+                        <input th:field="*{nombre}" type="text" class="form-control" data-validation="required" data-validation-length="max30"
+                        data-validation-error-msg="Introduzca su nombre por favor"/>
                         <div><p th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Introduzca un nombre"</p></div>
                     </div>
                   </div>
                   <div class="form-group">
                      <label  class="col-md-4"  for="exampleInputFile"><h5 class="text-center"><strong>Primer apellido</strong></h5></label> 
                     <div class="col-md-8">
-                    	<input th:field="*{apellido1}" type="text" class="form-control" placeholder="Segundo apellido" name="FSurname" data-validation="required" data-validation-length="max30"/>
+                    	<input th:field="*{apellido1}" type="text" class="form-control" placeholder="Segundo apellido" name="FSurname" data-validation="required" 
+                    	data-validation-length="max30" data-validation-error-msg="Introduzca su primer apellido por favor"/>
                     	<div><p th:if="${#fields.hasErrors('apellido1')}" th:errors="*{apellido1}">Introduzca un nombre"</p></div>
                     </div>
                   </div>
                    <div class="form-group">
                      <label  class="col-md-4"  for="exampleInputFile"><h5 class="text-center"><strong>Segundo apellido</strong></h5></label> 
                     <div class="col-md-8">
-                    	<input th:field="*{apellido2}" type="text" class="form-control" placeholder="Segundo apellido" name="SSurname" data-validation="required" data-validation-length="max30"/>
+                    	<input th:field="*{apellido2}" type="text" class="form-control" placeholder="Segundo apellido" name="SSurname" data-validation="required" 
+                    	data-validation-length="max30" data-validation-error-msg="Introduzca su segundo apellido por favor"/>
                     	<div><p th:if="${#fields.hasErrors('apellido2')}" th:errors="*{apellido2}">Introduzca un nombre"</p></div>
                     </div>
                   </div>
@@ -60,7 +63,7 @@
                     <div class="col-md-8">
                     <input th:field="*{password}"
                             type="password" class="form-control" name="pass_confirmation" data-validation="length" data-validation-length="min8"
-							placeholder="Contraseña"/>
+							placeholder="Contraseña" data-validation-error-msg="La contraseña debe tener entre 8 y 20 caracteres"/>
                     	<div><p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Introduzca un nombre"</p></div>
                     </div>
                   </div>
