@@ -59,7 +59,6 @@ function ciudadDefecto(sel){
 
 		    if (opt.selected) {
 		      opts.push(opt);
-		      alert(opt.value);
 		      document.getElementById("ciudadInput").setAttribute("value",opt.value);
 		      document.getElementById("ciudadInput").setAttribute("th:value",opt.value);
 		    }

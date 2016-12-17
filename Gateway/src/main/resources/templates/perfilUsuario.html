@@ -16,97 +16,97 @@
 		<script src="http://blackpeppersoftware.github.io/thymeleaf-fragment.js/thymeleaf-fragment.js" defer="defer" th:if="false"></script>
     </head>
     <body>
-        <div th:replace="/header::header"></div>  
-     <div th:if="${session.adminLogueado} == true">
-	    <div class="container">
-	        <div id="titulo">
-	            <h2><strong><span th:text="'Perfil de ' + ${u.nombre}"></span></strong></h2>
-	        </div>
-	        <div id="perfil">
-	        	<div class="col-md-4">
-	        		<img th:src="@{'../../images/'+ ${u.avatar}}"/>
-	        	</div>
-	        	<div>
-	        		<label class="col-md-8">Nombre</label>
-	        		<span class="col-md-8" th:text="${u.nombre}"></span>
-	        	</div>
-	        	<div>
-	        		<label class="col-md-8">Primer Apellido</label>
-	        		<span class="col-md-8" th:text="${u.apellido1}"></span>
-	        	</div>
-	        	<div>
-	        		<label class="col-md-8">Segundo Apellido</label>
-	        		<span class="col-md-8" th:text="${u.apellido2}"></span>
-	        	</div>
-	        	<div>
-	        		<label class="col-md-12">Email</label>
-	        		<span class="col-md-12" th:text="${u.email}"></span>
-	        	</div>
-	        	<div>
-	        		<label class="col-md-12">Ciudad</label>
-	        		<span class="col-md-12" th:text="${u.ciudad}"></span>
-	        	</div>
-	        	
-		  </div>
-	
-	        
-	    </div>
-	    </div>
-	    <div th:if="${session.logueado} == true">
-	    <div class="container">
-	        <div id="titulo">
-	            <h2><strong><span th:text="'Perfil de ' + ${usuarioValidado.nombre}"></span></strong></h2>
-	        </div>
-	        <div id="perfil">
-	        	<div class="col-md-4">
-	        		<img th:src="@{'../../images/'+ ${usuarioValidado.avatar}}"/>
-	        	</div>
-	        	<div>
-	        		<label class="col-md-8">Nombre</label>
-	        		<span class="col-md-8" th:text="${usuarioValidado.nombre}"></span>
-	        	</div>
-	        	<div>
-	        		<label class="col-md-8">Primer Apellido</label>
-	        		<span class="col-md-8" th:text="${usuarioValidado.apellido1}"></span>
-	        	</div>
-	        	<div>
-	        		<label class="col-md-8">Segundo Apellido</label>
-	        		<span class="col-md-8" th:text="${usuarioValidado.apellido2}"></span>
-	        	</div>
-	        	<div>
-	        		<label class="col-md-12">Email</label>
-	        		<span class="col-md-12" th:text="${usuarioValidado.email}"></span>
-	        	</div>
-	        	<div>
-	        		<label class="col-md-12">Ciudad</label>
-	        		<span class="col-md-12" th:text="${usuarioValidado.ciudad}"></span>
-	        	</div>
-	        	<div class="row">
-	        	<input class="btn btn-default" type="button" value="Editar perfil" onclick="location='/editarUsuario'" />
-	        	<input class="btn btn-default" type="button" value="Borrar cuenta" onclick="location='/eliminar'"/>
-	
-	        	</div>
-		  </div>
-	
-	        
-	    </div>
-	    </div>
-     
-        
 
-     <br/>
-    <hr/>
-    <footer>
-        <div id="footer">
-                <ul >
-                      <li class="footerLink"><a class="footerL" href="#">Políticas de seguridad</a></li>
-                      <li class="footerLink"><a class="footerL" href="#">Políticas de cookies</a></li>
-                      <li class="footerLink"><a class="footerL" href="#">Twitter</a></li>
-                      <li class="footerLink"><a class="footerL" href="#">Facebook</a></li>
-                </ul>
-            </div>
-        Copyright © 2016 wallapopTIW
-    </footer>
+	     <div th:if="${session.adminLogueado} == true">
+	        <div id="contenido">
+	        <div th:replace="/header::header"></div> 
+	        <div id="registro">
+		    <div class="container">
+
+		        <div id="titulo">
+		            <h2><strong><span th:text="'Perfil de ' + ${u.nombre}"></span></strong></h2>
+		        </div>
+		        		    
+					        <div id="perfil">
+					        	<div class="col-md-4">
+					        		<img th:src="@{'../../images/'+ ${u.avatar}}"/>
+					        	</div>
+					        	<div>
+					        		<label class="col-md-8">Nombre</label>
+					        		<span class="col-md-8" th:text="${u.nombre}"></span>
+					        	</div>
+					        	<div>
+					        		<label class="col-md-8">Primer Apellido</label>
+					        		<span class="col-md-8" th:text="${u.apellido1}"></span>
+					        	</div>
+					        	<div>
+					        		<label class="col-md-8">Segundo Apellido</label>
+					        		<span class="col-md-8" th:text="${u.apellido2}"></span>
+					        	</div>
+					        	<div>
+					        		<label class="col-md-12">Email</label>
+					        		<span class="col-md-12" th:text="${u.email}"></span>
+					        	</div>
+					        	<div>
+					        		<label class="col-md-12">Ciudad</label>
+					        		<span class="col-md-12" th:text="${u.ciudad}"></span>
+					        	</div>
+					        	
+						  </div>
+		
+		        
+		    		</div>
+		    		</div>
+		    	</div>
+		    </div>
+		    <div th:if="${session.logueado} == true">
+		    <div id="contenido">
+	        	<div th:replace="/header::header"></div> 
+	        		<div id="registro">
+				    <div class="container">
+				    	
+					        <div id="titulo">
+					            <h2><strong><span th:text="'Perfil de ' + ${usuarioValidado.nombre}"></span></strong></h2>
+					        </div>
+					        <div id="perfil">
+					        	<div class="col-md-4">
+					        		<img th:src="@{'../../images/'+ ${usuarioValidado.avatar}}"/>
+					        	</div>
+					        	<div>
+					        		<label class="col-md-8">Nombre</label>
+					        		<span class="col-md-8" th:text="${usuarioValidado.nombre}"></span>
+					        	</div>
+					        	<div>
+					        		<label class="col-md-8">Primer Apellido</label>
+					        		<span class="col-md-8" th:text="${usuarioValidado.apellido1}"></span>
+					        	</div>
+					        	<div>
+					        		<label class="col-md-8">Segundo Apellido</label>
+					        		<span class="col-md-8" th:text="${usuarioValidado.apellido2}"></span>
+					        	</div>
+					        	<div>
+					        		<label class="col-md-12">Email</label>
+					        		<span class="col-md-12" th:text="${usuarioValidado.email}"></span>
+					        	</div>
+					        	<div>
+					        		<label class="col-md-12">Ciudad</label>
+					        		<span class="col-md-12" th:text="${usuarioValidado.ciudad}"></span>
+					        	</div>
+					        	<div class="row">
+					        	<input class="btn btn-default" type="button" value="Editar perfil" onclick="location='/editarUsuario'" />
+					        	<input class="btn btn-danger" type="button" value="Borrar cuenta" onclick="location='/eliminar'"/>
+					
+					        	</div>
+					  		</div>
+		
+		        
+		    			</div>
+		    		</div>
+		    </div>
+	     <br/>
+	    </div>
+	    
+<div th:replace="/header::footer"></div>
     </body>
 
 </html>

@@ -1,23 +1,74 @@
 body{
-	background-color: #FAAC58;
+	/*background-color: #FAAC58;*/
+	background-image: url("../../images/blackpattern.png");
+}
+#contenido{
+	margin-left: 10%;
+	margin-right:10%;
+	width: auto;
+	border-radius:5px;
+	background-color: #252624;
+}
+#Anterior{
+	font-size: 150%;
+	float:left;
+	    margin-left: 38%;
+    padding-right: 5%;
+
+}
+#Siguiente{
+	font-size: 150%;
+	float:left;
+
+}
+#AvatarImage{
+	text-align: center;
+	    margin-left: 67%;
+	    float:left;
+}
+#avatar{
+
+}
+#tituloPag{
+	color:white;
+	margin-left: 3%;
+}
+#optionIcon{
+	margin:5px;
+	font-size: 150%;
+}
+#opciones{
+	    width: 13%;
+}
+#table{
+	background-color:white;
+}
+i{
+	font-size: 200%;
 }
 #productos{
-	background-color: white;
-	border-radius: 10px;
-	text-align: center;
-	margin-top: 1%;
+   background-color: #FFFFFF;
+    margin: 1%;
+    text-align: center;
+    transition: height 2s;
+    border-radius: 5px;
+    padding-bottom: 10px;
 
 }
 #productos > img{
-	width: 30%;
+	width: 70%;
 	height: auto;
+}
+#precioTitulo{
+	    font-size: 123%;
 }
 #productos > button{
 	text-align: center;
 }
 #logo{
-	width: 50%;
+	width: 100%;
 	height: auto;
+	    margin-top: -15px;
 }
 p{
 	text-align: justify;
@@ -25,6 +76,7 @@ p{
 #aavatar{
 	width:40px;
 	border-radius: 25px;
+	float:right;
 }
 #saludo{
 	margin-right: 20px;
@@ -37,12 +89,13 @@ footer{
 
 }
 #navegador{
-		background-color: #424242;
-		border-color: #424242;
+	backgrond-color:white
+	/*	background-color: #424242;
+		border-color: #424242;*/
 		color: white;
 }
 #bienvenida{
-	color: #FAAC58;!important
+	color: black;!important
 }
 
 .footerL{
@@ -60,4 +113,21 @@ color: white;
 	margin-left: 2%;
 	margin-right: 2%;
 }
+td>img{
+	width:25%;
+	height:auto;
+	text-align: center;
+}
+.camposEnviar{
+	margin-left: 50%;
+    margin-top: 7%;
+}
+#inputPass{
+	 width: 27%;
+}
+#imagenVerProducto{
+	    width: 80%;
+    height: auto;
+}
+   
 

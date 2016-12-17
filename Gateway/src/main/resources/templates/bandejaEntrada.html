@@ -20,32 +20,37 @@
 <body>
 	<div th:replace="/header::header"></div>
 	<div class="container">
-		<div class="row">
-			<div id="entrada" class="col-md-3">
-				<table class = "table table-hover">
-					<thead>
-						<tr>
-							<th>Origen</th>
-							<th>Producto</th>
-							<th>Mensaje</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="mensaje: ${listaMensajes}" onclick="'location'index.html'">
-							<td th:text="${mensaje.origen}"></td>
-							<td th:text="${mensaje.producto}"></td>
-							<td th:text="${mensaje.mensaje}"></td>
-							<td>
-								<a th:href="@{'/enviarMensaje/'+${mensaje.idproducto}+'/'+${mensaje.propietario}}">
-									<i class="fa fa-comment-o" aria-hidden="true"></i>
-								</a>
-							</td>
-						</tr>
-					</tbody>
-				</table>
+            <div id="titulo">
+               <h2 id="tituloPag"><strong>Bandeja de entrada</strong></h2>
+           </div>
+         <div id="registro">
+				<div class="row">
+					<div id="entrada" class="col-md-3">
+						<table id="table" class = "table">
+							<thead>
+								<tr>
+									<th>Origen</th>
+									<th>Producto</th>
+									<th>Mensaje</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="mensaje: ${listaMensajes}" onclick="'location'index.html'">
+									<td th:text="${mensaje.origen}"></td>
+									<td th:text="${mensaje.producto}"></td>
+									<td th:text="${mensaje.mensaje}"></td>
+									<td>
+										<a th:href="@{'/enviarMensaje/'+${mensaje.idproducto}+'/'+${mensaje.idOrigen}}">
+											<i class="fa fa-comment-o" aria-hidden="true"></i>
+										</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<br />
 			</div>
-		</div>
-		<br />
  	</div>
 </body>
 <div th:replace="/header::footer"></div>

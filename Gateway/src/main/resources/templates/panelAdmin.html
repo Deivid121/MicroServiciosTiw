@@ -11,90 +11,90 @@
     <link rel="stylesheet" th:href="@{/css/font-awesome-4.7.0/css/font-awesome.css}" href="../../css/font-awesome-4.7.0/css/font-awesome.css" />
     </head>
 <body>
-
-<div th:replace="/header::header"></div>
-
-    <table class="table table-striped">
-    <h2>Usuarios del sistema</h2>
-        <tr>
-        	<th>id</th>
-            <th>Nombre</th>
-            <th>Apellido1</th>
-            <th>Apellido2</th>
-            <th>Email</th>
-            <th>Contraseña</th>
-            <th>Ciudad</th>
-            <th>Avatar</th>
-            <th>Opciones</th>
-            
-        </tr>
-        
-       
-        
-
-<tr th:each= "usuario : ${listaUsuarios}">
+<div id="contenido">
+	<div th:replace="/header::header"></div>
 	
-		<td th:text="${usuario.id}"></td>
-		<td th:text="${usuario.nombre}"></td>
-		<td th:text="${usuario.apellido1}"></td>
-		<td th:text="${usuario.apellido2}"></td>
-		<td th:text="${usuario.email}"></td>
-		<td th:text="${usuario.password}"></td>
-		<td th:text="${usuario.ciudad}"></td>
-		<td> <img th:src="@{'../../images/'+ ${usuario.avatar}}"/></td>
-		<td>
-		<a th:href="@{'verUsuario/' + ${usuario.id }}"><i class="fa fa-search" aria-hidden="true"></i></a>
-		<a th:href="@{'/editarAdmin/'+ ${usuario.id }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-		<a th:href="@{'/eliminarU/'+${usuario.id}}"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+	    <table id="table" class="table">
+	    <h2 id="tituloPag">Usuarios del sistema</h2>
+	        <tr>
+	        	<th>id</th>
+	            <th>Nombre</th>
+	            <th>Apellido1</th>
+	            <th>Apellido2</th>
+	            <th>Email</th>
+	            <th>Contraseña</th>
+	            <th>Ciudad</th>
+	            <th>Avatar</th>
+	            <th>Opciones</th>
+	            
+	        </tr>
+	        
+	       
+	        
+	
+	<tr th:each= "usuario : ${listaUsuarios}">
 		
-
-	
-	
-	</tr>
-	</table>
-
-	 <table class="table table-striped">
-    <h2>Productos del sistema</h2>
-        <tr>
-            <th>ID</th>
-            <th>Titulo</th>
-            <th>Categoria</th>
-            <th>Descripcion</th>
-            <th>Estado</th>
-            <th>Ciudad</th>
-            <th>Precio</th>
-            <th>Usuario</th>
-            <th>Imagen</th>
-            <th>Opciones</th>
-        </tr>
-        
-       
-        
-
-<tr th:each= "producto : ${listaProductos}">
-	
-		<td th:text="${producto.id}"></td>
-		<td th:text="${producto.titulo}"></td>
-		<td th:text="${producto.categoria}"></td>
-		<td th:text="${producto.descripcion}"></td>
-		<td th:text="${producto.estado}"></td>
-		<td th:text="${producto.ciudad}"></td>
-		<td th:text="${producto.precio}"></td>
-		<td th:text="${producto.usuario}"></td>
-		<td><img th:src="@{${producto.image}}"/></td>
-	
-		
-		<td>
-		<a th:href="@{'verProducto/' + ${producto.id }}"><i class="fa fa-search" aria-hidden="true"></i></a>
-		<a th:href="@{'productoAdmin/' + ${producto.id }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-		<a th:href="@{'/eliminarP/'+${producto.id}}"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+			<td th:text="${usuario.id}"></td>
+			<td th:text="${usuario.nombre}"></td>
+			<td th:text="${usuario.apellido1}"></td>
+			<td th:text="${usuario.apellido2}"></td>
+			<td th:text="${usuario.email}"></td>
+			<td th:text="${usuario.password}"></td>
+			<td th:text="${usuario.ciudad}"></td>
+			<td> <img th:src="@{'../../images/'+ ${usuario.avatar}}"/></td>
+			<td id="opciones">
+			<a title="Ver en detalle el producto"  th:href="@{'verUsuario/' + ${usuario.id }}"><i class="fa fa-search" id="optionIcon" aria-hidden="true"></i></a>
+			<a title="Editar producto" th:href="@{'/editarAdmin/'+ ${usuario.id }}"><i class="fa fa-pencil" id="optionIcon" aria-hidden="true"></i></a>
+			<a title="Eliminar producto" th:href="@{'/eliminarU/'+${usuario.id}}"><i class="fa fa-trash-o" id="optionIcon" aria-hidden="true"></i></a></td>
+			
 	
 		
 		
+		</tr>
+		</table>
 	
-	</tr>
-	</table>
+		 <table id="table" class="table">
+	    <h2 id="tituloPag">Productos del sistema</h2>
+	        <tr>
+	            <th>ID</th>
+	            <th>Titulo</th>
+	            <th>Categoria</th>
+	            <th>Descripcion</th>
+	            <th>Estado</th>
+	            <th>Ciudad</th>
+	            <th>Precio</th>
+	            <th>Usuario</th>
+	            <th>Imagen</th>
+	            <th>Opciones</th>
+	        </tr>
+	        
+	       
+	        
 	
+	<tr th:each= "producto : ${listaProductos}">
+		
+			<td th:text="${producto.id}"></td>
+			<td th:text="${producto.titulo}"></td>
+			<td th:text="${producto.categoria}"></td>
+			<td th:text="${producto.descripcion}"></td>
+			<td th:text="${producto.estado}"></td>
+			<td th:text="${producto.ciudad}"></td>
+			<td th:text="${producto.precio}"></td>
+			<td th:text="${producto.usuario}"></td>
+			<td><img th:src="@{${producto.image}}"/></td>
+		
+			
+			<td id="opciones">
+			<a title="Ver en detalle el producto"  th:href="@{'verProducto/' + ${producto.id }}"><i class="fa fa-search" id="optionIcon" aria-hidden="true"></i></a>
+			<a title="Editar producto" th:href="@{'productoAdmin/' + ${producto.id }}"><i class="fa fa-pencil" id="optionIcon" aria-hidden="true"></i></a>
+			<a title="Eliminar producto" th:href="@{'/eliminarP/'+${producto.id}}"><i class="fa fa-trash-o" id="optionIcon" aria-hidden="true"></i></a></td>
+		
+			
+			
+		
+		</tr>
+		</table>
+	</div>	
 </body>
 <div th:replace="/header::footer"></div>
 </html>

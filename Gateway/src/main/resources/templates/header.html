@@ -52,7 +52,7 @@
  			                                    <label class="sr-only" for="ejemplo_email_2">Email</label> 
  			                                        <input th:field="*{email}" type="text" class="form-control" placeholder="Introduce tu email" data-validation="email" data-validation-error-msg="No has introducido un email valido (a@b.c)"/>
  			                                    <label class="sr-only" for="ejemplo_password_2">Contraseña</label>
- 			                                    <input th:field="*{password}" type="password" class="form-control"
+ 			                                    <input id="inputPass" th:field="*{password}" type="password" class="form-control"
  			                                        placeholder="Contraseña" data-validation="length"
  			                                        data-validation-length="min8"
  			                                        data-validation-error-msg="La contraseña tiene al menos 8 caracteres"/>
@@ -64,9 +64,10 @@
  		                         </div>
  		                       <div id="saludo" th:if="${session.logueado} == true">   
  		                    		<div class="dropdown">
+ 		                    		<img id="aavatar" th:src="@{'../../images/'+ ${session.usuarioValidado.avatar}}"/>
 										<ul class="nav navbar-nav navbar-right">
 											<li class="dropdown">
-											<img id="aavatar" th:src="@{'../../images/'+ ${session.usuarioValidado.avatar}}"/>
+											
 		          							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><p id="bienvenida" th:text="'Bienvenido  ' + ${session.usuarioValidado.nombre}"></p></a>
 		          							<ul class="dropdown-menu">
 									            <li><a href="/perfilUsuario">Perfil de usuario</a></li>

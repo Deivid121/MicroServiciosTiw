@@ -11,49 +11,50 @@
     <link rel="stylesheet" th:href="@{/css/font-awesome-4.7.0/css/font-awesome.css}" href="../../css/font-awesome-4.7.0/css/font-awesome.css" />
     </head>
 <body>
-
-<div th:replace="/header::header"></div>
-
-	 <table class="table table-striped">
-    <h2 th:text="'Productos de:'+${session.usuarioValidado.nombre}"></h2>
-        <tr>
-            <th>ID</th>
-            <th>Titulo</th>
-            <th>Categoria</th>
-            <th>Descripcion</th>
-            <th>Estado</th>
-            <th>Ciudad</th>
-            <th>Precio</th>
-            <th>Imagen</th>
-            <th>Opciones</th>
-        </tr>
-        
-       
-        
-
-<tr th:each= "producto : ${misProductos}">
+<div id="contenido">
+	<div th:replace="/header::header"></div>
+		<div class="table-responsive">
+		 <table id="table" class="table">
+	    <h2 id="tituloPag" th:text="'Productos de:  '+${session.usuarioValidado.nombre}"></h2>
+	        <tr>
+	            <th>ID</th>
+	            <th>Titulo</th>
+	            <th>Categoria</th>
+	            <th>Descripcion</th>
+	            <th>Estado</th>
+	            <th>Ciudad</th>
+	            <th>Precio</th>
+	            <th>Imagen</th>
+	            <th>Opciones</th>
+	        </tr>
+	        
+	       
+	        
 	
-		<td th:text="${producto.id}"></td>
-		<td th:text="${producto.titulo}"></td>
-		<td th:text="${producto.categoria}"></td>
-		<td th:text="${producto.descripcion}"></td>
-		<td th:text="${producto.estado}"></td>
-		<td th:text="${producto.ciudad}"></td>
-		<td th:text="${producto.precio}"></td>
-		<td><img th:src="@{${producto.image}}"/></td>
-	
+	<tr th:each= "producto : ${misProductos}">
 		
-		<td>
-		<a th:href="@{'verProducto/' + ${producto.id }}"><i class="fa fa-search" aria-hidden="true"></i></a>
-		<a th:href="@{'editarProducto/' + ${producto.id }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-		<a th:href="@{'/eliminarP/'+${producto.id}}"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
-	
+			<td th:text="${producto.id}"></td>
+			<td th:text="${producto.titulo}"></td>
+			<td th:text="${producto.categoria}"></td>
+			<td th:text="${producto.descripcion}"></td>
+			<td th:text="${producto.estado}"></td>
+			<td th:text="${producto.ciudad}"></td>
+			<td th:text="${producto.precio}"></td>
+			<td><img th:src="@{${producto.image}}"/></td>
 		
+			
+			<td id="opciones">
+			<a title="Ver en detalle el producto" th:href="@{'verProducto/' + ${producto.id }}"><i class="fa fa-search" id="optionIcon" aria-hidden="true"></i></a>
+			<a title="Editar producto" th:href="@{'editarProducto/' + ${producto.id }}"><i class="fa fa-pencil" id="optionIcon"  aria-hidden="true"></i></a>
+			<a  title="Eliminar producto" th:href="@{'/eliminarP/'+${producto.id}}"><i class="fa fa-trash-o" id="optionIcon" aria-hidden="true"></i></a></td>
 		
-	
-	</tr>
-	</table>
-	
+			
+			
+		
+		</tr>
+		</table>
+		</div>
+</div>
 </body>
 <div th:replace="/header::footer"></div>
 </html>

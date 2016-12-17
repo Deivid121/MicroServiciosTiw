@@ -21,7 +21,7 @@
         <div th:replace="/header::header"></div>     
     <div class="container">
         <div id="titulo">
-            <h2><strong>Editar perfil de: <p th:text="${session.usuarioValidado.nombre}"></p></strong></h2>
+            <h2 id="tituloPag"><strong>Editar perfil de: <p th:text="${session.usuarioValidado.nombre}"></p></strong></h2>
         </div>
         <div class="registro">
             <div class="row">
@@ -60,7 +60,7 @@
                   <div class="form-group">
                     <label  class="col-md-4" for="exampleInputFile"><h5 class="text-center"><strong>Contraseña</strong></h5></label>
                     <div class="col-md-8">
-                     	<p th:text="${session.usuarioValidado.password}"></p>
+                     	<p>**********</p>
                     	<input
                             type="password" th:field="*{password}" class="form-control" data-validation="length"
                             data-validation-length="min8" data-validation-error-msg="La contraseña debe tener entre 8 y 20 caracteres" 

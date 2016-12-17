@@ -11,23 +11,27 @@
 		<script src="http://blackpeppersoftware.github.io/thymeleaf-fragment.js/thymeleaf-fragment.js" defer="defer" th:if="false"></script>
     </head>
     <body>
-    	<div th:replace="/header::header"></div>
-        <div class="container">
-            <div class="row">
-	     
-	                <div th:each="producto : ${lista}" id="productos" class="col-md-3">
-	                    <img th:src="@{${producto.image}}"/>
-	                    <h2 th:text="${producto.titulo}">Holi</h2>
-	                    <p th:text="${producto.descripcion}">pepito</p>
-						
-	                    <a th:href="@{'/verProducto/'+${producto.id}}" class="btn btn-default">Ver más</a>
-	                    <a  th:if="${session.logueado} == true" class="btn btn-default" th:href="@{'/enviarMensaje/'+${producto.id}+'/'+${producto.usuario}}">Contactar</a>
-	                    
-	                </div>
-                 
-           
-    	</div>
-        <br/>
+
+    	<div id="contenido">
+    	    	<div th:replace="/header::header"></div>
+	        <div class="container">
+	            <div class="row">
+		     
+		                <div th:each="producto : ${lista}" id="productos" class="col-md-3">
+		                    <img th:src="@{${producto.image}}"/>
+		                    <h2 th:text="${producto.titulo}"></h2>
+	
+		                    <h2 id="precioTitulo" th:text="${producto.precio}+'€'"></h2>
+							
+		                    <a th:href="@{'/verProducto/'+${producto.id}}" class="btn btn-default">Ver más</a>
+		                    <a  th:if="${session.logueado} == true" class="btn btn-default" th:href="@{'/enviarMensaje/'+${producto.id}+'/'+${producto.usuario}}">Contactar</a>
+		                    
+		                </div>
+	                 
+	           
+	    	</div>
+	        <br/>
+	        </div>
         </div>
     </body>
 	<div th:replace="/header::footer"></div>

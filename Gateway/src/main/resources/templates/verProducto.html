@@ -16,54 +16,58 @@
 		<script src="http://blackpeppersoftware.github.io/thymeleaf-fragment.js/thymeleaf-fragment.js" defer="defer" th:if="false"></script>
     </head>
     <body>
-        <div th:replace="/header::header"></div>  
-    <div class="container">
-        <div id="titulo">
-            <h2><strong><span th:text="'Producto:' + ${producto.titulo}"></span></strong></h2>
-        </div>
-        <div id="perfil">
-        	<div class="col-md-4">
-        		<img th:src="@{${producto.image}}"/>
-        	</div>
-        	<div>
-        		<label class="col-md-8">Nombre</label>
-        		<span class="col-md-8" th:text="${producto.titulo}"></span>
-        	</div>
-        	<div>
-        		<label class="col-md-8">Categoria</label>
-        		<span class="col-md-8" th:text="${producto.categoria}"></span>
-        	</div>
-        	<div>
-        		<label class="col-md-8">Descripcion</label>
-        		<span class="col-md-8" th:text="${producto.descripcion}"></span>
-        	</div>
-        	<div>
-        		<label class="col-md-12">Estado</label>
-        		<span class="col-md-12" th:text="${producto.estado}"></span>
-        	</div>
-        	<div>
-        		<label class="col-md-12">Ciudad</label>
-        		<span class="col-md-12" th:text="${producto.ciudad}"></span>
-        	</div>
-        	<div class="row">
+    <div id="contenido">
+	    <div th:replace="/header::header"></div>  
+	    <div class="container">
+	        <div id="titulo">
+	            <h2 id="tituloPag"><strong><span th:text="'Producto:' + ${producto.titulo}"></span></strong></h2>
+	        </div>
+	        <div id="registro">
+		        <div id="perfil">
+		        	<div class="col-md-4">
+		        		<img id="imagenVerProducto" th:src="@{${producto.image}}"/>
+		        	</div>
+		        	<div>
+		        		<label class="col-md-8">Nombre</label>
+		        		<span class="col-md-8" th:text="${producto.titulo}"></span>
+		        	</div>
+		        	<div>
+		        		<label class="col-md-8">Categoria</label>
+		        		<span class="col-md-8" th:text="${producto.categoria}"></span>
+		        	</div>
+		        	<div>
+		        		<label class="col-md-8">Descripcion</label>
+		        		<span class="col-md-8" th:text="${producto.descripcion}"></span>
+		        	</div>
+		        	<div>
+		        		<label class="col-md-12">Estado</label>
+		        		<span class="col-md-12" th:text="${producto.estado}"></span>
+		        	</div>
+		        	<div>
+		        		<label class="col-md-12">Ciudad</label>
+		        		<span class="col-md-12" th:text="${producto.ciudad}"></span>
+		        	</div>
+		        	<div class="row">
+		
+		
+		        	</div>
+		        	
+		        
+		        
+		        </div>
+		      </div>
+	        
+	        
+	        
+	        
+	    </div>
+	     
+        
 
-
-        	</div>
-        	
-        
-        
-        </div>
-        
-        
-        
-        
-    </div>
-	<p th:text="${session.logueado}"></p>
-     
-        
-
-     <br/>
-    <hr/>
+     	<br/>
+ 
+    </div>	
+    
     <footer>
         <div id="footer">
                 <ul >

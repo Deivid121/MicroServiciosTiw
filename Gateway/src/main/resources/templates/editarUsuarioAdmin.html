@@ -20,12 +20,12 @@
     </head>
     <body>
     <div th:if="${session.adminLogueado} == true">
+    <div id="contenido">
         <div th:replace="/header::header"></div>     
     <div class="container" >
         <div id="titulo">
-            <h2><strong>Editar perfil de: <p th:text="${u.nombre}"></p></strong></h2>
+            <h2 id="tituloPag"><strong>Editar perfil de: <p th:text="${u.nombre}"></p></strong></h2>
         </div>
-        <div class="registro">
             <div class="row">
             <div id="registro">
                <form  th:action="@{'/editarA/'+ ${u.id}}" th:object="${nuevo}" method="post" class="form-horizontal" id="registration">
@@ -68,23 +68,14 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label  class="col-md-4"><h5 class="text-center"><strong> Confirmación de contraseña</strong></h5></label>
-                    <div class="col-md-8">
-                     	<p th:text="${u.password}"></p>
-                    	<input
-                            type="password" class="form-control" data-validation="confirmation" 
-                            placeholder="Verificar contraseña" name="pass"/>
-                    </div>
-                   </div>
-                  <div class="form-group">
                     <label  class="col-md-4"><h5 class="text-center"><strong> Avatar</strong></h5></label>
                     <div class="col-md-8">
-                     	<p th:text="${u.avatar}"></p>
+                     	<p th:text="${session.usuarioValidado.avatar}"></p>
                     	<input th:field="${nuevo.avatar}" id="avatarName" type="hidden" class="form-control" data-validation="confirmation" 
                             placeholder="Verificar contraseña" name="pass"/>
                             <div class="col-md-5 col-md-offset-2">
                             	<i id="Anterior" onClick="changeAvatar(this)" class="fa fa-arrow-left" aria-hidden="true"></i>
-                    			<img id="avatar" th:src="@{'../../images/'+ ${u.avatar}}"/>
+                    			<img id="avatar" th:src="@{'../../images/'+ ${usuarioValidado.avatar}}"/>
                     			<i id="Siguiente" onClick="changeAvatar(this)" class="fa fa-arrow-right" aria-hidden="true"></i>
                             </div>
                         
