@@ -76,9 +76,10 @@ public class UsuariosController {
         return "perfilUsuario";
     }
     @RequestMapping(value="/eliminar", method=RequestMethod.GET)
-    public String borrarUsuario(Model modelo, HttpServletRequest request){
-        HttpSession sesion =request.getSession();
-        Usuario usuario = (Usuario)sesion.getAttribute("usuarioValidado");
+    public String borrarUsuario(Model modelo, @SessionAttribute("usuarioValidado") Usuario user ){
+    	Map <String, Long>vars= new HashMap<String, Long>();
+		vars.put("id", user.getId());
+		restTemplate.delete("http://localhost:8010/eliminarU/{id}",vars);
         return "redirect:/";
     }
     
