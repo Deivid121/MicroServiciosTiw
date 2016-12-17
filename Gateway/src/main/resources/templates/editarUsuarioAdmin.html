@@ -19,8 +19,9 @@
 		<script src="http://blackpeppersoftware.github.io/thymeleaf-fragment.js/thymeleaf-fragment.js" defer="defer" th:if="false"></script>
     </head>
     <body>
+    <div th:if="${session.adminLogueado} == true">
         <div th:replace="/header::header"></div>     
-    <div class="container">
+    <div class="container" >
         <div id="titulo">
             <h2><strong>Editar perfil de: <p th:text="${u.nombre}"></p></strong></h2>
         </div>
@@ -171,6 +172,8 @@
         </div>
         
     </div>
+    </div>
+    <div th:if="${session.adminLogueado} == false">No se ha logueado ningún administrador</div>
      <br/>
     <hr/>
 <div th:replace="/header::footer"></div>

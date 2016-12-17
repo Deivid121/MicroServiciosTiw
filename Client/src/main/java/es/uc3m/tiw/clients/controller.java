@@ -102,8 +102,7 @@ public @ResponseBody Usuario verPerfil(Usuario user){
     @RequestMapping(value="/loginAdmin" ,method = RequestMethod.POST)
     public  @ResponseBody Administrador loginAdmin(@RequestBody Administrador admin){
     	List <Administrador> Administradores = daoA.findAll();
-    	buscarAdministrador(Administradores, admin);
-    	return new Administrador (); 
+    	return buscarAdministrador(Administradores, admin);
     }
 
     

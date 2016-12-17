@@ -36,10 +36,11 @@ public class AdminController {
 
 	
 	@RequestMapping("/panelAdmin")
-	public String formularioAdmin(Model modelo, @ModelAttribute Administrador administrador){
+	public String formularioAdmin(Model modelo, @ModelAttribute Administrador administrador ){
 		Administrador admin = new Administrador();
-		modelo.addAttribute("AdminValidado",admin);
+		modelo.addAttribute("adminValidado",admin);
 		modelo.addAttribute("logueadoAdmin", false);
+		modelo.addAttribute("err", new Men(""));
 		return "LoginAdmin";
 	}
 
@@ -51,7 +52,8 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/editarAdmin/{id}")
-	public String editarUsuarios(Model modelo, @PathVariable long id){
+	public String editarUsuarios(Model modelo, @PathVariable long id, @SessionAttribute("adminLogueado") boolean admin){
+		if(admin){
 		modelo.addAttribute("boolbus", false);
 		Usuario nuevo = new Usuario();
 		Map<String, Long> vars = new HashMap<String, Long>();
@@ -60,6 +62,12 @@ public class AdminController {
 		modelo.addAttribute("u",u);
 		modelo.addAttribute("nuevo", nuevo);
 		return "editarUsuarioAdmin";
+		}else{
+			Administrador admin2 = new Administrador();
+			modelo.addAttribute("AdminValidado",admin2);
+			modelo.addAttribute("err", new Men("No se ha introducido un administrador correcto"));
+			return "LoginAdmin";
+		}
 	}
 	@PostMapping("/editarA/{id}")
 	public String actualizarUsuario(Model modelo, @ModelAttribute("nuevo") Usuario nuevo,@PathVariable long id ){
@@ -81,16 +89,22 @@ public class AdminController {
 	@PostMapping("/loguearAdmin")
 	public String validarAdmin(Model modelo, @ModelAttribute Administrador admin){
 		Administrador adminValidado = restTemplate.postForObject("http://localhost:8010/loginAdmin", admin, Administrador.class);
+		if(adminValidado != null){
+			modelo.addAttribute("adminValidado",adminValidado);
+			modelo.addAttribute("adminLogueado", true);
+			modelo.addAttribute("err", new Men(""));
+			return "redirect:/cargarAdmin";
+		}else{
+			modelo.addAttribute("err", new Men("No se ha introducido un administrador correcto"));
+			return "LoginAdmin";
+		}
 		
-		modelo.addAttribute("adminValidado",adminValidado);
-		modelo.addAttribute("adminLogueado", true);
-		modelo.addAttribute("err", new Men(""));
-		return "redirect:cargarAdmin";
 		
 	}
 
 	@RequestMapping(value="/cargarAdmin",method=RequestMethod.GET)
-	public String cargar(Model modelo){
+	public String cargar(Model modelo, @SessionAttribute("adminLogueado") boolean admin){
+		if(admin){
 		ResponseEntity responseEntity=restTemplate.getForEntity("http://localhost:8020/getProductos", Producto[].class);
 		Producto[] productos = (Producto[]) responseEntity.getBody();
 		List<Producto> lista= Arrays.asList(productos);
@@ -102,6 +116,10 @@ public class AdminController {
 		modelo.addAttribute("adminLogueado", true);
 		modelo.addAttribute("err", new Men(""));
 		return "panelAdmin";
+		}else {
+			modelo.addAttribute("err", new Men("No se ha introducido un administrador correcto"));
+			return "LoginAdmin";
+		}
 
 	}
 	
