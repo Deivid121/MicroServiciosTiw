@@ -62,7 +62,7 @@ public class UsuariosController {
         Usuario usuario = new Usuario();
         modelo.addAttribute("nuevo",usuario);
 		modelo.addAttribute("boolbus", false);
-        return "editarUsuario";
+		return "editarUsuario";
     }
     @PostMapping("/editar")
     public String actualizarUsuario(Model modelo, @SessionAttribute(value="usuarioValidado") Usuario validado, @ModelAttribute Usuario nuevo){

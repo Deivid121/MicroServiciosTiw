@@ -49,17 +49,24 @@ public class AdminController {
 		
 	}
 	
-	@RequestMapping(value="/editarAdmin")
-	public String editarUsuarios(Model modelo){
-		modelo.addAttribute(new Administrador());
-		return "editarAdmin";
+	@RequestMapping(value="/editarAdmin/{id}")
+	public String editarUsuarios(Model modelo, @PathVariable long id){
+		modelo.addAttribute("boolbus", false);
+		Usuario nuevo = new Usuario();
+		Map<String, Long> vars = new HashMap<String, Long>();
+		vars.put("id", id);
+		Usuario u=restTemplate.getForObject("http://localhost:8010/buscarPorId/{id}",Usuario.class,vars);
+		modelo.addAttribute("u",u);
+		modelo.addAttribute("nuevo", nuevo);
+		return "editarUsuarioAdmin";
 	}
-	@PostMapping("/editarA")
-	public String actualizarUsuario(Model modelo, @ModelAttribute Usuario usuario){
-		System.out.println(usuario);
-		Usuario usuarioValidado = restTemplate.postForObject("http://localhost:8010/editarA", usuario, Usuario.class);
+	@PostMapping("/editarA/{id}")
+	public String actualizarUsuario(Model modelo, @ModelAttribute("nuevo") Usuario nuevo,@PathVariable long id ){
+		Map<String, Long> vars = new HashMap<String, Long>();
+		vars.put("id", id);
+		Usuario usuarioValidado = restTemplate.postForObject("http://localhost:8010/editarU/{id}",nuevo, Usuario.class,vars);
 		modelo.addAttribute("usuarioValidado",usuarioValidado);
-		return "perfilUsuario";
+		return "redirect:/cargarAdmin";
 		
 	}
 	
