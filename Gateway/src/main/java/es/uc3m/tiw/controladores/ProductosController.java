@@ -3,6 +3,7 @@ package es.uc3m.tiw.controladores;
 
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -26,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.apache.commons.codec.binary.Base64;
 
+import es.uc3m.tiw.dominio.Men;
 import es.uc3m.tiw.dominio.Producto;
 import es.uc3m.tiw.dominio.Usuario;
 
@@ -83,20 +85,23 @@ public class ProductosController {
 	
 }
 	@RequestMapping(value="/verProducto/{id}", method=RequestMethod.GET)
-	public String cargarProducto(Model modelo,@PathVariable String id){
+	public String cargarProducto(Model modelo,@ModelAttribute String id){
 		Map<String, Long> vars = new HashMap<String, Long>();
 		vars.put("id", Long.parseLong(id));
 		Producto productoGuardado = restTemplate.getForObject("http://localhost:8020/verProducto/{id}", Producto.class, vars);
 		modelo.addAttribute("producto",productoGuardado);
 		return "verProducto";
 	}
-	@RequestMapping(value="/buscar", method=RequestMethod.GET)
-	public String buscarProducto(Model modelo,@PathVariable String busqueda){
+	@RequestMapping(value="/buscar", method=RequestMethod.POST)
+	public String buscarProducto(Model modelo,@ModelAttribute Men busqueda){
 		Map<String, String> vars = new HashMap<String, String>();
-		vars.put("busqueda", busqueda);
+		String men = busqueda.getMensaje();
+		vars.put("busqueda", men);
 		ResponseEntity productoGuardado = restTemplate.getForEntity("http://localhost:8020/buscarProducto/{busqueda}", Producto[].class, vars);
-		List<Producto> lista = (List<Producto>)productoGuardado.getBody();
+		Producto[] productos = (Producto []) productoGuardado.getBody();
+		List<Producto> lista = (List<Producto>) Arrays.asList(productos);
 		modelo.addAttribute("lista",lista);
+		modelo.addAttribute("busqueda",new Men());
 		return "index";
 	}
 }
