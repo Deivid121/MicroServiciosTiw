@@ -55,9 +55,11 @@ public class controlProducto {
  public @ResponseBody Producto buscarProducto(@PathVariable long id){
 	 return rep.findById(id);
  }
- @RequestMapping(value = "/modificarProducto" ,method = RequestMethod.PUT)
+ @RequestMapping(value = "/editarProducto" ,method = RequestMethod.POST)
  public @ResponseBody Producto modificarProducto(@RequestBody Producto p){ 
-	 return  rep.save(p);
+	 Producto antiguo = rep.findById(p.getId());
+	 Producto actualizado=updateProducto(antiguo,p);
+	 return  rep.save(actualizado);
  }
  @RequestMapping(value="/eliminarP/{id}", method = RequestMethod.DELETE)
  public @ResponseBody void eliminarUsuario(@PathVariable long id){
@@ -82,6 +84,31 @@ public class controlProducto {
 	 
 	 return rep.findByUsuario((int)id);
     
+ }
+ private static Producto updateProducto(Producto antiguo, Producto user){
+ 	
+ 	if(!user.getTitulo().equals("")&&user.getTitulo()!=null){
+ 		antiguo.setTitulo(user.getTitulo());
+ 	}
+ 	if(!user.getCategoria().equals("")&&user.getCategoria()!=null){
+ 		antiguo.setCategoria(user.getCategoria());
+ 	}
+ 	if(!user.getDescripcion().equals("")&&user.getDescripcion()!=null){
+ 		antiguo.setDescripcion(user.getDescripcion());
+ 	}
+ 	if(!user.getEstado().equals("")&&user.getEstado()!=null){
+ 		antiguo.setEstado(user.getEstado());
+ 	}
+ 	if(!user.getCiudad().equals("")&&user.getCiudad()!=null){
+ 		antiguo.setCiudad(user.getCiudad());
+ 	}
+ 	if(user.getPrecio()!=0){
+ 		antiguo.setPrecio(user.getPrecio());
+ 	}
+ 	if(!user.getImage().equals("")&&user.getImage()!=null){
+ 		antiguo.setImage(user.getImage());
+ 	}
+ 	return antiguo;
  }
  
 }

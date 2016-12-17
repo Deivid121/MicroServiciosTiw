@@ -1,16 +1,23 @@
 package es.uc3m.tiw.dominio;
 
-
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class Producto {
 	
 	private int id;
+	@NotNull
+	@Size(min=2,max=30,message="Introduzca titulo para su producto")
 	private String titulo;
+	@NotNull
 	private String categoria;
+	@NotNull
+	@Size(min=2,max=30,message="Introduzca la descripcion del producto que desea vender")
 	private String descripcion;
 	private String image;
 	private String estado;
 	private String ciudad;
+	@NotNull
 	private int precio;
 	private long usuario;
 	
