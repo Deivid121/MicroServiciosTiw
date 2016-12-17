@@ -50,6 +50,7 @@ public class IndexController {
 		Producto[] productos = (Producto[]) responseEntity.getBody();
 		List<Producto> lista= Arrays.asList(productos);
 		modelo.addAttribute("lista",lista);
+		modelo.addAttribute("busqueda",new Men());
 		return "index";
 	}
 	@RequestMapping(value="/cerrarSesion")

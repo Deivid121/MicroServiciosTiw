@@ -42,6 +42,7 @@ public class ProductosController {
 	public String crearProducto(Model modelo){
 	    Producto p=new Producto();
 		modelo.addAttribute("pvacio",p);
+		modelo.addAttribute("busqueda",new Men());
 		System.out.println(p);
 		return "crearProductos";
 	}
@@ -60,7 +61,7 @@ public class ProductosController {
 	}
 	
 	@PostMapping("/crearProducto2")
-    public String guardarProducto(MultipartHttpServletRequest request,@ModelAttribute(value="pvacio") Producto producto,@SessionAttribute(value="usuarioValidado") Usuario usuario){
+    public String guardarProducto(Model modelo,MultipartHttpServletRequest request,@ModelAttribute(value="pvacio") Producto producto,@SessionAttribute(value="usuarioValidado") Usuario usuario){
         Producto p = new Producto();
         p = producto;
         p.setUsuario(usuario.getId());
@@ -102,6 +103,9 @@ public class ProductosController {
 		List<Producto> lista = (List<Producto>) Arrays.asList(productos);
 		modelo.addAttribute("lista",lista);
 		modelo.addAttribute("busqueda",new Men());
+		modelo.addAttribute("usuario",new Usuario());
+		modelo.addAttribute("logueado",false);
+		modelo.addAttribute("adminLogueado", false);
 		return "index";
 	}
 }

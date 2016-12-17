@@ -23,7 +23,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Arrays;
 import java.util.List;
 
-
+import es.uc3m.tiw.dominio.Men;
 import es.uc3m.tiw.dominio.Producto;
 import es.uc3m.tiw.dominio.Usuario;
 
@@ -80,6 +80,7 @@ public class UsuariosController {
 		Usuario usuarioValidado = restTemplate.postForObject("http://localhost:8010/login", usuario, Usuario.class);
 		modelo.addAttribute("usuarioValidado",usuarioValidado);
 		modelo.addAttribute("logueado", true);
+		modelo.addAttribute("busqueda", new Men());
 		return "perfilUsuario";
 		
 	}
