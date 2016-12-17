@@ -54,7 +54,8 @@
                   <div class="form-group">
                     <label  class="col-md-4"  for="exampleInputFile"><h5 class="text-center"><strong>Correo electrónico</strong></h5></label>
                     <div class="col-md-8">
-                    	<input th:field="*{email}" class="form-control" placeholder="Introduce tu email" name="Email" data-validation="email" data-validation-error-msg="No ha introducidoun email valido, usuario@dominio"/>
+                    	<input th:field="*{email}" class="form-control" placeholder="Introduce tu email" name="Email"
+                    	 data-validation="required email" data-validation-error-msg="No ha introducidoun email valido, usuario@dominio"/>
                             <div><p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Introduzca un nombre"</p></div>
                     </div>
                   </div>
@@ -83,7 +84,8 @@
                   <div class="form-group">
                         <label class="col-md-4" for="ejemplo_password_1"><h5 class="text-center"><strong>Ciudad</strong></h5></label> 
                             <div class="col-md-8">
-                                <select th:field="*{ciudad}" class="form-control" name="City" size="5" data-validation="required" data-validation-length="max1">
+                                <select th:field="*{ciudad}" class="form-control" name="City" size="5" 
+                                data-validation="required" data-validation-length="max1">
                                 <option value="A coruna">A coruna</option>
                                 <option value="Alava">Alava</option>
                                 <option value="Albacete">Albacete</option>
