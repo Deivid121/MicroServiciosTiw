@@ -40,17 +40,20 @@ public class UsuariosController {
     public String registrarUsuarios(Model modelo){
         Usuario u=new Usuario();
         modelo.addAttribute(u);
+		modelo.addAttribute("boolbus", false);
         return "registro";
     }
     
     @PostMapping("/registrar")
     public String guardarUnUsuario(Model modelo, @Valid @ModelAttribute Usuario usuario, BindingResult bR){
         if(bR.hasErrors()){
+    		modelo.addAttribute("boolbus", false);
             return"registro";
         }
         Usuario usuarioGuardado = restTemplate.postForObject("http://localhost:8010/registro", usuario, Usuario.class);
         modelo.addAttribute(usuarioGuardado);
-        return "index";
+		modelo.addAttribute("boolbus", false);
+        return "redirect:/";
         
     }
     
@@ -58,6 +61,7 @@ public class UsuariosController {
     public String editarUsuarios(Model modelo){
         Usuario usuario = new Usuario();
         modelo.addAttribute("nuevo",usuario);
+		modelo.addAttribute("boolbus", false);
         return "editarUsuario";
     }
     @PostMapping("/editar")
@@ -68,14 +72,14 @@ public class UsuariosController {
         vars.put("id", id);
         Usuario usuarioValidado = restTemplate.postForObject("http://localhost:8010/editarU/{id}", nuevo, Usuario.class,vars);
         modelo.addAttribute("usuarioValidado",usuarioValidado);
+		modelo.addAttribute("boolbus", false);
         return "perfilUsuario";
     }
     @RequestMapping(value="/eliminar", method=RequestMethod.GET)
     public String borrarUsuario(Model modelo, HttpServletRequest request){
         HttpSession sesion =request.getSession();
         Usuario usuario = (Usuario)sesion.getAttribute("usuarioValidado");
-        
-        return usuario.toString();
+        return "redirect:/";
     }
     
     
@@ -85,12 +89,12 @@ public class UsuariosController {
         Usuario usuarioValidado = restTemplate.postForObject("http://localhost:8010/login", usuario, Usuario.class);
         modelo.addAttribute("usuarioValidado",usuarioValidado);
         modelo.addAttribute("logueado", true);
-        return "perfilUsuario";
+        return "redirect:/index";
         
     }
     @RequestMapping(value="/perfilUsuario",method=RequestMethod.GET)
     public String verUsuario(Model modelo, @ModelAttribute Usuario usuario){
-        System.out.println(usuario);
+		modelo.addAttribute("boolbus", false);
         return "perfilUsuario";
         
     }
@@ -102,6 +106,7 @@ public class UsuariosController {
         Producto[]prod=(Producto[])responseEntity.getBody();
         List<Producto> lista= Arrays.asList(prod);
         modelo.addAttribute("misProductos",lista);
+		modelo.addAttribute("boolbus", false);
         return "misProductos";
         
     }

@@ -103,6 +103,7 @@ public class ProductosController {
 		List<Producto> lista = (List<Producto>) Arrays.asList(productos);
 		modelo.addAttribute("lista",lista);
 		modelo.addAttribute("busqueda",new Men());
+		modelo.addAttribute("boolbus", true);
 		modelo.addAttribute("usuario",new Usuario());
 		modelo.addAttribute("logueado",false);
 		modelo.addAttribute("adminLogueado", false);

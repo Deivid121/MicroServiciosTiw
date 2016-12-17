@@ -23,13 +23,17 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                           </button>
-                            <a class="navbar-brand" href="/index">
+                            <a th:if="${session.logueado} == false" class="navbar-brand" href="/">
                              <img id="logo" th:href="@{'../../images/titulo.png'}" src="../../images/titulo.png"/>
                             </a>
+                            <a th:if="${session.logueado} == true" class="navbar-brand" href="/index">
+                             <img id="logo" th:href="@{'../../images/titulo.png'}" src="../../images/titulo.png"/>
+                            </a>
+                            
                         </div>
                     </div>
                     <div class="col-md-5">
-                        <div id="topNavElement" class="collapse navbar-collapse navbar-ex1-collapse">
+                        <div th:if="${boolbus} == true" id="topNavElement" class="collapse navbar-collapse navbar-ex1-collapse">
                             <form class="navbar-form navbar-left" th:object="${busqueda}" role="search" action = "/buscar" method ="post">
                                 <div class="form-group ">
                                     <input type="text" th:field="*{mensaje}" class="form-control" placeholder="Buscar producto ..." name = "palabra"/>

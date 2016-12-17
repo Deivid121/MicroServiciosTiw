@@ -34,6 +34,7 @@ public class IndexController {
 		modelo.addAttribute("logueado",false);
 		modelo.addAttribute("adminLogueado", false);
 		modelo.addAttribute("busqueda",new Men());
+		modelo.addAttribute("boolbus", true);
 		ResponseEntity responseEntity=restTemplate.getForEntity("http://localhost:8020/getProductos", Producto[].class);
 		Producto[] productos = (Producto[]) responseEntity.getBody();
 		List<Producto> lista= Arrays.asList(productos);
@@ -51,18 +52,12 @@ public class IndexController {
 		List<Producto> lista= Arrays.asList(productos);
 		modelo.addAttribute("lista",lista);
 		modelo.addAttribute("busqueda",new Men());
+		modelo.addAttribute("boolbus", true);
 		return "index";
 	}
 	@RequestMapping(value="/cerrarSesion")
 	public String index2(Model modelo, @SessionAttribute boolean logueado){
-		ResponseEntity responseEntity=restTemplate.getForEntity("http://localhost:8020/getProductos", Producto[].class);
-		Producto[] productos = (Producto[]) responseEntity.getBody();
-		List<Producto> lista= Arrays.asList(productos);
-		modelo.addAttribute("lista",lista);
-		logueado=false;
-		modelo.addAttribute("logueado", logueado);
-		modelo.addAttribute("usuario",new Usuario());
-		return "index";
+		return "redirect:/";
 	}
 	
 }
