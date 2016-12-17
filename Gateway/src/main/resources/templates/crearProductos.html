@@ -63,7 +63,7 @@
                         <div class="col-md-8">
                         <input th:field="*{precio}" type="number" class="form-control" id="exampleInputFile" 
                         data-validation="number" data-validation-allowing="positive"
-                        data-validation-error-msg="Introduza el precio del producto que quiere vender (>0)"/>
+                        data-validation-error-msg="Introduza el precio del producto que quiere vender (>=0)"/>
                         </div>
                         
                       </div>
@@ -72,8 +72,7 @@
                             <label class="col-md-4" for="nombre"><h5 class="text-center"><strong>Imagen</strong></h5></label> 
                             <div class="col-md-8">
                                 <input type="file" class="form-control" id="imagen_producto"
-                                placeholder="Imagen" name="imagen" data-validation="required"
-                                data-validation-error-msg="Con una imagen su producto se vendera más facilmente"/>
+                                placeholder="Imagen" name="imagen"/>
                            </div>
                         </div>
                         <!-- <div class="form-group">
