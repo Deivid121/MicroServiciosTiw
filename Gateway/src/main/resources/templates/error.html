@@ -1,30 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>WallapopTIW</title>
-<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
-	href="../../css/bootstrap.min.css" />
-<link rel="stylesheet" th:href="@{/css/style.css}"
-	href="../../css/style.css" />
-<link rel="stylesheet" th:href="@{/css/font-awesome-4.7.0/css/font-awesome.css}" href="../../css/font-awesome-4.7.0/css/font-awesome.css" />
-<script th:href="@{/js/jquery.min.js}" src="../../js/jquery.min.js"></script>
-<script th:href="@{/js/bootstrap.min.css}"
-	src="../../js/bootstrap.min.js"></script>
-<script
-	src="http://blackpeppersoftware.github.io/thymeleaf-fragment.js/thymeleaf-fragment.js"
-	defer="defer" th:if="false"></script>
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <title th:text="${status}">404</title>
+
+    <link href="/webjars/materializecss/0.96.0/css/materialize.css" type="text/css" rel="stylesheet"
+          media="screen,projection"/>
 </head>
 <body>
-<div th:replace="/header::header"></div>
-<div class="container">
-		<div class="row">
-			<div id="entrada" class="col-md-3">
-				<p>Upsss, algo ha ido mal</p>
-			</div>
-		</div>
-		<br />
- 	</div>
-<div th:replace="/header::footer"></div>
+<div class="row">
+    <h1 class="indigo-text center" th:text="${error}">Not found</h1>
+
+    <p th:if="${session.logueado}==false" class="col s12 center">
+        Algo ha ido mal, pulsa aqui para <a href="/">volver a la pagina principal</a>
+    </p>
+     <p th:if="${session.logueado}==true" class="col s12 center">
+        Algo ha ido mal, pulsa aqui para <a href="/index">volver a la pagina principal</a>
+    </p>
+</div>
 </body>
 </html>
