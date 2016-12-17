@@ -1,5 +1,6 @@
 package es.uc3m.tiw.controladores;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,8 +20,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.client.RestTemplate;
+import java.util.Arrays;
+import java.util.List;
 
 
+import es.uc3m.tiw.dominio.Producto;
 import es.uc3m.tiw.dominio.Usuario;
 
 @SessionAttributes(value={"logueado","usuarioValidado"})
@@ -82,6 +87,17 @@ public class UsuariosController {
 	public String verUsuario(Model modelo, @ModelAttribute Usuario usuario){
 		System.out.println(usuario);
 		return "perfilUsuario";
+		
+	}
+	@RequestMapping(value="/verMisProductos",method=RequestMethod.GET)
+	public String verProductos(Model modelo, @ModelAttribute Usuario usuario,@SessionAttribute("usuarioValidado")Usuario user){
+		Map <String, Long>vars= new HashMap<String, Long>();
+		vars.put("id", user.getId());
+		ResponseEntity responseEntity=restTemplate.getForEntity("http://localhost:8020/verMisProducto/{id}", Producto[].class, vars);
+		Producto[]prod=(Producto[])responseEntity.getBody();
+		List<Producto> lista= Arrays.asList(prod);
+		modelo.addAttribute("misProductos",lista);
+		return "misProductos";
 		
 	}
 	
