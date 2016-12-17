@@ -35,6 +35,7 @@ public class IndexController {
 		modelo.addAttribute("adminLogueado", false);
 		modelo.addAttribute("busqueda",new Men());
 		modelo.addAttribute("boolbus", true);
+		modelo.addAttribute("err",new Men(""));
 		ResponseEntity responseEntity=restTemplate.getForEntity("http://localhost:8020/getProductos", Producto[].class);
 		Producto[] productos = (Producto[]) responseEntity.getBody();
 		List<Producto> lista= Arrays.asList(productos);

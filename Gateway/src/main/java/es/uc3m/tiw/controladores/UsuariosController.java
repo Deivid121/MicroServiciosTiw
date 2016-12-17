@@ -25,7 +25,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Arrays;
 import java.util.List;
 
-
+import es.uc3m.tiw.dominio.Men;
 import es.uc3m.tiw.dominio.Producto;
 import es.uc3m.tiw.dominio.Usuario;
 
@@ -85,11 +85,25 @@ public class UsuariosController {
     
     @PostMapping("/loguear")
     public String validarUsuario(Model modelo, @ModelAttribute Usuario usuario){
-        System.out.println(usuario);
         Usuario usuarioValidado = restTemplate.postForObject("http://localhost:8010/login", usuario, Usuario.class);
-        modelo.addAttribute("usuarioValidado",usuarioValidado);
-        modelo.addAttribute("logueado", true);
-        return "redirect:/index";
+        if(usuarioValidado == null){
+        	modelo.addAttribute("err", new Men("El usuario introducido no ha sido encontrado"));
+    		modelo.addAttribute("usuario",new Usuario());
+    		modelo.addAttribute("logueado",false);
+    		modelo.addAttribute("adminLogueado", false);
+    		modelo.addAttribute("busqueda",new Men());
+    		modelo.addAttribute("boolbus", true);
+    		ResponseEntity responseEntity=restTemplate.getForEntity("http://localhost:8020/getProductos", Producto[].class);
+    		Producto[] productos = (Producto[]) responseEntity.getBody();
+    		List<Producto> lista= Arrays.asList(productos);
+    		modelo.addAttribute("lista",lista);
+        	return "index";
+        }else{
+        	 modelo.addAttribute("usuarioValidado",usuarioValidado);
+             modelo.addAttribute("logueado", true);
+             return "redirect:/index";
+        }
+       
         
     }
     @RequestMapping(value="/perfilUsuario",method=RequestMethod.GET)

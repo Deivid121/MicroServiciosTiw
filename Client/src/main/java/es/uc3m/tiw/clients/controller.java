@@ -91,7 +91,7 @@ public @ResponseBody Usuario verPerfil(Usuario user){
 
     
     private static Usuario buscarUsuario(List<Usuario> lista, Usuario user){
-    	Usuario u=new Usuario();
+    	Usuario u = null;
     	for (Usuario usuario : lista) {
 			if(usuario.getEmail().equals(user.getEmail())&&usuario.getPassword().equals(user.getPassword())){
 				return usuario;
@@ -103,7 +103,7 @@ public @ResponseBody Usuario verPerfil(Usuario user){
     }
     
     private static Usuario buscarUsuariobyId(List<Usuario> lista, long id){
-    	Usuario u=new Usuario();
+    	Usuario u = null;
     	for (Usuario usuario : lista) {
 			if(usuario.getId() == id){
 				return usuario;
@@ -140,7 +140,7 @@ public @ResponseBody Usuario verPerfil(Usuario user){
     }
     
     private static Administrador buscarAdministrador(List<Administrador> lista, Administrador admin){
-    	Administrador a=new Administrador();
+    	Administrador a = null;
     	for (Administrador administrador : lista) {
 			if(administrador.getEmail().equals(admin.getEmail())&& administrador.getPassword().equals(admin.getPassword())){
 				return administrador;
