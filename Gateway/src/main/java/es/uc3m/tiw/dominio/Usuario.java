@@ -20,19 +20,20 @@ public class Usuario implements Serializable{
 	@Size(min=2,max=30,message="Introduzca su nombre por favor")
 	private String nombre;
 	@NotNull
-	@Size(min=2,max=50)
+	@Size(min=2,max=50, message="Introduzca su primer apellido por favor")
 	private String apellido1;
 	@NotNull
-	@Size(min=2,max=50)
+	@Size(min=2,max=50, message="Introduzca su segundo apellido por favor")
 	private String apellido2;
 	@NotNull
-	@Email
+	@Email 
+	@Size(min=3,max=50,message="Introduzca su email por favor ('usuario@dominio')")
 	private String email;
 	private String avatar;
 	@NotNull
-	@Size(min=8,max=20)
+	@Size(min=8,max=20,message="La contraseña debe tener entre {min} y {max} caracteres")
 	private String password;
-	@NotNull
+	@NotNull(message="Introduzca su ciudad")
 	private String ciudad;
 	
 	public Usuario() {

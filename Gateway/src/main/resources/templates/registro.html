@@ -26,49 +26,44 @@
         <div class="registro">
             <div class="row">
             <div id="registro">
-               <form  th:action="@{/registrar}" th:object="${usuario}" method="post" class="form-horizontal" id="registration">
+               <form  th:action="@{/registrar}" th:object="${usuario}" method="post" class="form-horizontal" id="registration" >
                   <div class="form-group">
                      <label  class="col-md-4"  for="exampleInputFile"><h5 class="text-center"><strong>Nombre</strong></h5></label> 
                     <div class="col-md-8">
-                        <input th:field="*{nombre}" type="text" class="form-control"/>
+                        <input th:field="*{nombre}" type="text" class="form-control" data-validation="required" data-validation-length="max30"/>
                         <div><p th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Introduzca un nombre"</p></div>
                     </div>
                   </div>
                   <div class="form-group">
                      <label  class="col-md-4"  for="exampleInputFile"><h5 class="text-center"><strong>Primer apellido</strong></h5></label> 
                     <div class="col-md-8">
-                    <input th:field="*{apellido1}" type="text" class="form-control" data-validation="required" data-validation-length="max30" data-validation-error-msg="Introduzca su primer apellido" placeholder="Segundo apellido" name="FSurname"/>
+                    	<input th:field="*{apellido1}" type="text" class="form-control" placeholder="Segundo apellido" name="FSurname" data-validation="required" data-validation-length="max30"/>
+                    	<div><p th:if="${#fields.hasErrors('apellido1')}" th:errors="*{apellido1}">Introduzca un nombre"</p></div>
                     </div>
                   </div>
                    <div class="form-group">
                      <label  class="col-md-4"  for="exampleInputFile"><h5 class="text-center"><strong>Segundo apellido</strong></h5></label> 
                     <div class="col-md-8">
-                    <input th:field="*{apellido2}" type="text" class="form-control" data-validation="required" data-validation-length="max30" data-validation-error-msg="Introduzca su segundo apellido" placeholder="Segundo apellido" name="SSurname"/>
+                    	<input th:field="*{apellido2}" type="text" class="form-control" placeholder="Segundo apellido" name="SSurname" data-validation="required" data-validation-length="max30"/>
+                    	<div><p th:if="${#fields.hasErrors('apellido2')}" th:errors="*{apellido2}">Introduzca un nombre"</p></div>
                     </div>
                   </div>
                   <div class="form-group">
                     <label  class="col-md-4"  for="exampleInputFile"><h5 class="text-center"><strong>Correo electrónico</strong></h5></label>
                     <div class="col-md-8">
-                    <input th:field="*{email}" data-validation-error-msg="Introduce un correo electrónico con el formato correcto;     email@dominion.com"
-                            class="form-control" data-validation="email"
-                            placeholder="Introduce tu email" name="Email"/>
+                    	<input th:field="*{email}" class="form-control" placeholder="Introduce tu email" name="Email" data-validation="email" data-validation-error-msg="No ha introducidoun email valido, usuario@dominio"/>
+                            <div><p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Introduzca un nombre"</p></div>
                     </div>
                   </div>
                   <div class="form-group">
                     <label  class="col-md-4" for="exampleInputFile"><h5 class="text-center"><strong>Contraseña</strong></h5></label>
                     <div class="col-md-8">
                     <input th:field="*{password}"
-                            type="password" class="form-control" data-validation-length="min8" data-validation-error-msg="Introduzca una contraseña de al menos 8 caracteres"  placeholder="Contraseña" name="pass_confirmation"/>
+                            type="password" class="form-control" name="pass_confirmation" data-validation="length" data-validation-length="min8"
+							placeholder="Contraseña"/>
+                    	<div><p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Introduzca un nombre"</p></div>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label  class="col-md-4"><h5 class="text-center"><strong> Confirmación de contraseña</strong></h5></label>
-                    <div class="col-md-8">
-                    <input
-                            type="password" class="form-control" data-validation="confirmation" 
-                            placeholder="Verificar contraseña" name="pass"/>
-                    </div>
-                   </div>
                   <div class="form-group">
                     <label  class="col-md-4"><h5 class="text-center"><strong> Avatar</strong></h5></label>
                     <div class="col-md-8">
@@ -139,6 +134,7 @@
                                 <option value="Zamora">Zamora</option>
                                 <option value="Zaragoza">Zaragoza</option>
                                 </select>
+                                <div><p th:if="${#fields.hasErrors('ciudad')}" th:errors="*{ciudad}">Introduzca un nombre"</p></div>
                             </div>
                     </div>
                   <div class="checkbox">
