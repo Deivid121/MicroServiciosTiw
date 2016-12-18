@@ -43,9 +43,9 @@
 			<td th:text="${usuario.ciudad}"></td>
 			<td> <img th:src="@{'../../images/'+ ${usuario.avatar}}"/></td>
 			<td id="opciones">
-			<a title="Ver en detalle el producto"  th:href="@{'verUsuario/' + ${usuario.id }}"><i class="fa fa-search" id="optionIcon" aria-hidden="true"></i></a>
-			<a title="Editar producto" th:href="@{'/editarAdmin/'+ ${usuario.id }}"><i class="fa fa-pencil" id="optionIcon" aria-hidden="true"></i></a>
-			<a title="Eliminar producto" th:href="@{'/eliminarU/'+${usuario.id}}"><i class="fa fa-trash-o" id="optionIcon" aria-hidden="true"></i></a></td>
+			<a title="Ver en detalle al usuario"  th:href="@{'verUsuario/' + ${usuario.id }}"><i class="fa fa-search" id="optionIcon" aria-hidden="true"></i></a>
+			<a title="Editar usuario" th:href="@{'/editarAdmin/'+ ${usuario.id }}"><i class="fa fa-pencil" id="optionIcon" aria-hidden="true"></i></a>
+			<a title="Eliminar usuario" th:href="@{'/eliminarU/'+${usuario.id}}"><i class="fa fa-trash-o" id="optionIcon" aria-hidden="true"></i></a></td>
 			
 	
 		

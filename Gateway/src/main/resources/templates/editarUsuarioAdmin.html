@@ -70,12 +70,12 @@
                   <div class="form-group">
                     <label  class="col-md-4"><h5 class="text-center"><strong> Avatar</strong></h5></label>
                     <div class="col-md-8">
-                     	<p th:text="${session.usuarioValidado.avatar}"></p>
+                     	<p th:text="${u.avatar}"></p>
                     	<input th:field="${nuevo.avatar}" id="avatarName" type="hidden" class="form-control" data-validation="confirmation" 
                             placeholder="Verificar contraseña" name="pass"/>
                             <div class="col-md-5 col-md-offset-2">
                             	<i id="Anterior" onClick="changeAvatar(this)" class="fa fa-arrow-left" aria-hidden="true"></i>
-                    			<img id="avatar" th:src="@{'../../images/'+ ${usuarioValidado.avatar}}"/>
+                    			<img id="avatar" th:src="@{'../../images/'+ ${u.avatar}}"/>
                     			<i id="Siguiente" onClick="changeAvatar(this)" class="fa fa-arrow-right" aria-hidden="true"></i>
                             </div>
                         
@@ -148,16 +148,6 @@
                       </div>
                 </form>
                 <input class="btn btn-default" type="button" value="Volver a inicio" onclick="location='/cargarAdmin'" />
-            <script>
-                $.validate({
-                    form : '#registration', 
-                     modules : 'security',
-                     onError : function($form) {
-                         console.log($form);
-                          return false;
-                        }
-                });
-            </script>
                 </div>
             </div>
         </div>

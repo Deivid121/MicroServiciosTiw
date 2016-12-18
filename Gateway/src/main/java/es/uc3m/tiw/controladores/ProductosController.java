@@ -134,7 +134,6 @@ public class ProductosController {
              }catch(Exception e){
                  System.out.println("No se ha podido el byte[]");
              }  
-		System.out.println(pnuevo);
 		Producto productoGuardado = restTemplate.postForObject("http://localhost:8020/editarProducto",pnuevo, Producto.class);
 		modelo.addAttribute("producto",productoGuardado);
 		return "redirect:/verMisProductos";

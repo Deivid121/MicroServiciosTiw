@@ -3,12 +3,14 @@ package es.uc3m.tiw.controladores;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -21,7 +23,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.client.RestTemplate;
-
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import es.uc3m.tiw.dominio.Administrador;
 import es.uc3m.tiw.dominio.Men;
@@ -46,7 +49,6 @@ public class AdminController {
 
 	@RequestMapping(value="/perfilAdministrador",method=RequestMethod.GET)
 	public String verAdmin(Model modelo, @ModelAttribute Administrador administrador){
-		System.out.println(administrador);
 		return "perfilAdmin";
 		
 	}
@@ -60,6 +62,7 @@ public class AdminController {
 		vars.put("id", id);
 		Usuario u=restTemplate.getForObject("http://localhost:8010/buscarPorId/{id}",Usuario.class,vars);
 		modelo.addAttribute("u",u);
+		System.out.println(u);
 		modelo.addAttribute("nuevo", nuevo);
 		return "editarUsuarioAdmin";
 		}else{
@@ -69,12 +72,62 @@ public class AdminController {
 			return "LoginAdmin";
 		}
 	}
+	
+	//EDITAR PRODUCTOS ADMIN 
+	@RequestMapping(value="/productoAdmin/{id}")
+	public String editarProducto(Model modelo, @PathVariable long id, @SessionAttribute("adminLogueado") boolean admin){
+		if(admin){
+		modelo.addAttribute("boolbus", false);
+		Producto nuevo = new Producto();
+		Map<String, Long> vars = new HashMap<String, Long>();
+		vars.put("id", id);
+		Producto p=restTemplate.getForObject("http://localhost:8020/buscarPorId/{id}",Producto.class,vars);
+		modelo.addAttribute("p",p);
+		modelo.addAttribute("nuevo", nuevo);
+		return "editarProductoAdmin";
+		}else{
+			Administrador admin2 = new Administrador();
+			modelo.addAttribute("AdminValidado",admin2);
+			modelo.addAttribute("err", new Men("No se ha introducido un administrador correcto"));
+			return "LoginAdmin";
+		}
+	}
+	
+	
 	@PostMapping("/editarA/{id}")
 	public String actualizarUsuario(Model modelo, @ModelAttribute("nuevo") Usuario nuevo,@PathVariable long id ){
 		Map<String, Long> vars = new HashMap<String, Long>();
 		vars.put("id", id);
 		Usuario usuarioValidado = restTemplate.postForObject("http://localhost:8010/editarU/{id}",nuevo, Usuario.class,vars);
 		modelo.addAttribute("usuarioValidado",usuarioValidado);
+		return "redirect:/cargarAdmin";
+		
+	}
+	@PostMapping("/editarP/{id}")
+	public String actualizarProducto(Model modelo, @ModelAttribute("nuevo") Producto nuevo,@PathVariable long id,MultipartHttpServletRequest request ){
+		Map<String, Long> vars = new HashMap<String, Long>();
+		vars.put("id", id);
+		Producto p=restTemplate.getForObject("http://localhost:8020/buscarPorId/{id}",Producto.class,vars);
+		nuevo.setUsuario(p.getUsuario());
+		nuevo.setId((int)p.getId());
+		Iterator<String> itrator = request.getFileNames();
+        MultipartFile multiFile = request.getFile(itrator.next());
+        	byte[] bytes = null;
+            Base64 base64 = new Base64();
+             try{
+                 bytes = multiFile.getBytes();
+                 String imagen = "data:image/jpg;base64,";
+         		 imagen +=base64.encodeToString(bytes);
+         		 if(!imagen.equals("data:image/jpg;base64,")){
+         			nuevo.setImage(imagen);
+         		 }else{
+         			 nuevo.setImage("");
+         		 }            	 
+             }catch(Exception e){
+                 System.out.println("No se ha podido el byte[]");
+             }  
+
+		Producto actualizado = restTemplate.postForObject("http://localhost:8020/editarProducto",nuevo, Producto.class);
 		return "redirect:/cargarAdmin";
 		
 	}
